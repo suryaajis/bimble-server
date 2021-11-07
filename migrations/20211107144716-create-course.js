@@ -10,25 +10,32 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING,
+        allowNull: false,
         unique: true
       },
       description: {
-        type: Sequelize.TEXT
+        type: Sequelize.TEXT,
+        allowNull: false
       },
       price: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       thumbnailUrl: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       difficulty: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       status: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
       },
       CategoryId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
           model: `Categories`,
           key: `id`

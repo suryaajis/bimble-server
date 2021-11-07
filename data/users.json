@@ -3,28 +3,28 @@
         "id" : 1,
         "name" : "admin",
         "email" : "admin@gmail.com",
-        "password" : "$2b$08$70skDRgLe79nTvtDdi0y1uGYaMvw6RnoaWogz.oHEt4UzW2T1znmS",
+        "password" : "$2b$08$4mdzYhzpfCTwo9XLkm4O3OpmZya5GTzWIQuRbwOnnEhy2tf8A30Za",
         "role" : "Admin"
     },
     {
         "id" : 2,
         "name" : "kosasih",
         "email" : "kosasih@gmail.com",
-        "password" : "$2b$08$HdWVqIW2CCgNzWptB36jmOUdDGtJt9XwHcc5yxpB6ctyefBKK3Qgm",
+        "password" : "$2b$08$4mdzYhzpfCTwo9XLkm4O3OpmZya5GTzWIQuRbwOnnEhy2tf8A30Za",
         "role" : "Admin"
     },
     {
         "id" : 3,
         "name" : "udin",
         "email" : "udin@gmail.com",
-        "password" : "$2b$08$TOLH1msZ//Tdp5SDkt9eMecW6A7g9H7xVTdSYnB.6fDD9eig8blki",
+        "password" : "$2b$08$4mdzYhzpfCTwo9XLkm4O3OpmZya5GTzWIQuRbwOnnEhy2tf8A30Za",
         "role" : "User"
     },
     {
         "id" : 4,
         "name" : "jhon",
         "email" : "jhon@gmail.com",
-        "password" : "$2b$08$chS8K794S8Z1WZ6E\/F\/Mh.EWHEtLYHE7up1u1CXm.QcvzV\/epX\/oi",
+        "password" : "$2b$08$4mdzYhzpfCTwo9XLkm4O3OpmZya5GTzWIQuRbwOnnEhy2tf8A30Za",
         "role" : "User"
     }
 ]

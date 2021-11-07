@@ -10,6 +10,7 @@ module.exports = {
       },
       UserId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
           model: `Users`,
           key: `id`
@@ -19,6 +20,7 @@ module.exports = {
       },
       CourseId: {
         type: Sequelize.INTEGER,
+        allowNull: false,
         references: {
           model: `Courses`,
           key: `id`
@@ -27,7 +29,8 @@ module.exports = {
         onDelete: `CASCADE`
       },
       isPaid: {
-        type: Sequelize.BOOLEAN
+        type: Sequelize.BOOLEAN,
+        allowNull: false
       },
       chargeId: {
         type: Sequelize.STRING
