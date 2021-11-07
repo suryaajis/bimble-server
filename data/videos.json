@@ -1,0 +1,416 @@
+[
+    {
+        "id": 1,
+        "name": "Program Linear Part 1",
+        "videoUrl": "https://www.youtube.com/embed/WJr11FExG7s",
+        "CourseId": 1
+    },
+    {
+        "id": 2,
+        "name": "Program Linear Part 2",
+        "videoUrl": "https://www.youtube.com/embed/fp0mybLeagQ",
+        "CourseId": 1
+    },
+    {
+        "id": 3,
+        "name": "Program Linear Part 3",
+        "videoUrl": "https://www.youtube.com/embed/sHchBWSUMfA",
+        "CourseId": 1
+    },
+    {
+        "id": 4,
+        "name": "Dimensi Tiga - Gerak Tegak Lurus Part 1",
+        "videoUrl": "https://www.youtube.com/embed/OcAs8mQNshs",
+        "CourseId": 2
+    },
+    {
+        "id": 5,
+        "name": "Dimensi Tiga - Gerak Tegak Lurus Part 2",
+        "videoUrl": "https://www.youtube.com/embed/Ez3pEfUEWgU",
+        "CourseId": 2
+    },
+    {
+        "id": 6,
+        "name": "Dimensi Tiga - Gerak Tegak Lurus Part 3",
+        "videoUrl": "https://www.youtube.com/embed/qmkP0JutYVc",
+        "CourseId": 2
+    },
+    {
+        "id": 7,
+        "name": "Pengertian Nilai Mutlak",
+        "videoUrl": "https://www.youtube.com/embed/x9M-_SITCOg",
+        "CourseId": 3
+    },
+    {
+        "id": 8,
+        "name": "Persamaan Nilai Mutlak",
+        "videoUrl": "https://www.youtube.com/embed/TSA8RhoMJoY",
+        "CourseId": 3
+    },
+    {
+        "id": 9,
+        "name": "Pertidaksamaan Nilai Mutlak",
+        "videoUrl": "https://www.youtube.com/embed/GeJK8d6KZck",
+        "CourseId": 3
+    },
+    {
+        "id": 10,
+        "name": "Elastisitas - Konsep Dasar",
+        "videoUrl": "https://www.youtube.com/embed/TIa4iHmyaBI",
+        "CourseId": 4
+    },
+    {
+        "id": 11,
+        "name": "Elastisitas - Hukum Hooke",
+        "videoUrl": "https://www.youtube.com/embed/gb5f3glY004",
+        "CourseId": 4
+    },
+    {
+        "id": 12,
+        "name": "Elastisitas - Susunan Pegas",
+        "videoUrl": "https://www.youtube.com/embed/fvXVsVHgxW8",
+        "CourseId": 4
+    },
+    {
+        "id": 13,
+        "name": "Kinematika Gerak - Konsep Gerak Benda",
+        "videoUrl": "https://www.youtube.com/embed/g7p-BA4hEN0",
+        "CourseId": 5
+    },
+    {
+        "id": 14,
+        "name": "Kinematika Gerak - GLB dan GLBB",
+        "videoUrl": "https://www.youtube.com/embed/f-XhKf2KgAc",
+        "CourseId": 5
+    },
+    {
+        "id": 16,
+        "name": "Listrik Statis - Gaya Listrik Statis",
+        "videoUrl": "https://www.youtube.com/embed/Dvov_EOkhpo",
+        "CourseId": 6
+    },
+    {
+        "id": 17,
+        "name": "Listrik Statis - Kuat Medan Listrik",
+        "videoUrl": "https://www.youtube.com/embed/uiJf5gxuUvg",
+        "CourseId": 6
+    },
+    {
+        "id": 18,
+        "name": "Listrik Statis - Energi Potensial Listrik dan Pengaruh pada Bola Pejal",
+        "videoUrl": "https://www.youtube.com/embed/NH47PslQV9M",
+        "CourseId": 6
+    },
+    {
+        "id": 19,
+        "name": "Kingdom Animalia - Part 1",
+        "videoUrl": "https://www.youtube.com/embed/QkyGq_zxcvU",
+        "CourseId": 7
+    },
+    {
+        "id": 20,
+        "name": "Kingdom Animalia - Part 2",
+        "videoUrl": "https://www.youtube.com/embed/8dKeqwzWP2g",
+        "CourseId": 7
+    },
+    {
+        "id": 21,
+        "name": "Kingdom Animalia - Part 3",
+        "videoUrl": "https://www.youtube.com/embed/VMQu2yjaC_U",
+        "CourseId": 7
+    },
+    {
+        "id": 23,
+        "name": "Sistem Pernapasan Manusia - Part 1",
+        "videoUrl": "https://www.youtube.com/embed/CnueJ15d228",
+        "CourseId": 8
+    },
+    {
+        "id": 24,
+        "name": "Sistem Pernapasan Manusia - Part 2",
+        "videoUrl": "https://www.youtube.com/embed/JlNCEIBWCNw",
+        "CourseId": 8
+    },
+    {
+        "id": 25,
+        "name": "Metabolisme - Enzim",
+        "videoUrl": "https://www.youtube.com/embed/TYfN2oW02eI",
+        "CourseId": 9
+    },
+    {
+        "id": 26,
+        "name": "Metabolisme - Katabolisme",
+        "videoUrl": "https://www.youtube.com/embed/Gk_-dkBMZk0",
+        "CourseId": 9
+    },
+    {
+        "id": 27,
+        "name": "Metabolisme - Anabolisme",
+        "videoUrl": "https://www.youtube.com/embed/WJNbwom-aXQ",
+        "CourseId": 9
+    },
+    {
+        "id": 28,
+        "name": "Tata Nama Senya anorganik",
+        "videoUrl": "https://www.youtube.com/embed/MrAdpuQ04LE",
+        "CourseId": 10
+    },
+    {
+        "id": 28,
+        "name": "Tata Nama Senya ion",
+        "videoUrl": "https://www.youtube.com/embed/KFWX41rrpUQ",
+        "CourseId": 10
+    },
+    {
+        "id": 28,
+        "name": "Hidrokarbon - Konsep Dasar",
+        "videoUrl": "https://www.youtube.com/embed/ykvIyFwgOrg",
+        "CourseId": 11
+    },
+    {
+        "id": 29,
+        "name": "Hidrokarbon - Tata Nama Part 1",
+        "videoUrl": "https://www.youtube.com/embed/09gPczMoCMg",
+        "CourseId": 11
+    },
+    {
+        "id": 30,
+        "name": "Hidrokarbon - Tata Nama ALKANA Part 2",
+        "videoUrl": "https://www.youtube.com/embed/09gPczMoCMg",
+        "CourseId": 11
+    },
+    {
+        "id": 31,
+        "name": "Hidrokarbon - Tata Nama ALKENA & ALKUNA",
+        "videoUrl": "https://www.youtube.com/embed/9WQ_BiNbezE",
+        "CourseId": 11
+    },
+    {
+        "id": 32,
+        "name": "Sifat Koligatif",
+        "videoUrl": "https://www.youtube.com/embed/ZWAaJ3Oe4Ow",
+        "CourseId": 12
+    },
+    {
+        "id": 33,
+        "name": "Bahas soal penurunan titik beku",
+        "videoUrl": "https://www.youtube.com/embed/qFecVnL9RrA",
+        "CourseId": 12
+    },
+    {
+        "id": 34,
+        "name": "Lembaga Keuangan - Otoritas Jasa Keuangan (OJK)",
+        "videoUrl": "https://www.youtube.com/embed/gcrFZiYYhAU",
+        "CourseId": 13
+    },
+    {
+        "id": 35,
+        "name": "Lembaga Keuangan - Perbankan",
+        "videoUrl": "https://www.youtube.com/embed/o-PkRu8CEJ8",
+        "CourseId": 13
+    },
+    {
+        "id": 36,
+        "name": "Lembaga Keuangan - Pasar Modal",
+        "videoUrl": "https://www.youtube.com/embed/HOhzyWkbUD0",
+        "CourseId": 13
+    },
+    {
+        "id": 37,
+        "name": "Perhitungan Pendapatan Nasional - Konsep Dasar Part 1",
+        "videoUrl": "https://www.youtube.com/embed/N8zd4OSAhVw",
+        "CourseId": 14
+    },
+    {
+        "id": 38,
+        "name": "Perhitungan Pendapatan Nasional - Konsep Dasar Part 2",
+        "videoUrl": "https://www.youtube.com/embed/cMrLwZR00sM",
+        "CourseId": 14
+    },
+    {
+        "id": 39,
+        "name": "Perhitungan Pendapatan Nasional - Pendapatan Perkapita",
+        "videoUrl": "https://www.youtube.com/embed/ES8sz6Jh9pg",
+        "CourseId": 14
+    },
+    {
+        "id": 40,
+        "name": "Akuntansi sebagai sistem informasi - Konsep Dasar Part 1",
+        "videoUrl": "https://www.youtube.com/embed/deO-g4ZDdNc",
+        "CourseId": 15
+    },
+    {
+        "id": 41,
+        "name": "Akuntansi sebagai sistem informasi - Konsep Dasar Part 2",
+        "videoUrl": "https://www.youtube.com/embed/Ycv60NBcINc",
+        "CourseId": 15
+    },
+    {
+        "id": 42,
+        "name": "Akuntansi sebagai sistem informasi - Profesi dan Etika Profesi Akuntan",
+        "videoUrl": "https://www.youtube.com/embed/sSHhXe3PfOo",
+        "CourseId": 15
+    },
+    {
+        "id": 43,
+        "name": "Dinamika Planet Bumi - Teori Pembentukan Jagat Raya dan Tata Surya",
+        "videoUrl": "https://www.youtube.com/embed/QNoVMaOAqsY",
+        "CourseId": 16
+    },
+    {
+        "id": 44,
+        "name": "Dinamika Planet Bumi - Anggota Tata Surya dan Karakteristiknya",
+        "videoUrl": "https://www.youtube.com/embed/oDMWK9MGJH0",
+        "CourseId": 16
+    },
+    {
+        "id": 45,
+        "name": "Dinamika Planet Bumi - Teori Pembentukan Muka Bumi",
+        "videoUrl": "https://www.youtube.com/embed/fIPO4qGI2JE",
+        "CourseId": 16
+    },
+    {
+        "id": 46,
+        "name": "Dinamika Hidrosfer - Karakteristik Sungai",
+        "videoUrl": "https://www.youtube.com/embed/sA4iJAjCqfI",
+        "CourseId": 17
+    },
+    {
+        "id": 47,
+        "name": "Dinamika Hidrosfer - Siklus Hidrologi",
+        "videoUrl": "https://www.youtube.com/embed/8EEmEJ3iKk0",
+        "CourseId": 17
+    },
+    {
+        "id": 48,
+        "name": "Dinamika Hidrosfer - Karakteristik dan Dinamika Perairan Laut",
+        "videoUrl": "https://www.youtube.com/embed/3kgc4BHwQe0",
+        "CourseId": 17
+    },
+    {
+        "id": 49,
+        "name": "Konsep Wilayah dan Perwilayahan - Wilayah Formal dan Fungsional",
+        "videoUrl": "https://www.youtube.com/embed/otkkoDjxR-E",
+        "CourseId": 18
+    },
+    {
+        "id": 50,
+        "name": "Konsep Wilayah dan Perwilayahan - Jenis Perwilayahan",
+        "videoUrl": "https://www.youtube.com/embed/r0vOTdBl3xU",
+        "CourseId": 18
+    },
+    {
+        "id": 51,
+        "name": "Konsep Wilayah dan Perwilayahan - Tata Ruang",
+        "videoUrl": "https://www.youtube.com/embed/AOHhpsOVXfE",
+        "CourseId": 18
+    },
+    {
+        "id": 52,
+        "name": "Masa Prasejarah - Zaman Prasejarah",
+        "videoUrl": "https://www.youtube.com/embed/ORY7PaZOPok",
+        "CourseId": 19
+    },
+    {
+        "id": 53,
+        "name": "Masa Prasejarah - Periodisasi Masa Prasejarah",
+        "videoUrl": "https://www.youtube.com/embed/-g3PsFnKkvQ",
+        "CourseId": 19
+    },
+    {
+        "id": 54,
+        "name": "Masa Prasejarah - Zaman Batu Tua",
+        "videoUrl": "https://www.youtube.com/embed/aSeOPmNjJXU",
+        "CourseId": 19
+    },
+    {
+        "id": 55,
+        "name": "Kebudayaan Hindu Budha di Indonesia - Teori Masuknya Kebudayaan Hindu Budha",
+        "videoUrl": "https://www.youtube.com/embed/F3S-LVJba1c",
+        "CourseId": 20
+    },
+    {
+        "id": 56,
+        "name": "Kebudayaan Hindu Budha di Indonesia - Sejarah Kerajaan Kutai",
+        "videoUrl": "https://www.youtube.com/embed/ruX4UMFLFg0",
+        "CourseId": 20
+    },
+    {
+        "id": 57,
+        "name": "Kebudayaan Hindu Budha di Indonesia - Kerajaan Tarumanegara",
+        "videoUrl": "https://www.youtube.com/embed/U8HVD1-SBRk",
+        "CourseId": 20
+    },
+    {
+        "id": 58,
+        "name": "Modernisasi dan Globalisasi - Definisi dan Hakikat Modernisasi ",
+        "videoUrl": "https://www.youtube.com/embed/D5g7uz2FjeQ",
+        "CourseId": 22
+    },
+    {
+        "id": 59,
+        "name": "Modernisasi dan Globalisasi - Definisi dan Teori Globalisasi",
+        "videoUrl": "https://www.youtube.com/embed/fpjvLNw9-6Q",
+        "CourseId": 22
+    },
+    {
+        "id": 60,
+        "name": "Modernisasi dan Globalisasi - Proses Terjadinya Globalisasi",
+        "videoUrl": "https://www.youtube.com/embed/wJny1s9oYAw",
+        "CourseId": 22
+    },
+    {
+        "id": 61,
+        "name": "Mobilitas Sosial di Masyarakat - Definisi Mobilitas Sosial",
+        "videoUrl": "https://www.youtube.com/embed/mp_-PusiTZk",
+        "CourseId": 23
+    },
+    {
+        "id": 62,
+        "name": "Mobilitas Sosial di Masyarakat - Bentuk bentuk Mobilitas Sosial Part 1",
+        "videoUrl": "https://www.youtube.com/embed/SAovHz5fPoU",
+        "CourseId": 23
+    },
+    {
+        "id": 63,
+        "name": "Mobilitas Sosial di Masyarakat - Bentuk bentuk Mobilitas Sosial Part 2",
+        "videoUrl": "https://www.youtube.com/embed/KUtX6bprDBk",
+        "CourseId": 23
+    },
+    {
+        "id": 64,
+        "name": "Konflik dan Integrasi Sosial - Pengertian dan Teori",
+        "videoUrl": "https://www.youtube.com/embed/hgvZeHkFg9E",
+        "CourseId": 24
+    },
+    {
+        "id": 65,
+        "name": "Konflik dan Integrasi Sosial - Faktor Penyebab",
+        "videoUrl": "https://www.youtube.com/embed/9DvB4Dx_hAk",
+        "CourseId": 24
+    },
+    {
+        "id": 66,
+        "name": "Konflik dan Integrasi Sosial - Jenis jenis Konflik Sosial",
+        "videoUrl": "https://www.youtube.com/embed/jxDOU5FgVcU",
+        "CourseId": 24
+    },
+    {
+        "id": 67,
+        "name": "Masuknya Agama Islam ke Indonesia - Teori Masuknya Agama Islam ke Indonesia",
+        "videoUrl": "https://www.youtube.com/embed/Ns7G7YO2XZs",
+        "CourseId": 21
+    },
+    {
+        "id": 68,
+        "name": "Masuknya Agama Islam ke Indonesia - Sejarah Kerajaan Perlak",
+        "videoUrl": "https://www.youtube.com/embed/wvsmSPFUVyo",
+        "CourseId": 21
+    },
+    {
+        "id": 69,
+        "name": "Masuknya Agama Islam ke Indonesia - Sejarah Kerajaan Samudera Pasai",
+        "videoUrl": "https://www.youtube.com/embed/UPQSXs81dmU",
+        "CourseId": 21
+    }
+]
