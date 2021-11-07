@@ -1,0 +1,30 @@
+[
+    {
+        "id" : 1,
+        "name" : "admin",
+        "email" : "admin@gmail.com",
+        "password" : "$2b$08$4mdzYhzpfCTwo9XLkm4O3OpmZya5GTzWIQuRbwOnnEhy2tf8A30Za",
+        "role" : "Admin"
+    },
+    {
+        "id" : 2,
+        "name" : "kosasih",
+        "email" : "kosasih@gmail.com",
+        "password" : "$2b$08$4mdzYhzpfCTwo9XLkm4O3OpmZya5GTzWIQuRbwOnnEhy2tf8A30Za",
+        "role" : "Admin"
+    },
+    {
+        "id" : 3,
+        "name" : "udin",
+        "email" : "udin@gmail.com",
+        "password" : "$2b$08$4mdzYhzpfCTwo9XLkm4O3OpmZya5GTzWIQuRbwOnnEhy2tf8A30Za",
+        "role" : "User"
+    },
+    {
+        "id" : 4,
+        "name" : "jhon",
+        "email" : "jhon@gmail.com",
+        "password" : "$2b$08$4mdzYhzpfCTwo9XLkm4O3OpmZya5GTzWIQuRbwOnnEhy2tf8A30Za",
+        "role" : "User"
+    }
+]

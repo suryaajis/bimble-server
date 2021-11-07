@@ -1,0 +1,242 @@
+[
+    {
+        "id": 1,
+        "name": "Program Linear",
+        "description": "Program Linear adalah bagian matematika yang membahas cara menentukan nilai optimum suatu fungsi – dinamakan fungsi obyektif atau fungsi tujuan – pada suatu sistem yang dibatasi beberapa kendala./nAda dua macam nilai optimum yang akan ditentukan, yaitu nilai maksimum dan nilai minimum.",
+        "price": 145000,
+        "thumbnailUrl": "https://i.ytimg.com/vi/WJr11FExG7s/hqdefault.jpg?s…RUAAIhCGAE=&rs=AOn4CLAImD8rRbQR7cuFCw3Z_xsjLlr1Tg",
+        "difficulty": "medium",
+        "status": "active",
+        "CategoryId": 1
+    },
+    {
+        "id": 2,
+        "name": "Dimensi Tiga",
+        "description": "Yang dimaksud dengan unsur-unsur ruang adalah titik, garis, dan bidang./nDalam Geometri, titik, garis, dan bidang, termasuk dalam aksioma atau postulat./nAksioma adalah pernyataan yang diterima sebagai kebenaran secara umum tanpa perlu adanya pembuktian.",
+        "price": 130000,
+        "thumbnailUrl": "https://i.ytimg.com/vi/strzhKqA_sQ/hqdefault.jpg?s…RUAAIhCGAE=&rs=AOn4CLCVGKk89pHJwWo1ORt8hzlH1iM9rg",
+        "difficulty": "easy",
+        "status": "active",
+        "CategoryId": 1
+    },
+    {
+        "id": 3,
+        "name": "Nilai Mutlak",
+        "description": "Dalam matematika, nilai absolut dari suatu bilangan real x, ditulis sebagai |x|, adalah nilai dari x tanpa disertai oleh tanda. Dengan kata lain, |x| = x jika x adalah bilangan positif dan |x| = −x jika x adalah bilangan negatif.",
+        "price": 215000,
+        "thumbnailUrl": "https://i.ytimg.com/vi/x9M-_SITCOg/hqdefault.jpg?s…RUAAIhCGAE=&rs=AOn4CLBWE03F6D5GFOl_4rEvvp3rCMIC_w",
+        "difficulty": "easy",
+        "status": "active",
+        "CategoryId": 1
+    },
+    {
+        "id": 4,
+        "name": "Elastisitas",
+        "description": "Sebuah pegas yang kita gantungkan dengan sebuah beban pada salah satu ujungnya, akan kembali ke panjangnya semula jika beban tersebut diambil kembali. Sifat sebuah benda yang dapat kembali ke bentuk semula seperti itu disebut elastisitas.",
+        "price": 200000,
+        "thumbnailUrl": "https://i.ytimg.com/vi/TIa4iHmyaBI/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLDbY59uIDbV72pnfnZe2KDTYtikcw",
+        "difficulty": "easy",
+        "status": "active",
+        "CategoryId": 2
+    },
+    {
+        "id": 5,
+        "name": "Kinematika Gerak",
+        "description": "Dalam fisika, kinematika yaitu cabang dari mekanika yang membahas gerakan benda tanpa mempersoalkan gaya penyebab gerakan. Hal terakhir ini berbeda dari dinamika atau sering disebut dengan Kinetika, yang mempersoalkan gaya yang memengaruhi gerakan.",
+        "price": 250000,
+        "thumbnailUrl": "https://i.ytimg.com/vi/f-XhKf2KgAc/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLCR5c0LAClRKlpmg2JQky2rKSBUTQ",
+        "difficulty": "medium",
+        "status": "active",
+        "CategoryId": 2
+    },
+    {
+        "id": 6,
+        "name": "Listrik Statis",
+        "description": "Listrik statis merupakan listrik yang muncul secara sementara karena adanya perpindahan elektron bebas.",
+        "price": 185000,
+        "thumbnailUrl": "https://i.ytimg.com/vi/Dvov_EOkhpo/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLBFYazlmYnGb-St9PC6PJ6lB-PKVA",
+        "difficulty": "hard",
+        "status": "active",
+        "CategoryId": 2
+    },
+    {
+        "id": 7,
+        "name": "Kingdom Animalia",
+        "description": "Kingdom animalia merupakan kelompok makhluk hidup yang sangat beragam baik dari bentuk maupun ukuran.",
+        "price": 225000,
+        "thumbnailUrl": "https://i.ytimg.com/vi/QkyGq_zxcvU/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLAV3d0pX44qdoGSfVE4ZMOgJqG64w",
+        "difficulty": "easy",
+        "status": "active",
+        "CategoryId": 4
+    },
+    {
+        "id": 8,
+        "name": "Sistem Pernapasan Manusia",
+        "description": "Manusia bernapas menggunakan alat atau organ-organ pernapasan yang terdiri dari hidung, faring, trakea, bronkus, bronkiolus dan paru-paru. Pada paru-paru yang normal, volume udara bisa mencapai 4500 cc. Kapasitas ini biasa dikenal dengan kapasitas total.",
+        "price": 235000,
+        "thumbnailUrl": "https://i.ytimg.com/vi/CnueJ15d228/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLD8xTCQu9-g7sQfc9-HuB6FxZRyMA",
+        "difficulty": "medium",
+        "status": "active",
+        "CategoryId": 4
+    },
+    {
+        "id": 9,
+        "name": "Metabolisme",
+        "description": "Metabolisme adalah proses pengolahan zat gizi dari makanan yang telah diserap oleh tubuh untuk diubah menjadi energi. ",
+        "price": 225000,
+        "thumbnailUrl": "https://i.ytimg.com/vi/TYfN2oW02eI/hqdefault.jpg?s…RUAAIhCGAE=&rs=AOn4CLAkCSI5t1yXt2mZv1B9yKLAMX8qRA",
+        "difficulty": "easy",
+        "status": "active",
+        "CategoryId": 4
+    },
+    {
+        "id": 10,
+        "name": "Tata Nama Senyawa",
+        "description": "Penamaan senyawa yang terdiri dari unsur-unsur non-logam. Penamaan senyawa diawali dengan jumlah atom dalam angka yunani. Angka yunani yang digunakan adalah 1=mono, 2=di, 3=tri, 4=tetra, 5=penta, 6=heksa, 7=hepta, 8=okta, 9=nona, dan 10=deka. Contohnya adalah senyawa N2O5 yang dinamai dengan dinitrogen pentaoksida.",
+        "price": 200000,
+        "thumbnailUrl": "https://i.ytimg.com/vi/MrAdpuQ04LE/hqdefault.jpg?s…RUAAIhCGAE=&rs=AOn4CLCVlTywnWndJKzUCWyDBcLIfA61Pg",
+        "difficulty": "easy",
+        "status": "active",
+        "CategoryId": 3
+    },
+    {
+        "id": 11,
+        "name": "Hidrokarbon",
+        "description": "Hidrokarbon adalah sebuah senyawa yang terdiri dari unsur atom karbon (C) dan atom hidrogen (H). Semua hidrokarbon memiliki rantai karbon dan atom-atom hidrogen yang berikatan dengan rantai tersebut. Istilah tersebut digunakan juga sebagai pengertian dari hidrokarbon alifatik.",
+        "price": 315000,
+        "thumbnailUrl": "https://i.ytimg.com/vi/ykvIyFwgOrg/hqdefault.jpg?s…RUAAIhCGAE=&rs=AOn4CLA9HIUBvyNVz7RbSnY4vGX56X1S1g",
+        "difficulty": "medium",
+        "status": "active",
+        "CategoryId": 3
+    },
+    {
+        "id": 12,
+        "name": "Sifat Koligatif Larutan",
+        "description": "Sifat koligatif adalah sifat fisik larutan yang disebabkan oleh banyaknya zat terlarut pada suatu larutan. Sifat koligatif tidak bergantung pada hal selain jumlah zat terlarut apapun senyawa yang dilarutkan kedalamnya.",
+        "price": 205000,
+        "thumbnailUrl": "https://i.ytimg.com/vi/ZWAaJ3Oe4Ow/hqdefault.jpg?s…RUAAIhCGAE=&rs=AOn4CLDUPbfm5F-Jfew1krgQoRl31G8PPw",
+        "difficulty": "hard",
+        "status": "active",
+        "CategoryId": 3
+    },
+    {
+        "id": 13,
+        "name": "Lembaga Keuangan",
+        "description": "Lembaga keuangan dalam dunia keuangan bertindak selaku lembaga yang menyediakan jasa keuangan bagi nasabahnya, di mana pada umumnya lembaga ini diatur oleh regulasi keuangan dari pemerintah.",
+        "price": 215000,
+        "thumbnailUrl": "https://i.ytimg.com/vi/gcrFZiYYhAU/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLCi_rtk3XeB0WNJWvZ67Uj1h-ASkg",
+        "difficulty": "easy",
+        "status": "active",
+        "CategoryId": 5
+    },
+    {
+        "id": 14,
+        "name": "Perhitungan Pendapatan Nasional",
+        "description": "Pendapatan nasional merupakan jumlah rata-rata pendapatan yang diterima oleh seluruh rumah tangga keluarga (RTK) pada suatu negara dari penyerahan berbagai faktor produksi dalam satu periode atau selama satu tahun.",
+        "price": 225000,
+        "thumbnailUrl": "https://i.ytimg.com/vi/N8zd4OSAhVw/hqdefault.jpg?s…QCAokN4AQ==&rs=AOn4CLAD45O9F_MnP8ODjp5WPpEjingjdA",
+        "difficulty": "medium",
+        "status": "active",
+        "CategoryId": 5
+    },
+    {
+        "id": 15,
+        "name": "Akuntansi Sebagai Sistem Informasi",
+        "description": "Akuntansi adalah sistem informasi yang mengukur aktvtas bisnis, mengolah data menjadi laporan, dan mengomunikasikan hasilnya kepada para pengambil keputusan. Perusahaan mendistribusikan laporan akuntansi yang meringkas kinerja keuangan perusahaan kepada pemilik, kreditur, pemerintah, dan calon investor.",
+        "price": 235000,
+        "thumbnailUrl": "https://i.ytimg.com/vi/deO-g4ZDdNc/hqdefault.jpg?s…RUAAIhCGAE=&rs=AOn4CLDKTsR-waqGkW8nuzjAR5jmtSGOyQ",
+        "difficulty": "hard",
+        "status": "active",
+        "CategoryId": 5
+    },
+    {
+        "id": 16,
+        "name": "Dinamika Planet Bumi",
+        "description": "Bumi itu bersifat dinamis dan terus berkembang. Perubahan itu terlihat tidak hanya di permukaan bumi saja, tetapi juga terlihat pada kehidupan makhluk hidup yang berkembang di dalamnya. Ada gaya- gaya dan tekanan yang berperan dalam pembentukan bumi. Takanan tersebut mengakibatkan adanya perubahan pada permukaan bumi, ada yang berubah posisi, berotasi dan juga termampatkan.",
+        "price": 305000,
+        "thumbnailUrl": "https://i.ytimg.com/vi/QNoVMaOAqsY/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLALgE5PGmk9U8Otkcv5XRPDTM60xA",
+        "difficulty": "easy",
+        "status": "active",
+        "CategoryId": 6
+    },
+    {
+        "id": 17,
+        "name": "Dinamika Hidrosfer",
+        "description": "Hidrosfer mencakup air di permukaan planet, di bawah tanah dan di udara. Hidrosfer sebuah planet dapat berupa bentuk cair, uap dan es. Hidrosfer adalah jumlah semua air di bumi dan siklus air yang mendistribusikannya ke seluruh planet.",
+        "price": 315000,
+        "thumbnailUrl": "https://i.ytimg.com/vi/sA4iJAjCqfI/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLCyH30UtFxstgcKcgDoT6EApbJVyA",
+        "difficulty": "medium",
+        "status": "active",
+        "CategoryId": 6
+    },
+    {
+        "id": 18,
+        "name": "Konsep Wilayah dan Perwilayahan",
+        "description": "Pewilayahan adalah suatu proses penentuan suatu wilayah berdasarkan kriteria kualitas dan kuantitas melalui penggabungan atau penggolongan beberapa wilayah.",
+        "price": 325000,
+        "thumbnailUrl": "https://i.ytimg.com/vi/otkkoDjxR-E/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLCSL1aoIeP0SJsAPvbZ5RYAJ5Tf0A",
+        "difficulty": "hard",
+        "status": "active",
+        "CategoryId": 6
+    },
+    {
+        "id": 19,
+        "name": "Masa Prasejarah di Indonesia",
+        "description": "Nusantara pada periode prasejarah mencakup suatu periode yang sangat panjang, kira-kira sejak 1,7 juta tahun yang lalu, berdasarkan temuan-temuan yang ada.",
+        "price": 235000,
+        "thumbnailUrl": "https://i.ytimg.com/vi/ORY7PaZOPok/hqdefault.jpg?s…RUAAIhCGAE=&rs=AOn4CLCWMm0qSkhGGZmBPAm6-PpOXUMJqQ",
+        "difficulty": "easy",
+        "status": "active",
+        "CategoryId": 7
+    },
+    {
+        "id": 20,
+        "name": "Kebudayaan Hindu Budha di Indonesia",
+        "description": "Teori Waisya dikemukakan oleh N.J. Krom, yang berpendapat bahwa agama Hindu-Buddha masuk ke Indonesia dibawa oleh pedagang dari India. Agama tersebut bisa disebarkan dengan cara pernikahan, hubungan dagang, atau interaksi dengan penduduk setempat saat pedagang dari India bermukim untuk sementara waktu di nusantara.",
+        "price": 245000,
+        "thumbnailUrl": "https://i.ytimg.com/vi/F3S-LVJba1c/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLDpUQB93WiODsrb2iVOUZK8zQgJmw",
+        "difficulty": "medium",
+        "status": "active",
+        "CategoryId": 7
+    },
+    {
+        "id": 21,
+        "name": "Masuknya Agama Islam ke Indonesia",
+        "description": "Teori Gujarat, teori Makkah, dan teori Persia (Ahmad Mansur, 1996). Ketiga teori tersebut, saling mengemukakan perspektif kapan masuknya Islam, asal negara, penyebar atau pembawa Islam ke Nusantara.",
+        "price": 255000,
+        "thumbnailUrl": "https://i.ytimg.com/vi/Ns7G7YO2XZs/hqdefault.jpg?s…RUAAIhCGAE=&rs=AOn4CLAx8PSkusGV2DYypdzwe7oRet7DSA",
+        "difficulty": "hard",
+        "status": "active",
+        "CategoryId": 7
+    },
+    {
+        "id": 22,
+        "name": "Modernisasi dan Globalisasi",
+        "description": "Modernisasi adalah suatu bentuk perubahan sosial yang terarah yang didasarkan pada suatu perencanaan yg biasanya dinamakan social planning. Globalisasi adalah proses penyebaran unsur-unsur baru khususnya yang menyangkut informasi secara mendunia melalui media cetak dan elektronik.",
+        "price": 335000,
+        "thumbnailUrl": "https://i.ytimg.com/vi/D5g7uz2FjeQ/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLBHVlVWfS58i89AbAK7btjBYM3Dpg",
+        "difficulty": "easy",
+        "status": "active",
+        "CategoryId": 8
+    },
+    {
+        "id": 23,
+        "name": "Mobilitas Sosial di Masyarakat",
+        "description": "Mobilitas sosial adalah perpindahan posisi seseorang atau sekelompok orang dari lapisan yang satu ke lapisan yang lain.",
+        "price": 345000,
+        "thumbnailUrl": "https://i.ytimg.com/vi/mp_-PusiTZk/hqdefault.jpg?s…RUAAIhCGAE=&rs=AOn4CLCFQ8iVO1HFH-VP6z42cEKH_9rngg",
+        "difficulty": "medium",
+        "status": "active",
+        "CategoryId": 8
+    },
+    {
+        "id": 24,
+        "name": "Konflik dan Integrasi Sosial",
+        "description": "Konflik sosial merupakan konflik yang terjadi akibat adanya perbedaan kepentingan sosial dari pihak yang berkonflik. Integrasi sosial adalah proses penyesuaian unsur-unsur yang berbeda dalam masyarakat sehingga menjadi satu kesatuan.",
+        "price": 355000,
+        "thumbnailUrl": "https://i.ytimg.com/vi/hgvZeHkFg9E/hqdefault.jpg?s…QCAokN4AQ==&rs=AOn4CLBNFG6WY9Pv5MdeSeSr5XU_k-YE_Q",
+        "difficulty": "hard",
+        "status": "active",
+        "CategoryId": 8
+    }
+]
