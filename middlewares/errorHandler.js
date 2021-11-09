@@ -9,6 +9,12 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.name === "SequelizeUniqueConstraintError") {
     code = 400
     msg = err.errors[0].message
+  } else if (err.name === "InvalidInput") {
+    code = 401
+    msg = "Invalid email/password"
+  } else if (err.name === "JsonWebTokenError") {
+    code = 401
+    msg = "Unauthorized"
   }
 
 
