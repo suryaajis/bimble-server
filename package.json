@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon app.js",
+    "test": "npx jest --watchAll --detectOpenHandles --runInBand --verbose --forceExit",
+    "init-db:dev": "npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all",
+    "init-db:test": "npx sequelize --env=test db:drop && npx sequelize --env=test db:create && npx sequelize --env=test db:migrate"
   },
   "repository": {
     "type": "git",
@@ -28,7 +31,9 @@
   },
   "devDependencies": {
     "dotenv": "^10.0.0",
+    "jest": "^27.3.1",
     "nodemon": "^2.0.14",
-    "sequelize-cli": "^6.3.0"
+    "sequelize-cli": "^6.3.0",
+    "supertest": "^6.1.6"
   }
 }
