@@ -1,6 +1,6 @@
-const { User } = require("../models");
-const { comparePassword } = require('../helpers/bcrypt')
-const { signToken } = require('../helpers/jwt')
+const { User } = require("../../models");
+const { comparePassword } = require('../../helpers/bcrypt')
+const { signToken } = require('../../helpers/jwt')
 
 class PublicController {
   static async register(req, res, next) {
