@@ -6,7 +6,7 @@ const authorization = async (req, res, next) => {
 		const CourseId = +req.params.id;
 
 		const foundCourse = await Course.findByPk(CourseId);
-		if (!foundNews) {
+		if (!foundCourse) {
 			throw { name: "NotFound" };
 		}
 		if (role === "Admin") {

@@ -1,4 +1,4 @@
-const { User, Comment } = require("../../models");
+const { User } = require("../../models");
 const { comparePassword } = require("../../helpers/bcrypt");
 const { signToken } = require("../../helpers/jwt");
 

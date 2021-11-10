@@ -26,10 +26,10 @@ ADMIN
 [x] POST /admin/register
 [x] POST /admin/login
 [x] POST /admin/loginGoogle
-[ ] GET /admin/users
-[ ] PUT /admin/users/:userId
-[ ] GET /admin/courses
-[ ] GET /admin/courses/:courseId
+[x] GET /admin/users
+[x] PUT /admin/users/:userId
+[x] GET /admin/courses
+[x] GET /admin/courses/:courseId
 [ ] POST /admin/courses
 [ ] PUT /admin/courses/:courseId
 [ ] PATCH /admin/courses/:courseId (soft delete)
