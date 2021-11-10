@@ -12,89 +12,79 @@ beforeAll(() => {
   });
 
   registerParams = {
-    fullName: "user1",
+    name: "user1",
     email: "user1@mail.com",
-    password: "rahasia",
-    phone: "0858528528",
-    address: "Indonesia",
+    password: "123456789",
   };
 });
 
-describe("[success] POST /customers/register", () => {
-  test("Menghasilkan status code 201 dan berhasil register", async () => {
-    const response = await request(app).post("/customers/register").send(registerParams);
+describe("[success] POST /public/register", () => {
+  test("Result status code 201 and success register", async () => {
+    const response = await request(app).post("/public/register").send(registerParams);
 
     expect(response.status).toBe(201);
     expect(response.body).toEqual(expect.any(Object));
   });
 });
 
-describe("[failed] POST /customers/register", () => {
-  test("Tidak menginputkan email", async () => {
+describe("[failed] POST /public/register", () => {
+  test("Email not inserted", async () => {
     delete registerParams.email;
 
-    const response = await request(app).post("/customers/register").send(registerParams);
+    const response = await request(app).post("/public/register").send(registerParams);
 
-    // Hasil Output
     expect(response.status).toBe(400);
-    expect(response.body).toHaveProperty("message", [
-      "User.email cannot be null",
-    ]);
+    expect(response.body).toHaveProperty("message", "Email can't be empty");
 
     registerParams.email = "user1@mail.com";
   });
 
-  test("Tidak menginputkan password", async () => {
+  test("Password not inserted", async () => {
     delete registerParams.password;
 
-    const response = await request(app).post("/customers/register").send(registerParams);
+    const response = await request(app).post("/public/register").send(registerParams);
 
     // Hasil Output
     expect(response.status).toBe(400);
-    expect(response.body).toHaveProperty("message", [
-      "User.password cannot be null",
-    ]);
+    expect(response.body).toHaveProperty("message", "Password can't be empty");
 
-    registerParams.password = "rahasia";
+    registerParams.password = "123456789";
   });
 
-  test("Email string kosong", async () => {
+  test("Email empty string", async () => {
     registerParams.email = "";
 
-    const response = await request(app).post("/customers/register").send(registerParams);
+    const response = await request(app).post("/public/register").send(registerParams);
 
     // Hasil Output
     expect(response.status).toBe(400);
-    expect(response.body).toHaveProperty("message", [
-      "Email is required!",
-      "Invalid format email!",
-    ]);
+    expect(response.body).toHaveProperty("message", "Email can't be empty");
 
     registerParams.email = "user1@mail.com";
   });
 
-  test("Password string kosong", async () => {
+  test("Password empty string", async () => {
     registerParams.password = "";
 
-    const response = await request(app).post("/customers/register").send(registerParams);
+    const response = await request(app).post("/public/register").send(registerParams);
 
     // Hasil Output
     expect(response.status).toBe(400);
-    expect(response.body).toHaveProperty("message", ["Password is required!"]);
+    expect(response.body).toHaveProperty("message", "Password can't be empty");
 
-    registerParams.password = "rahasia";
+    registerParams.password = "123456789";
   });
 
-  test("Email sudah terdaftar", async () => {
-    const response = await request(app).post("/customers/register").send(registerParams);
+  test("Password length less than 8 characters", async () => {
+    registerParams.password = "1234567"
 
-    // console.log(response.body);
-    // Hasil Output
-    expect(response.status).toBe(400);
-    expect(response.body).toHaveProperty("message", ["email must be unique"]);
+    const response = await request(app).post('/public/register').send(registerParams)
 
-    registerParams.password = "rahasia";
-  });
+    expect(response.status).toBe(400)
+    expect(response.body).toHaveProperty("message", "The password must contain minimal 8 characters.")
+
+    registerParams.password = "123456789"
+  }) 
 });
 
 

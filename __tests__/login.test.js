@@ -5,12 +5,10 @@ const { User } = require("../models");
 let loginParams;
 beforeAll(() => {
   User.create({
-    fullName: "user10",
+    name: "user10",
     email: "user10@mail.com",
     password: "rahasia",
-    role: "Customer",
-    phone: "0858528528",
-    address: "Indonesia",
+    role: "User",
   });
 
   loginParams = {
