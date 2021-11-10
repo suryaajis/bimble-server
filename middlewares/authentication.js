@@ -1,27 +1,36 @@
-const { verifyToken } = require("../helpers/jwt")
-const { User } = require('../models')
+const { User } = require(`../models`)
+const { verifyToken } = require(`../helpers/jwt`)
 
 const authentication = async (req, res, next) => {
   try {
-    const { access_token } = req.headers
+    const { access_token: token } = req.headers;
 
-    const payload = verifyToken(access_token)
+    if (!token) {
+      throw { name: `InvalidInput` };
+    }
 
-    const foundUser = await User.findByPk(payload.id)
-    
-    if(!foundUser) {
-      throw { name: "Unauthentication"}
+    const user = verifyToken(token);
+
+    const userLogin = await User.findOne({
+      where: {
+        id: user.id,
+        email: user.email,
+      },
+    });
+
+    if (!userLogin) {
+      throw { name: `InvalidInput` };
     }
 
     req.user = {
-      email: foundUser.email,
-      role: foundUser.role
-    }
+      id: userLogin.id,
+      name: userLogin.name,
+      email: userLogin.email,
+      role: userLogin.role
+    };
 
-    next()
-  } catch (err) {
-    next(err)
+    next();
+  } catch (error) {
+    next(error);
   }
-}
-
-module.exports = authentication
+};
