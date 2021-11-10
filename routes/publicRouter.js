@@ -10,5 +10,6 @@ publicRouter.post('/login', PublicController.login)
 publicRouter.use(authentication)
 
 publicRouter.get('/userCourse', Usercourse.getAll)
+publicRouter.get('/userCourses/:courseId', Usercourse.getById)
 
 module.exports = publicRouter

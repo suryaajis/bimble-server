@@ -51,7 +51,7 @@ afterAll( async ()=>{
 
 
 describe('GET /public/userCourse', () => {
-    test('[200 - Success] get all userCourse with id user login', (done) => {
+    test('[200 - Success] get all userCourse after login', (done) => {
         request(app)
         .get('/public/userCourse')
         .set(
@@ -65,6 +65,46 @@ describe('GET /public/userCourse', () => {
             expect(body[0]).toHaveProperty('UserId')
             expect(body[0]).toHaveProperty('CourseId')
             expect(body[0]).toHaveProperty('isPaid')
+            done()
+        })
+        .catch((err) => {
+            done(err)
+        })
+    })
+
+    test('[200 - Success] get userCourse with course id after login ', (done) => {
+        request(app)
+        .get('/public/userCourses/1')
+        .set(
+            "access_token",
+            userToken.body.access_token
+        )
+        .then((response) => {
+            const { status, body } = response
+            expect(status).toBe(200)
+            expect(body).toEqual(expect.any(Object))
+            expect(body).toHaveProperty('UserId')
+            expect(body).toHaveProperty('CourseId')
+            expect(body).toHaveProperty('isPaid')
+            done()
+        })
+        .catch((err) => {
+            done(err)
+        })
+    })
+
+    test('[404 - Course Not Found] get userCourse with invaild course id ', (done) => {
+        request(app)
+        .get('/public/userCourses/1000')
+        .set(
+            "access_token",
+            userToken.body.access_token
+        )
+        .then((response) => {
+            const { status, body } = response
+            expect(status).toBe(404)
+            expect(body).toEqual(expect.any(Object))
+            expect(body).toHaveProperty('message', "Course Not Found")
             done()
         })
         .catch((err) => {

@@ -15,6 +15,9 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.name === "JsonWebTokenError") {
     code = 401
     msg = "Unauthorized"
+  } else if ("Course Not Found") {
+    code = 404
+    msg = "Course Not Found"
   }
 
 
