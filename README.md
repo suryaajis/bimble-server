@@ -23,8 +23,9 @@ CUSTOMER
 [ ] POST /ovo/status
 
 ADMIN
-[ ] GET /admin/register
-[ ] GET /admin/login
+[x] POST /admin/register
+[x] POST /admin/login
+[x] POST /admin/loginGoogle
 [ ] GET /admin/users
 [ ] PUT /admin/users/:userId
 [ ] GET /admin/courses

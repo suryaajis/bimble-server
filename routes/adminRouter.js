@@ -1,5 +1,20 @@
 const express = require('express')
 const adminRouter = express.Router()
+const AdminController = require('../controllers/admin/AdminUserController')
 
+adminRouter.post('/register', AdminController.register)
+adminRouter.post('/login', AdminController.login)
+adminRouter.post('/loginGoogle', AdminController.loginGoogle)
+adminRouter.get('/users', AdminController.findAllUsers)
+adminRouter.put('/users/:userId', AdminController.findUserById)
+// adminRouter.get('/courses', AdminController.findAllCourses)
+// adminRouter.get('/courses/:courseId', AdminController.findCourse)
+// adminRouter.post('/courses', AdminController.createCourse)
+// adminRouter.put('/courses/:courseId', AdminController.editCourse)
+// adminRouter.patch('/courses/:courseId', AdminController.patchC)
+// adminRouter.get('/categories', AdminController.findAllCategories)
+// adminRouter.post('/categories', AdminController.createCategory)
+// adminRouter.patch('/categories/:categoryId', AdminController.patchCategory)
+// adminRouter.delete('/categories/:categoryId', AdminController.deleteCategory)
 
 module.exports = adminRouter
