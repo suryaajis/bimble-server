@@ -113,7 +113,7 @@ class CourseController {
 		try {
 			const { courseId } = req.params;
 			const { status } = req.body;
-			const updatedCourse = await Course.update(
+			const patchedCourse = await Course.update(
 				{
 					status,
 				},
@@ -122,10 +122,10 @@ class CourseController {
 					returning: true,
 				}
 			);
-			if (updatedCourse[0] === 0) {
+			if (patchedCourse[0] === 0) {
 				throw "Course not found";
 			} else {
-				res.status(200).json(updatedCourse[1][0]);
+				res.status(200).json(patchedCourse[1][0]);
 			}
 		} catch (err) {
 			next(err);
