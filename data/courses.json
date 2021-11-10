@@ -7,6 +7,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/WJr11FExG7s/hqdefault.jpg?s…RUAAIhCGAE=&rs=AOn4CLAImD8rRbQR7cuFCw3Z_xsjLlr1Tg",
         "difficulty": "medium",
         "status": "active",
+        "rating": 8,
         "CategoryId": 1
     },
     {
@@ -17,6 +18,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/strzhKqA_sQ/hqdefault.jpg?s…RUAAIhCGAE=&rs=AOn4CLCVGKk89pHJwWo1ORt8hzlH1iM9rg",
         "difficulty": "easy",
         "status": "active",
+        "rating": 8,
         "CategoryId": 1
     },
     {
@@ -27,6 +29,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/x9M-_SITCOg/hqdefault.jpg?s…RUAAIhCGAE=&rs=AOn4CLBWE03F6D5GFOl_4rEvvp3rCMIC_w",
         "difficulty": "easy",
         "status": "active",
+        "rating": 8,
         "CategoryId": 1
     },
     {
@@ -37,6 +40,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/TIa4iHmyaBI/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLDbY59uIDbV72pnfnZe2KDTYtikcw",
         "difficulty": "easy",
         "status": "active",
+        "rating": 8,
         "CategoryId": 2
     },
     {
@@ -47,6 +51,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/f-XhKf2KgAc/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLCR5c0LAClRKlpmg2JQky2rKSBUTQ",
         "difficulty": "medium",
         "status": "active",
+        "rating": 8,
         "CategoryId": 2
     },
     {
@@ -57,6 +62,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/Dvov_EOkhpo/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLBFYazlmYnGb-St9PC6PJ6lB-PKVA",
         "difficulty": "hard",
         "status": "active",
+        "rating": 8,
         "CategoryId": 2
     },
     {
@@ -67,6 +73,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/QkyGq_zxcvU/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLAV3d0pX44qdoGSfVE4ZMOgJqG64w",
         "difficulty": "easy",
         "status": "active",
+        "rating": 8,
         "CategoryId": 4
     },
     {
@@ -77,6 +84,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/CnueJ15d228/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLD8xTCQu9-g7sQfc9-HuB6FxZRyMA",
         "difficulty": "medium",
         "status": "active",
+        "rating": 8,
         "CategoryId": 4
     },
     {
@@ -87,6 +95,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/TYfN2oW02eI/hqdefault.jpg?s…RUAAIhCGAE=&rs=AOn4CLAkCSI5t1yXt2mZv1B9yKLAMX8qRA",
         "difficulty": "easy",
         "status": "active",
+        "rating": 8,
         "CategoryId": 4
     },
     {
@@ -97,6 +106,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/MrAdpuQ04LE/hqdefault.jpg?s…RUAAIhCGAE=&rs=AOn4CLCVlTywnWndJKzUCWyDBcLIfA61Pg",
         "difficulty": "easy",
         "status": "active",
+        "rating": 8,
         "CategoryId": 3
     },
     {
@@ -107,6 +117,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/ykvIyFwgOrg/hqdefault.jpg?s…RUAAIhCGAE=&rs=AOn4CLA9HIUBvyNVz7RbSnY4vGX56X1S1g",
         "difficulty": "medium",
         "status": "active",
+        "rating": 8,
         "CategoryId": 3
     },
     {
@@ -117,6 +128,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/ZWAaJ3Oe4Ow/hqdefault.jpg?s…RUAAIhCGAE=&rs=AOn4CLDUPbfm5F-Jfew1krgQoRl31G8PPw",
         "difficulty": "hard",
         "status": "active",
+        "rating": 8,
         "CategoryId": 3
     },
     {
@@ -127,6 +139,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/gcrFZiYYhAU/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLCi_rtk3XeB0WNJWvZ67Uj1h-ASkg",
         "difficulty": "easy",
         "status": "active",
+        "rating": 8,
         "CategoryId": 5
     },
     {
@@ -137,6 +150,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/N8zd4OSAhVw/hqdefault.jpg?s…QCAokN4AQ==&rs=AOn4CLAD45O9F_MnP8ODjp5WPpEjingjdA",
         "difficulty": "medium",
         "status": "active",
+        "rating": 8,
         "CategoryId": 5
     },
     {
@@ -147,6 +161,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/deO-g4ZDdNc/hqdefault.jpg?s…RUAAIhCGAE=&rs=AOn4CLDKTsR-waqGkW8nuzjAR5jmtSGOyQ",
         "difficulty": "hard",
         "status": "active",
+        "rating": 8,
         "CategoryId": 5
     },
     {
@@ -157,6 +172,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/QNoVMaOAqsY/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLALgE5PGmk9U8Otkcv5XRPDTM60xA",
         "difficulty": "easy",
         "status": "active",
+        "rating": 8,
         "CategoryId": 6
     },
     {
@@ -167,6 +183,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/sA4iJAjCqfI/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLCyH30UtFxstgcKcgDoT6EApbJVyA",
         "difficulty": "medium",
         "status": "active",
+        "rating": 8,
         "CategoryId": 6
     },
     {
@@ -177,6 +194,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/otkkoDjxR-E/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLCSL1aoIeP0SJsAPvbZ5RYAJ5Tf0A",
         "difficulty": "hard",
         "status": "active",
+        "rating": 8,
         "CategoryId": 6
     },
     {
@@ -187,6 +205,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/ORY7PaZOPok/hqdefault.jpg?s…RUAAIhCGAE=&rs=AOn4CLCWMm0qSkhGGZmBPAm6-PpOXUMJqQ",
         "difficulty": "easy",
         "status": "active",
+        "rating": 8,
         "CategoryId": 7
     },
     {
@@ -197,6 +216,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/F3S-LVJba1c/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLDpUQB93WiODsrb2iVOUZK8zQgJmw",
         "difficulty": "medium",
         "status": "active",
+        "rating": 8,
         "CategoryId": 7
     },
     {
@@ -207,6 +227,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/Ns7G7YO2XZs/hqdefault.jpg?s…RUAAIhCGAE=&rs=AOn4CLAx8PSkusGV2DYypdzwe7oRet7DSA",
         "difficulty": "hard",
         "status": "active",
+        "rating": 8,
         "CategoryId": 7
     },
     {
@@ -217,6 +238,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/D5g7uz2FjeQ/hqdefault.jpg?s…EIYAXABwAEG&rs=AOn4CLBHVlVWfS58i89AbAK7btjBYM3Dpg",
         "difficulty": "easy",
         "status": "active",
+        "rating": 8,
         "CategoryId": 8
     },
     {
@@ -227,6 +249,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/mp_-PusiTZk/hqdefault.jpg?s…RUAAIhCGAE=&rs=AOn4CLCFQ8iVO1HFH-VP6z42cEKH_9rngg",
         "difficulty": "medium",
         "status": "active",
+        "rating": 8,
         "CategoryId": 8
     },
     {
@@ -237,6 +260,7 @@
         "thumbnailUrl": "https://i.ytimg.com/vi/hgvZeHkFg9E/hqdefault.jpg?s…QCAokN4AQ==&rs=AOn4CLBNFG6WY9Pv5MdeSeSr5XU_k-YE_Q",
         "difficulty": "hard",
         "status": "active",
+        "rating": 8,
         "CategoryId": 8
     }
 ]
