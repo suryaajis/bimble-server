@@ -48,7 +48,7 @@ CUSTOMER
 [ ] GET /public/courses/:courseId
 [ ] GET /public/userCourse
 [ ] GET /public/userCourses/:courseId
-[ ] POST /public/userCourses
+[ ] POST /public/userCourses/:courseId
 [ ] POST /ovo/charge
 [ ] POST /ovo/status
 
