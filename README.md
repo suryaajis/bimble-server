@@ -14,8 +14,8 @@ CUSTOMER
 [x] POST /public/login
 [x] GET /public/users
 [x] PUT /public/users
-[ ] GET /public/courses
-[ ] GET /public/courses/:courseId
+[x] GET /public/courses
+[x] GET /public/courses/:courseId
 [ ] GET /public/userCourse
 [ ] GET /public/userCourses/:courseId
 [ ] POST /public/userCourses/:courseId
@@ -42,8 +42,8 @@ ADMIN
 CUSTOMER
 [x] POST /public/register
 [x] POST /public/login
-[ ] GET /public/users/:userId
-[ ] PUT /public/users/:userId
+[ ] GET /public/users
+[ ] PUT /public/users
 [ ] GET /public/courses
 [ ] GET /public/courses/:courseId
 [ ] GET /public/userCourse
