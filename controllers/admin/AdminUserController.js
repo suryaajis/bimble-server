@@ -100,14 +100,21 @@ class AdminController {
 			next(err);
 		}
 	}
-	static async findUserById(req, res, next) {
+	static async editUserById(req, res, next) {
 		try {
-			const { id } = req.params;
-			const user = await User.findByPk(id);
-			if (user) {
-				res.status(200).json(user);
-			} else {
+			const { name, email, password } = req.body;
+			const { userId } = req.params;
+			const updatedUser = await User.update(
+				{ name, email, password },
+				{
+					where: { id: userId },
+					returning: true,
+				}
+			);
+			if (!updatedUser[0]) {
 				throw { name: "NotFound" };
+			} else {
+				res.status(200).json(updatedUser[1][0]);
 			}
 		} catch (err) {
 			next(err);
