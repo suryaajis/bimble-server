@@ -17,7 +17,7 @@ CUSTOMER
 [ ] GET /public/courses
 [ ] GET /public/courses/:courseId
 [x] GET /public/userCourse
-[ ] GET /public/userCourses/:courseId
+[x] GET /public/userCourses/:courseId
 [ ] POST /public/userCourses/:courseId
 [ ] GET /public/comments/:videoId
 [ ] POST /public/comments/:videoId
