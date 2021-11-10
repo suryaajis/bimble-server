@@ -72,6 +72,10 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
 
+    rating: {
+      type: DataTypes.INTEGER
+    },
+
     CategoryId: {
       type: DataTypes.INTEGER,
       allowNull: false,
