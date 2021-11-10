@@ -1,8 +1,12 @@
 const express = require('express')
 const publicRouter = express.Router()
-const PublicController = require('../controllers/public/PublicUserController')
+const PublicUserController = require('../controllers/public/PublicUserController')
+const authentication = require('../middlewares/authentication')
 
-publicRouter.post('/register', PublicController.register)
-publicRouter.post('/login', PublicController.login)
+publicRouter.post('/register', PublicUserController.register)
+publicRouter.post('/login', PublicUserController.login)
+
+publicRouter.use(authentication)
+publicRouter.get('/users', PublicUserController.readUser)
 
 module.exports = publicRouter
