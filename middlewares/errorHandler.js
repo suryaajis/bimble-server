@@ -18,7 +18,7 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.name === "Unauthentication") {
     code = 401
     msg = "You must login first"
-  }
+  } 
 
 
 

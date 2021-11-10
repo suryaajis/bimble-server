@@ -12,8 +12,8 @@
 CUSTOMER
 [x] POST /public/register
 [x] POST /public/login
-[ ] GET /public/users/
-[ ] PUT /public/users/
+[x] GET /public/users
+[x] PUT /public/users
 [ ] GET /public/courses
 [ ] GET /public/courses/:courseId
 [ ] GET /public/userCourse

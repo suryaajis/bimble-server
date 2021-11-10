@@ -61,16 +61,39 @@ class PublicUserController {
 
   static async readUser(req, res, next) {
     try {
-     const response = await User.findOne({
-       where: {
-         email: req.user.email
-       },
-       attributes: {
-         exclude: ['updatedAt', 'createdAt']
-       }
-     })
+      const response = await User.findOne({
+        where: {
+          email: req.user.email,
+        },
+        attributes: {
+          exclude: ["updatedAt", "createdAt"],
+        },
+      });
 
-      res.status(200).json(response)
+      res.status(200).json(response);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  static async updateUser(req, res, next) {
+    try {
+      const { name, email, password } = req.body;
+
+      const response = await User.update(
+        {
+          name,
+          email,
+        },
+        {
+          where: {
+            email: req.user.email,
+          },
+          returning: true,
+        }
+      );
+
+      res.status(200).json({ message: "User has been updated" });
     } catch (err) {
       next(err);
     }

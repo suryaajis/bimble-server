@@ -8,5 +8,6 @@ publicRouter.post('/login', PublicUserController.login)
 
 publicRouter.use(authentication)
 publicRouter.get('/users', PublicUserController.readUser)
+publicRouter.put('/users', PublicUserController.updateUser)
 
 module.exports = publicRouter
