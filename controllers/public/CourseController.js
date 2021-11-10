@@ -12,12 +12,6 @@ class CourseController {
             },
           },
           {
-            model: User,
-            attributes: {
-              exclude: ["password"],
-            },
-          },
-          {
             model: Video,
             attributes: {
               exclude: ["createdAt", "updatedAt"],
@@ -59,6 +53,12 @@ class CourseController {
         ],
         order: [["id", "DESC"]],
       });
+
+      if(!foundCourse){
+        throw { name: "CourseNotFound"}
+      }
+
+
       res.status(200).json(foundCourse);
     } catch (err) {
       next(err);

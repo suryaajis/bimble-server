@@ -34,3 +34,5 @@ const authentication = async (req, res, next) => {
     next(error);
   }
 };
+
+module.exports = authentication
