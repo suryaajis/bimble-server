@@ -1,4 +1,4 @@
-const { UserCourse, User, Course } = require('../../models')
+const { UserCourse, User, Course, Video, Comment } = require('../../models')
 
 class UsercourseController {
     static async getAll (req, res, next) {
@@ -14,7 +14,7 @@ class UsercourseController {
                     {
                         model: Course,
                         attributes: {
-                            exclude: ['updatedAt', 'createdAt', 'id']
+                            exclude: ['updatedAt', 'createdAt', 'id'],
                         }
                     }
                 ],
@@ -50,7 +50,23 @@ class UsercourseController {
                         model: Course,
                         attributes: {
                             exclude: ['updatedAt', 'createdAt', 'id']
-                        }
+                        },
+                        include: [
+                            {
+                                model: Video,
+                                attributes: {
+                                    exclude: ['updatedAt', 'createdAt']
+                                },
+                                include: {
+                                    model: Comment,
+                                    attributes: ['id', 'comment'],
+                                    include: {
+                                        model: User,
+                                        attributes: ['name']
+                                    }
+                                }
+                            }
+                        ]
                     }
                 ],
                 attributes: {
