@@ -20,10 +20,11 @@ const errorHandler = (err, req, res, next) => {
     msg = "You must login first"
   } else if (err.name === "CourseNotFound") {
     code = 404
-    msg = "Course not found"
+    msg = "Course Not Found"
+  } else if (err.name === "CourseAlreadyPurchased") {
+    code = 404
+    msg = "Course Already Purchased"
   }
-
-
 
   res.status(code).json({message: msg})
 }

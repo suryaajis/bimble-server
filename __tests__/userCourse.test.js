@@ -93,6 +93,28 @@ describe('GET /public/userCourse', () => {
         })
     })
 
+    test('[201 - Success] Add UserCourse', (done) => {
+        request(app)
+        .post('/public/userCourses/2')
+        .set(
+            "access_token",
+            userToken.body.access_token
+        )
+        .then((response) => {
+            const { status, body } = response
+            expect(status).toBe(201)
+            expect(body).toEqual(expect.any(Object))
+            expect(body).toHaveProperty('UserId')
+            expect(body).toHaveProperty('CourseId')
+            expect(body).toHaveProperty('isPaid')
+            expect(body).toHaveProperty('chargeId')
+            done()
+        })
+        .catch((err) => {
+            done(err)
+        })
+    })
+
     test('[404 - Course Not Found] get userCourse with invaild course id ', (done) => {
         request(app)
         .get('/public/userCourses/1000')
