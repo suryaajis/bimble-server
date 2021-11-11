@@ -45,6 +45,7 @@ class PublicController {
       }
 
       const payload = {
+        id: foundUser.id,
         name: foundUser.name,
         email: foundUser.email,
         role: foundUser.role

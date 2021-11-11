@@ -16,9 +16,11 @@ CUSTOMER
 [ ] PUT /public/users/:userId
 [ ] GET /public/courses
 [ ] GET /public/courses/:courseId
-[ ] GET /public/userCourse
-[ ] GET /public/userCourses/:courseId
+[x] GET /public/userCourse
+[x] GET /public/userCourses/:courseId
 [ ] POST /public/userCourses/:courseId
+[ ] GET /public/comments/:videoId
+[ ] POST /public/comments/:videoId
 [ ] POST /ovo/charge
 [ ] POST /ovo/status
 
