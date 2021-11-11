@@ -1,4 +1,4 @@
-const { Course, Category, Video } = require("../../models");
+const { Course, Category, Video, Comment } = require("../../models");
 const { Op } = require("sequelize");
 
 class CourseController {
@@ -9,7 +9,7 @@ class CourseController {
 
       let options = {
         where: {
-          status: "active"
+          status: "active",
         },
         include: [
           {
@@ -31,8 +31,8 @@ class CourseController {
         options.where.CategoryId = categoryId;
       }
 
-      if(difficulty) {
-        options.where.difficulty = difficulty
+      if (difficulty) {
+        options.where.difficulty = difficulty;
       }
 
       if (price) {
@@ -86,6 +86,10 @@ class CourseController {
             model: Video,
             attributes: {
               exclude: ["createdAt", "updatedAt"],
+            },
+            include: {
+              model: Comment,
+              attributes: { exclude: ["createdAt", "updatedAt"] },
             },
             limit: 1,
           },
