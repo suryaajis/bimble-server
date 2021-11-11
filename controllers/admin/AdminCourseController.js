@@ -1,32 +1,54 @@
-const { Course, Category, User, Video } = require("../../models");
+const { Course, Category, Video, sequelize } = require("../../models");
+const { Op } = require("sequelize");
 
 class CourseController {
 	static async findAllCourses(req, res, next) {
 		try {
-			const response = await Course.findAll({
+			const { page, search } = req.query;
+			const size = 20;
+
+			let options = {
+				where: {},
 				include: [
 					{
 						model: Category,
-						attributes: {
-							exclude: ["createdAt", "updatedAt"],
-						},
-					},
-					{
-						model: User,
-						attributes: {
-							exclude: ["password"],
-						},
-					},
-					{
-						model: Video,
-						attributes: {
-							exclude: ["createdAt", "updatedAt"],
-						},
+						attributes: ["name"],
 					},
 				],
-				order: [["id", "DESC"]],
-			});
-			res.status(200).json(response);
+				attributes: {
+					exclude: ["createdAt", "updatedAt"],
+				},
+				order: [["name", "asc"]],
+			};
+
+			if (search) {
+				options.where.name = { [Op.iLike]: `%${search}%` };
+			}
+
+			if (+page === 0) {
+				throw { name: "CourseNotFound" };
+			}
+			let response;
+			let result;
+			if (page) {
+				options.limit = size;
+				options.offset = (+page - 1) * size;
+				response = await Course.findAndCountAll(options);
+				result = {
+					totalCourse: response.count,
+					course: response.rows,
+					totalPage: Math.ceil(response.count / size),
+					currentPage: +page,
+				};
+			} else {
+				response = await Course.findAll(options);
+				result = response;
+			}
+
+			if (result.currentPage > result.totalPage) {
+				throw { name: "CourseNotFound" };
+			}
+			res.status(200).json(result);
 		} catch (err) {
 			next(err);
 		}
@@ -41,12 +63,6 @@ class CourseController {
 						model: Category,
 						attributes: {
 							exclude: ["createdAt", "updatedAt"],
-						},
-					},
-					{
-						model: User,
-						attributes: {
-							exclude: ["password", "createdAt", "updatedAt"],
 						},
 					},
 					{
@@ -66,17 +82,36 @@ class CourseController {
 
 	static async createCourse(req, res, next) {
 		try {
-			const { name, description, price, thumbnailUrl, difficulty, status, CategoryId } = req.body;
-			const newCourse = await Course.create({
-				name,
-				description,
-				price,
-				thumbnailUrl,
-				difficulty,
-				status,
-				CategoryId,
-			});
-			res.status(201).json(newCourse);
+			const t = await sequelize.transaction();
+			const { name, description, price, thumbnailUrl, difficulty, status, CategoryId, Videos } = req.body;
+			const newCourse = await Course.create(
+				{
+					name,
+					description,
+					price,
+					thumbnailUrl,
+					difficulty,
+					status,
+					CategoryId,
+				},
+				{ transaction: t }
+			);
+			if (!newCourse) {
+				throw { name: "Bad Request" };
+			} else {
+				const videosArray = [];
+				Videos.forEach((video) => {
+					let videoObj = {
+						name: video.name,
+						videoUrl: video.videoUrl,
+						CourseId: newCourse.id,
+					};
+					videosArray.push(videoObj);
+				});
+				const newVideos = await Video.bulkCreate(videosArray, { transaction: t });
+				await t.commit();
+				res.status(201).json({ course: newCourse, videos: newVideos });
+			}
 		} catch (err) {
 			next(err);
 		}

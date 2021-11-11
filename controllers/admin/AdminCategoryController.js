@@ -1,4 +1,4 @@
-const { Category } = require("../../models");
+const { Category, Course, sequelize } = require("../../models");
 
 class CategoryController {
 	static async findAllCategories(req, res, next) {
@@ -18,27 +18,29 @@ class CategoryController {
 			next(err);
 		}
 	}
-	static async patchCategory(req, res, next) {
-		try {
-			const { id } = req.params;
-			const { name } = req.body;
-			const patchedCategory = await Category.update({ name }, { where: { id } });
-			res.status(200).json(patchedCategory);
-		} catch (err) {
-			next(err);
-		}
-	}
 	static async deleteCategory(req, res, next) {
+		const t = await sequelize.transaction();
 		try {
 			const { categoryId } = req.params;
 			const foundCategory = await Category.findByPk(categoryId);
 			if (foundCategory) {
-				const deletedCategory = await Category.destroy({
-					where: {
-						id: categoryId,
+				const deletedCategory = await Category.destroy(
+					{
+						where: {
+							id: categoryId,
+						},
 					},
-				});
-				res.status(200).json(deletedCategory);
+					{ transaction: t }
+				);
+				const deletedCourse = await Course.destroy(
+					{
+						where: {
+							CategoryId: categoryId,
+						},
+					},
+					{ transaction: t }
+				);
+				res.status(200).json({ message: `Course and category with id ${foundCategory.id} has been deleted` });
 			} else {
 				throw { name: "Category not found" };
 			}

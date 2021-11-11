@@ -71,3 +71,5 @@ ADMIN
 [ ] POST /admin/categories
 [ ] PATCH /admin/categories/:categoryId
 [ ] DELETE /admin/categories/:categoryId
+
+pagination di get all course
