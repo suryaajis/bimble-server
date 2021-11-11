@@ -89,7 +89,7 @@ class CourseController {
             },
             include: {
               model: Comment,
-              attributes: { exclude: ["createdAt", "updatedAt"] },
+              attributes: ["id", "comment"],
             },
             limit: 1,
           },
