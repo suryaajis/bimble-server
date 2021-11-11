@@ -12,13 +12,17 @@
 CUSTOMER
 [x] POST /public/register
 [x] POST /public/login
-[ ] GET /public/users/:userId
-[ ] PUT /public/users/:userId
-[ ] GET /public/courses
-[ ] GET /public/courses/:courseId
+
+[x] GET /public/users
+[x] PUT /public/users
+[x] GET /public/courses
+[x] GET /public/courses/:courseId
 [ ] GET /public/userCourse
 [ ] GET /public/userCourses/:courseId
+
 [ ] POST /public/userCourses/:courseId
+[ ] GET /public/comments/:videoId
+[ ] POST /public/comments/:videoId
 [ ] POST /ovo/charge
 [ ] POST /ovo/status
 
@@ -43,10 +47,10 @@ ADMIN
 CUSTOMER
 [x] POST /public/register
 [x] POST /public/login
-[ ] GET /public/users/:userId
-[ ] PUT /public/users/:userId
-[ ] GET /public/courses
-[ ] GET /public/courses/:courseId
+[x] GET /public/users
+[x] PUT /public/users
+[x] GET /public/courses
+[x] GET /public/courses/:courseId
 [ ] GET /public/userCourse
 [ ] GET /public/userCourses/:courseId
 [ ] POST /public/userCourses/:courseId
