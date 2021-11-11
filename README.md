@@ -12,12 +12,14 @@
 CUSTOMER
 [x] POST /public/register
 [x] POST /public/login
-[ ] GET /public/users/:userId
-[ ] PUT /public/users/:userId
-[ ] GET /public/courses
-[ ] GET /public/courses/:courseId
-[x] GET /public/userCourse
-[x] GET /public/userCourses/:courseId
+
+[x] GET /public/users
+[x] PUT /public/users
+[x] GET /public/courses
+[x] GET /public/courses/:courseId
+[ ] GET /public/userCourse
+[ ] GET /public/userCourses/:courseId
+
 [ ] POST /public/userCourses/:courseId
 [ ] GET /public/comments/:videoId
 [ ] POST /public/comments/:videoId
@@ -25,29 +27,30 @@ CUSTOMER
 [ ] POST /ovo/status
 
 ADMIN
-[ ] GET /admin/register
-[ ] GET /admin/login
-[ ] GET /admin/users
-[ ] PUT /admin/users/:userId
-[ ] GET /admin/courses
-[ ] GET /admin/courses/:courseId
-[ ] POST /admin/courses
-[ ] PUT /admin/courses/:courseId
-[ ] PATCH /admin/courses/:courseId (soft delete)
-[ ] GET /admin/categories
-[ ] POST /admin/categories
-[ ] PATCH /admin/categories/:categoryId
-[ ] DELETE /admin/categories/:categoryId
+[x] POST /admin/register
+[x] POST /admin/login
+[x] POST /admin/loginGoogle
+[x] GET /admin/users
+[x] PUT /admin/users/:userId
+[x] GET /admin/courses
+[x] GET /admin/courses/:courseId
+[x] POST /admin/courses
+[x] PUT /admin/courses/:courseId
+[x] PATCH /admin/courses/:courseId (soft delete)
+[x] GET /admin/categories
+[x] POST /admin/categories
+[x] PATCH /admin/categories/:categoryId
+[x] DELETE /admin/categories/:categoryId
 
 # TESTING
 
 CUSTOMER
 [x] POST /public/register
 [x] POST /public/login
-[ ] GET /public/users/:userId
-[ ] PUT /public/users/:userId
-[ ] GET /public/courses
-[ ] GET /public/courses/:courseId
+[x] GET /public/users
+[x] PUT /public/users
+[x] GET /public/courses
+[x] GET /public/courses/:courseId
 [ ] GET /public/userCourse
 [ ] GET /public/userCourses/:courseId
 [ ] POST /public/userCourses/:courseId

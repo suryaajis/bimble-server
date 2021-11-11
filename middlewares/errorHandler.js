@@ -26,8 +26,6 @@ const errorHandler = (err, req, res, next) => {
     msg = "Course Already Purchased"
   }
 
-
-
   res.status(code).json({message: msg})
 }
 

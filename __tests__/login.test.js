@@ -21,7 +21,6 @@ describe("[success] POST /public/login", () => {
   test("Result status code 200 and success login", async () => {
     const response = await request(app).post("/public/login").send(loginParams);
 
-    console.log(response.body)
     expect(response.status).toBe(200);
     expect(response.body).toEqual(expect.any(Object));
   });
