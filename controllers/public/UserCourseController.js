@@ -1,6 +1,6 @@
 const { UserCourse, User, Course } = require('../../models')
 
-class Usercourse {
+class UsercourseController {
     static async getAll (req, res, next) {
         try {
             const { id } = req.user
@@ -37,7 +37,7 @@ class Usercourse {
                 where: { id: courseId }
             })
 
-            if (!course.length) throw { name: `Course Not Found`}
+            if (!course.length) throw { name: `CourseNotFound`}
 
             const usercourse = await UserCourse.findOne({
                 where: { UserId: id, CourseId: courseId },
@@ -58,13 +58,47 @@ class Usercourse {
                 }
             })
 
-            if (!usercourse) throw { name: `Course Not Found`}
+            if (!usercourse) throw { name: `CourseNotFound`}
             
             res.status(200).json(usercourse)
         } catch (error) {
             next(error)
         }
     }
+
+    static async addUserCourse (req, res, next) {
+        try {
+            const { id } = req.user
+            const { courseId } = req.params
+
+            const course = await Course.findAll({
+                where: { id: courseId }
+            })
+
+            if (!course.length) throw { name: `CourseNotFound` }
+            
+            const userCourse = await UserCourse.findAll({
+                where: { UserId: id, CourseId: courseId }
+            })
+
+            if (userCourse.length) throw { name: 'CourseAlreadyPurchased' }
+
+            const newUserCourse = await UserCourse.create({
+                UserId: id,
+                CourseId: courseId,
+                isPaid: false
+            })
+
+            res.status(201).json({
+                UserId: newUserCourse.UserId,
+                CourseId: newUserCourse.CourseId,
+                isPaid: newUserCourse.isPaid,
+                chargeId: newUserCourse.chargeId
+            })
+        } catch (error) {
+            next(error)
+        }
+    }
 }
 
-module.exports = Usercourse
+module.exports = UsercourseController
