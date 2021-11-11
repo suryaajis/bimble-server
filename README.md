@@ -27,19 +27,20 @@ CUSTOMER
 [ ] POST /ovo/status
 
 ADMIN
-[ ] GET /admin/register
-[ ] GET /admin/login
-[ ] GET /admin/users
-[ ] PUT /admin/users/:userId
-[ ] GET /admin/courses
-[ ] GET /admin/courses/:courseId
-[ ] POST /admin/courses
-[ ] PUT /admin/courses/:courseId
-[ ] PATCH /admin/courses/:courseId (soft delete)
-[ ] GET /admin/categories
-[ ] POST /admin/categories
-[ ] PATCH /admin/categories/:categoryId
-[ ] DELETE /admin/categories/:categoryId
+[x] POST /admin/register
+[x] POST /admin/login
+[x] POST /admin/loginGoogle
+[x] GET /admin/users
+[x] PUT /admin/users/:userId
+[x] GET /admin/courses
+[x] GET /admin/courses/:courseId
+[x] POST /admin/courses
+[x] PUT /admin/courses/:courseId
+[x] PATCH /admin/courses/:courseId (soft delete)
+[x] GET /admin/categories
+[x] POST /admin/categories
+[x] PATCH /admin/categories/:categoryId
+[x] DELETE /admin/categories/:categoryId
 
 # TESTING
 

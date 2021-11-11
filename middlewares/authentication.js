@@ -24,7 +24,6 @@ const authentication = async (req, res, next) => {
 
     req.user = {
       id: userLogin.id,
-      name: userLogin.name,
       email: userLogin.email,
       role: userLogin.role
     };
@@ -36,4 +35,3 @@ const authentication = async (req, res, next) => {
 };
 
 module.exports = authentication
-
