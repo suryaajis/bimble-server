@@ -1,8 +1,8 @@
 const express = require("express");
 const adminRouter = express.Router();
 const AdminController = require("../controllers/admin/AdminUserController");
-const CourseController = require("../controllers/admin/CourseController");
-const CategoryController = require("../controllers/admin/CategoryController");
+const CourseController = require("../controllers/admin/AdminCourseController");
+const CategoryController = require("../controllers/admin/AdminCategoryController");
 
 adminRouter.post("/register", AdminController.register);
 adminRouter.post("/login", AdminController.login);

@@ -1,4 +1,4 @@
-const { Category } = require("../../models/");
+const { Category } = require("../../models");
 
 class CategoryController {
 	static async findAllCategories(req, res, next) {
