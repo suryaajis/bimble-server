@@ -100,12 +100,26 @@ class CourseController {
 			if (!foundCourse) {
 				throw { name: "CourseNotFound" };
 			}
+      res.status(200).json(foundCourse);
+    } catch (err) {
+      next(err);
+    }
+  }
 
-			res.status(200).json(foundCourse);
-		} catch (err) {
-			next(err);
-		}
-	}
+  static async readCategories(req, res, next) {
+    try {
+      const response = await Category.findAll({
+        attributes: {
+          exclude: ['createdAt', 'updatedAt']
+        }
+      })
+
+      res.status(200).json(response)
+    } catch (err) {
+      next(err)
+    }
+  }
+
 }
 
 module.exports = CourseController;
