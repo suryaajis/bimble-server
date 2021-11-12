@@ -8,6 +8,7 @@ const CommentController = require('../controllers/public/CommentController');
 
 publicRouter.post("/register", PublicUserController.register);
 publicRouter.post("/login", PublicUserController.login);
+publicRouter.post("/login", PublicUserController.googleLogin);
 publicRouter.get("/courses", CourseController.readAllCourses);
 publicRouter.get("/courses/:courseId", CourseController.readCourseDetail);
 publicRouter.get('/categories', CourseController.readCategories)
