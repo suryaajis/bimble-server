@@ -124,3 +124,20 @@ describe("GET /courses/:courseId", () => {
       });
   });
 });
+
+describe("GET /categories", () => {
+  test("200 success get all categories", (done) => {
+    request(app)
+      .get("/public/categories")
+      .then((response) => {
+        const { body, status } = response;
+        expect(Array.isArray(body)).toBeTruthy();
+        expect(body.length).toBeGreaterThan(0);
+        expect(status).toBe(200);
+        done();
+      })
+      .catch((err) => {
+        done(err);
+      });
+  });
+});
