@@ -55,15 +55,12 @@ CUSTOMER
 [ ] POST /ovo/status
 
 ADMIN
-[ ] GET /admin/register
-[ ] GET /admin/login
-[ ] GET /admin/users
-[ ] PUT /admin/users/:userId
-[ ] GET /admin/courses
-[ ] GET /admin/courses/:courseId
+[x] GET /admin/users
+[x] GET /admin/courses
+[x] GET /admin/courses/:courseId
 [ ] POST /admin/courses
 [ ] PUT /admin/courses/:courseId
-[ ] PATCH /admin/courses/:courseId (soft delete)
+[x] PATCH /admin/courses/:courseId (soft delete)
 [ ] GET /admin/categories
 [ ] POST /admin/categories
 [ ] PATCH /admin/categories/:categoryId

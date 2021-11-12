@@ -13,7 +13,7 @@ class CategoryController {
 		try {
 			const { name } = req.body;
 			const createdCategory = await Category.create({ name });
-			res.status(200).json(createdCategory);
+			res.status(201).json(createdCategory);
 		} catch (err) {
 			next(err);
 		}
