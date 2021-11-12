@@ -5,7 +5,7 @@ class CourseController {
   static async findAllCourses(req, res, next) {
     try {
       const { page, search } = req.query;
-      const size = 20;
+      const size = 10;
 
       let options = {
         where: {},
@@ -18,7 +18,7 @@ class CourseController {
         attributes: {
           exclude: ["createdAt", "updatedAt"],
         },
-        order: [["name", "asc"]],
+        order: [["id", "asc"]],
       };
 
       if (search) {
