@@ -6,7 +6,7 @@ class CommentController {
 			const { commentId } = req.params;
 			const foundComment = await Comment.findByPk(commentId);
 			if (!foundComment) {
-				throw { name: "IdNotFound" };
+				throw { name: "CommentNotFound" };
 			} else {
 				await Comment.destroy({ where: { id: commentId } });
 				res.status(200).json({ message: `Comment has been deleted` });

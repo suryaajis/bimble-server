@@ -8,12 +8,12 @@ const uploadImages = async (req, res, next) => {
 			const parsedFilesForm = files.map((el) => {
 				if (el.mimetype !== "video/mp4") {
 					throw {
-						name: `${el.originalname}'s format is not mp4`,
+						name: `InvalidFileFormat`,
 					};
 				}
 				if (el.size > 25000000) {
 					throw {
-						name: `${el.originalname} size is too big! Max size is 25 MB`,
+						name: `InvalidFileSize`,
 					};
 				}
 				let parsedFile = el.buffer.toString("base64");
@@ -34,7 +34,7 @@ const uploadImages = async (req, res, next) => {
 					maxBodyLength: Infinity,
 				});
 				if (!response) {
-					throw { name: "imageKit error" };
+					throw { name: "ImagekitError" };
 				}
 				const rawVideoName = response.data.name.split('_')
 				rawVideoName.pop()

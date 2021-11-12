@@ -60,10 +60,6 @@ class CourseController {
 				result = response;
 			}
 
-			if (result.currentPage > result.totalPage) {
-				throw { name: "CourseNotFound" };
-			}
-
 			res.status(200).json(result);
 		} catch (err) {
 			next(err);
