@@ -7,38 +7,46 @@ const ovoCharge = async (req, res, next) => {
         const userCourseId = Number(req.body.userCourseId)
         const time = new Date()
 
-        // find one user Course ID , include Course , ambil pricenya
+        const userCourse = await UserCourse.findOne({
+            where: { id: userCourseId },
+            include: [{
+                model: Course
+            }]
+        })
 
         const payload = {
-            reference_id: `${req.user.email}-${userCourseId}-${time}`,
-            currency: 'IDR',
-            amount: 1000, // ambil dari findOne userCourse
-            checkout_method: 'ONE_TIME_PAYMENT',
-            channel_code: 'ID_OVO',
-            channel_properties: {
-                mobile_number: phoneNumber
-            }
-        }
+			reference_id: `${req.user.email}-${userCourseId}-${time}`,
+			currency: 'IDR',
+			amount: userCourse.Course.price,
+			checkout_method: 'ONE_TIME_PAYMENT',
+			channel_code: 'ID_OVO',
+			channel_properties: {
+				mobile_number: phoneNumber,
+			},
+		}
 
         const axiosInstance = axios.create({
-            baseURL: 'https://api.xendit.co/ewallets/charges'
-        })
+			baseURL: 'https://api.xendit.co/ewallets/charges',
+		})
 
-        const response = await axiosInstance({
-            method: 'POST',
-            url: '/',
-            data: payload,
-            auth: { username: process.env.XENDIT_API_KEY }
-        })
+		const response = await axiosInstance({
+			method: 'POST',
+			url: '/',
+			data: payload,
+			auth: { username: process.env.XENDIT_API_KEY },
+		})
 
         await UserCourse.update(
-            { chargeId: response.data.id },
+            { 
+                chargeId: response.data.id,
+                referenceId: response.data.reference_id
+            },
             { where: { id: userCourseId } }
         )
         
         res.status(200).json(response.data)
     } catch (error) {
-        next(error.response)
+        next(error.response.data.errors)
     }
 }
 
