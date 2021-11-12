@@ -9,6 +9,7 @@ class CategoryController {
       next(err);
     }
   }
+  
   static async createCategory(req, res, next) {
     try {
       const { name } = req.body;

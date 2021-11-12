@@ -19,6 +19,6 @@ adminRouter.patch("/courses/:courseId", authorization, CourseController.patchCou
 adminRouter.get("/categories", authorization, CategoryController.findAllCategories);
 adminRouter.post("/categories", authorization, CategoryController.createCategory);
 adminRouter.delete("/categories/:categoryId", authorization, CategoryController.deleteCategory);
-adminRouter.delete("/comments/commentId", authorization, CommentController.deleteComment);
+adminRouter.delete("/comments/:commentId", authorization, CommentController.deleteComment);
 
 module.exports = adminRouter;
