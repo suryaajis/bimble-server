@@ -28,6 +28,7 @@ class CourseController {
       if (+page === 0) {
         throw { name: "CourseNotFound" };
       }
+
       let response;
       let result;
       if (page) {
@@ -45,9 +46,6 @@ class CourseController {
         result = response;
       }
 
-      if (result.currentPage > result.totalPage) {
-        throw { name: "CourseNotFound" };
-      }
       res.status(200).json(result);
     } catch (err) {
       next(err);
@@ -98,6 +96,7 @@ class CourseController {
         CategoryId,
         Videos,
       } = req.body;
+
       const newCourse = await Course.create(
         {
           name,
@@ -110,24 +109,23 @@ class CourseController {
         },
         { transaction: t }
       );
-      if (!newCourse) {
-        throw { name: "Bad Request" };
-      } else {
-        const videosArray = [];
-        Videos.forEach((video) => {
-          let videoObj = {
-            name: video.name,
-            videoUrl: video.videoUrl,
-            CourseId: newCourse.id,
-          };
-          videosArray.push(videoObj);
-        });
-        const newVideos = await Video.bulkCreate(videosArray, {
-          transaction: t,
-        });
-        await t.commit();
-        res.status(201).json({ course: newCourse, videos: newVideos });
-      }
+
+      const videosArray = [];
+      Videos.forEach((video) => {
+        let videoObj = {
+          name: video.name,
+          videoUrl: video.videoUrl,
+          CourseId: newCourse.id,
+        };
+        videosArray.push(videoObj);
+      });
+
+      const newVideos = await Video.bulkCreate(videosArray, {
+        transaction: t,
+      });
+
+      await t.commit();
+      res.status(201).json({ course: newCourse, videos: newVideos });
     } catch (err) {
       next(err);
     }
@@ -145,12 +143,12 @@ class CourseController {
         CategoryId,
       } = req.body;
 
-      const foundCourse = await Course.findByPk(courseId)
+      const foundCourse = await Course.findByPk(courseId);
 
-      if(!foundCourse) {
-        throw {name : "CourseNotFound"}
+      if (!foundCourse) {
+        throw { name: "CourseNotFound" };
       }
-      
+
       const updatedCourse = await Course.update(
         {
           name,
@@ -166,12 +164,8 @@ class CourseController {
           returning: true,
         }
       );
-			
-      if (updatedCourse[0] === 0) {
-        throw {name: "CourseNotFound"};
-      } else {
-        res.status(200).json(updatedCourse[1][0]);
-      }
+
+      res.status(200).json(updatedCourse[1][0]);
     } catch (err) {
       next(err);
     }
@@ -196,11 +190,8 @@ class CourseController {
           returning: true,
         }
       );
-      if (patchedCourse[0] === 0) {
-        throw "Course not found";
-      } else {
-        res.status(200).json(patchedCourse[1][0]);
-      }
+      
+      res.status(200).json(patchedCourse[1][0]);
     } catch (err) {
       next(err);
     }

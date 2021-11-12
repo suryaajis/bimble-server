@@ -59,6 +59,21 @@ describe("GET /courses", () => {
       });
   });
 
+  test("200 success get courses dengan filter category", (done) => {
+    request(app)
+      .get("/public/courses?categoryId=2")
+      .then((response) => {
+        const { body, status } = response;
+        expect(status).toBe(200);
+        expect(Array.isArray(body)).toBeTruthy();
+        expect(body.length).toBeGreaterThan(0);
+        done();
+      })
+      .catch((err) => {
+        done(err);
+      });
+  });
+
   test("200 success get courses dengan 3 query filter parameter", (done) => {
     request(app)
       .get("/public/courses?difficulty=easy&price=desc&search=ma")
@@ -111,7 +126,22 @@ describe("GET /courses/:courseId", () => {
 
   test("[404 - Course Not Found] get course with invaild course id ", (done) => {
     request(app)
-      .get("/public/courses/1000")
+      .get("/public/courses/999999")
+      .then((response) => {
+        const { status, body } = response;
+        expect(status).toBe(404);
+        expect(body).toEqual(expect.any(Object));
+        expect(body).toHaveProperty("message", "Course Not Found");
+        done();
+      })
+      .catch((err) => {
+        done(err);
+      });
+  });
+
+  test("[404 - Course Not Found] get course with invaild page ", (done) => {
+    request(app)
+      .get("/public/courses?page=0")
       .then((response) => {
         const { status, body } = response;
         expect(status).toBe(404);
