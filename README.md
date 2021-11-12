@@ -17,12 +17,11 @@ CUSTOMER
 [x] PUT /public/users
 [x] GET /public/courses
 [x] GET /public/courses/:courseId
-[ ] GET /public/userCourse
-[ ] GET /public/userCourses/:courseId
+[x] GET /public/userCourse
+[x] GET /public/userCourses/:courseId
 
-[ ] POST /public/userCourses/:courseId
-[ ] GET /public/comments/:videoId
-[ ] POST /public/comments/:videoId
+[x] POST /public/userCourses/:courseId
+[x] POST /public/comments/:videoId
 [ ] POST /ovo/charge
 [ ] POST /ovo/status
 

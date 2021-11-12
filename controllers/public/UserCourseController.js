@@ -1,4 +1,5 @@
 const { UserCourse, User, Course, Video, Comment } = require('../../models')
+const sendEmail = require('../../helpers/nodemailer')
 
 class UsercourseController {
     static async getAll (req, res, next) {
@@ -87,6 +88,8 @@ class UsercourseController {
             const { id } = req.user
             const { courseId } = req.params
 
+            const user = await User.findByPk(id)
+
             const course = await Course.findAll({
                 where: { id: courseId }
             })
@@ -104,7 +107,19 @@ class UsercourseController {
                 CourseId: courseId,
                 isPaid: false
             })
+            
+            const option = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }
+            const payload = {
+                email: user.email,
+                text: `
+                Hello ${user.name}!
+                <br/><br/>
+                Thank you for purchasing ${course[0].name} from Bimble at ${course[0].createdAt.toLocaleString('en-US', option)}
+                <br/>
+                Don't forget to complete the payment process using OVO!`
+            }
 
+            sendEmail(payload)
             res.status(201).json({
                 UserId: newUserCourse.UserId,
                 CourseId: newUserCourse.CourseId,

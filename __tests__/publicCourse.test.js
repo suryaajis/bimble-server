@@ -71,7 +71,7 @@ describe("GET /courses/:courseId", () => {
         const { status, body } = response;
         expect(status).toBe(404);
         expect(body).toEqual(expect.any(Object));
-        expect(body).toHaveProperty("message", "Course not found");
+        expect(body).toHaveProperty("message", "Course Not Found");
         done();
       })
       .catch((err) => {

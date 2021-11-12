@@ -1,6 +1,6 @@
 const request = require('supertest')
 const app = require('../app.js')
-const { UserCourse, User, Course, Category } = require('../models')
+const { UserCourse, User, Course, Category, Video } = require('../models')
 
 let userToken
 
@@ -35,6 +35,12 @@ beforeAll( async () => {
         isPaid: false
     })
 
+    await Video.create({
+        name: "Nilai Mutlak - Bagian 1",
+        videoUrl: "hhhhhhh",
+        CourseId: 1
+    })
+
     // login to take a access_token
     userToken = await request(app)
         .post('/public/login')
@@ -46,11 +52,56 @@ afterAll( async ()=>{
     await Category.destroy({ truncate: true, cascade: true, restartIdentity: true });
     await Course.destroy({ truncate: true, cascade: true, restartIdentity: true });
     await UserCourse.destroy({ truncate: true, cascade: true, restartIdentity: true });
+    await Video.destroy({ truncate: true, cascade: true, restartIdentity: true });
 })
 
-
-
 describe('GET /public/userCourse', () => {
+    test('[201 - Success] Add UserCourse', (done) => {
+        request(app)
+        .post('/public/userCourses/2')
+        .set(
+            "access_token",
+            userToken.body.access_token
+        )
+        .then((response) => {
+            const { status, body } = response
+            expect(status).toBe(201)
+            expect(body).toEqual(expect.any(Object))
+            expect(body).toHaveProperty('UserId')
+            expect(body).toHaveProperty('CourseId')
+            expect(body).toHaveProperty('isPaid')
+            expect(body).toHaveProperty('chargeId')
+            done()
+        })
+        .catch((err) => {
+            done(err)
+        })
+    })
+
+    test('[201 - Success] Add Comment', (done) => {
+        request(app)
+        .post('/public/comments/1')
+        .set(
+            "access_token",
+            userToken.body.access_token
+        )
+        .send({
+            comment: "waw keren banget"
+        })
+        .then((response) => {
+            const { status, body } = response
+            expect(status).toBe(201)
+            expect(body).toEqual(expect.any(Object))
+            expect(body).toHaveProperty('comment')
+            expect(body).toHaveProperty('VideoId')
+            expect(body).toHaveProperty('UserId')
+            done()
+        })
+        .catch((err) => {
+            done(err)
+        })
+    })
+
     test('[200 - Success] get all userCourse after login', (done) => {
         request(app)
         .get('/public/userCourse')
@@ -74,7 +125,7 @@ describe('GET /public/userCourse', () => {
 
     test('[200 - Success] get userCourse with course id after login ', (done) => {
         request(app)
-        .get('/public/userCourses/1')
+        .get('/public/userCourses/2')
         .set(
             "access_token",
             userToken.body.access_token
@@ -86,28 +137,6 @@ describe('GET /public/userCourse', () => {
             expect(body).toHaveProperty('UserId')
             expect(body).toHaveProperty('CourseId')
             expect(body).toHaveProperty('isPaid')
-            done()
-        })
-        .catch((err) => {
-            done(err)
-        })
-    })
-
-    test('[201 - Success] Add UserCourse', (done) => {
-        request(app)
-        .post('/public/userCourses/2')
-        .set(
-            "access_token",
-            userToken.body.access_token
-        )
-        .then((response) => {
-            const { status, body } = response
-            expect(status).toBe(201)
-            expect(body).toEqual(expect.any(Object))
-            expect(body).toHaveProperty('UserId')
-            expect(body).toHaveProperty('CourseId')
-            expect(body).toHaveProperty('isPaid')
-            expect(body).toHaveProperty('chargeId')
             done()
         })
         .catch((err) => {
@@ -127,6 +156,28 @@ describe('GET /public/userCourse', () => {
             expect(status).toBe(404)
             expect(body).toEqual(expect.any(Object))
             expect(body).toHaveProperty('message', "Course Not Found")
+            done()
+        })
+        .catch((err) => {
+            done(err)
+        })
+    })
+
+    test('[401 - InvalidInput] Add Comment before login', (done) => {
+        request(app)
+        .post('/public/comments/1')
+        .set(
+            "access_token",
+            ""
+        )
+        .send({
+            comment: "waw keren banget"
+        })
+        .then((response) => {
+            const { status, body } = response
+            expect(status).toBe(401)
+            expect(body).toEqual(expect.any(Object))
+            expect(body).toHaveProperty('message', "Invalid email/password")
             done()
         })
         .catch((err) => {
