@@ -6,12 +6,14 @@ const CategoryController = require("../controllers/admin/AdminCategoryController
 const CommentController = require("../controllers/admin/AdminCommentController");
 const authentication = require("../middlewares/authentication");
 const authorization = require("../middlewares/authorization");
+const { upload } = require('../helpers/multer');
+const uploadImages = require('../middlewares/uploadImages');
 
 adminRouter.use(authentication);
 adminRouter.get("/users", authorization, AdminController.findAllUsers);
 adminRouter.get("/courses", authorization, CourseController.findAllCourses);
 adminRouter.get("/courses/:courseId", authorization, CourseController.findCourseById);
-adminRouter.post("/courses", authorization, CourseController.createCourse);
+adminRouter.post("/courses",authorization, upload.array('Videos', 3), uploadImages, CourseController.createCourse);
 adminRouter.put("/courses/:courseId", authorization, CourseController.updateCourse);
 adminRouter.patch("/courses/:courseId", authorization, CourseController.patchCourse);
 adminRouter.get("/categories", authorization, CategoryController.findAllCategories);
