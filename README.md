@@ -6,7 +6,6 @@
 4. Jika ingin init database development lakukan command `npm run init-db:dev`
 5. Jika ingin init database testing lakukan command `npm run init-db:test`
 
-
 # Endpoint Server
 
 CUSTOMER
@@ -22,6 +21,7 @@ CUSTOMER
 
 [x] POST /public/userCourses/:courseId
 [x] GET /public/comments/:videoId
+
 [x] POST /public/comments/:videoId
 [ ] POST /ovo/charge
 [ ] POST /ovo/status
@@ -64,4 +64,3 @@ ADMIN
 [x] GET /admin/categories
 [ ] POST /admin/categories
 [x] DELETE /admin/categories/:categoryId
-

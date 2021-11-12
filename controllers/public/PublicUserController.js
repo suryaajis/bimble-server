@@ -1,6 +1,7 @@
 const { User } = require("../../models");
 const { comparePassword } = require("../../helpers/bcrypt");
 const { signToken } = require("../../helpers/jwt");
+const sendEmail = require('../../helpers/nodemailer')
 
 class PublicUserController {
   static async register(req, res, next) {
@@ -18,8 +19,17 @@ class PublicUserController {
         name: createUser.name,
         email: createUser.email,
         role: createUser.role,
-      };
+      }
 
+      const payload = {
+        email: response.email,
+        text: `
+        Hello ${response.name} ${response.email}!
+        <br/>
+        Thank you for joining Bimble,
+        Enjoy your stay here!`
+      }
+      sendEmail(payload)
       res.status(201).json(response);
     } catch (err) {
       next(err);
@@ -66,7 +76,7 @@ class PublicUserController {
           email: req.user.email,
         },
         attributes: {
-          exclude: ["updatedAt", "createdAt"],
+          exclude: ["id", "password", "updatedAt", "createdAt"],
         },
       });
 
