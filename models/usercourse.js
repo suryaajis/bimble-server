@@ -45,6 +45,9 @@ module.exports = (sequelize, DataTypes) => {
 			chargeId: {
 				type: DataTypes.STRING,
 			},
+			referenceId: {
+				type: DataTypes.STRING,
+			},
 		},
 		{
 			sequelize,
