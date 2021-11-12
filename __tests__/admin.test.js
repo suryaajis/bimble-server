@@ -1,7 +1,8 @@
 const request = require("supertest");
+const FormData = require("form-data");
 const app = require("../app");
-const { Category, Course, Comment, User, Video } = require("../models");
 const fs = require("fs");
+const { Category, Course, Comment, User, Video } = require("../models");
 
 let token;
 let loginParams = {
@@ -178,7 +179,7 @@ describe("GET /admin/courses", () => {
         {
           name: "bahasa jepang",
           videoUrl: "https://www.youtube.com/embed/fp0mybLeagQ",
-        }
+        },
       ],
     };
 
@@ -188,6 +189,7 @@ describe("GET /admin/courses", () => {
       .send(inputAdd)
       .then((response) => {
         const { body, status } = response;
+        console.log(body);
         expect(status).toBe(200);
         expect(body).toEqual(expect.any(Object));
         done();
@@ -279,7 +281,7 @@ describe("GET /admin/courses", () => {
         const { body, status } = response;
         expect(status).toBe(400);
         expect(body).toEqual(expect.any(Object));
-        expect(body).toHaveProperty("message", "Description can't be empty")
+        expect(body).toHaveProperty("message", "Description can't be empty");
         done();
       })
       .catch((err) => {
@@ -414,6 +416,45 @@ describe("GET /admin/courses", () => {
         expect(status).toBe(404);
         expect(body).toEqual(expect.any(Object));
         expect(body).toHaveProperty("message", "Course Not Found");
+        done();
+      })
+      .catch((err) => {
+        done(err);
+      });
+  });
+
+  test("[400 - Invalid Format] add video with invalid format ", (done) => {
+    const inputSample = {
+      name: "Bahasa Jepang",
+      description: "belajar cepat bahasa jepang",
+      price: 112000,
+      thumbnailUrl:
+        "https://i.ytimg.com/vi/hgvZeHkFg9E/hqdefault.jpg?s…QCAokN4AQ==&rs=AOn4CLBNFG6WY9Pv5MdeSeSr5XU_k-YE_Q",
+      difficulty: "hard",
+      status: "active",
+      CategoryId: 1,
+    };
+
+    const filePath = "./assets/logo.png";
+
+    request(app)
+      .post("/admin/courses")
+      .field('Content-Type', 'multipart/form-data')
+      .field("name", inputSample.name)
+      .field("description", inputSample.description)
+      .field("price", inputSample.price)
+      .field("thumbnailUrl", inputSample.thumbnailUrl)
+      .field("difficulty", inputSample.difficulty)
+      .field("status", inputSample.status)
+      .field("CategoryId", inputSample.CategoryId)
+      .attach("file", filePath)
+      .set("access_token", token)
+      .then((response) => {
+        const { status, body } = response;
+        console.log(body, "<<<<< 452");
+        expect(status).toBe(400);
+        expect(body).toEqual(expect.any(Object));
+        expect(body).toHaveProperty("message", "File Format Should Be MP4");
         done();
       })
       .catch((err) => {
