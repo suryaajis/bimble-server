@@ -1,4 +1,5 @@
 const request = require("supertest");
+const superagent = require('superagent')
 const FormData = require("form-data");
 const app = require("../app");
 const fs = require("fs");
@@ -437,9 +438,9 @@ describe("GET /admin/courses", () => {
 
     const filePath = "./assets/logo.png";
 
-    request(app)
+    superagent(app)
       .post("/admin/courses")
-      .field('Content-Type', 'multipart/form-data')
+      .set("access_token", token)
       .field("name", inputSample.name)
       .field("description", inputSample.description)
       .field("price", inputSample.price)
@@ -447,8 +448,7 @@ describe("GET /admin/courses", () => {
       .field("difficulty", inputSample.difficulty)
       .field("status", inputSample.status)
       .field("CategoryId", inputSample.CategoryId)
-      .attach("file", filePath)
-      .set("access_token", token)
+      .attach("Videos", filePath)
       .then((response) => {
         const { status, body } = response;
         console.log(body, "<<<<< 452");
