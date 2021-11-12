@@ -1,6 +1,6 @@
 const errorHandler = (err, req, res, next) => {
-  let code = 500
-  let msg = "Internal server error"
+	let code = 500;
+	let msg = "Internal server error";
 
   console.log(err)
   if(err.name === "SequelizeValidationError") {
@@ -24,10 +24,11 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.name === "CourseAlreadyPurchased") {
     code = 404
     msg = "Course Already Purchased"
+  } else if (err.name === "CategoryNotFound") {
+    code = 404
+    msg = "Category Not Found"
   }
+	res.status(code).json({ message: msg });
+};
 
-  res.status(code).json({message: msg})
-}
-
-
-module.exports = errorHandler
+module.exports = errorHandler;

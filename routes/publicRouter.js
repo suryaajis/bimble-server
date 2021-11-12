@@ -10,6 +10,7 @@ publicRouter.post("/register", PublicUserController.register);
 publicRouter.post("/login", PublicUserController.login);
 publicRouter.get("/courses", CourseController.readAllCourses);
 publicRouter.get("/courses/:courseId", CourseController.readCourseDetail);
+publicRouter.get('/categories', CourseController.readCategories)
 
 publicRouter.use(authentication);
 publicRouter.get("/users", PublicUserController.readUser);

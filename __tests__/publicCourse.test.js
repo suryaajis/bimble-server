@@ -43,6 +43,52 @@ describe("GET /courses", () => {
         done(err);
       });
   });
+
+  test("200 success get courses dengan 1 query filter parameter", (done) => {
+    request(app)
+      .get("/public/courses?price=desc")
+      .then((response) => {
+        const { body, status } = response;
+        expect(status).toBe(200);
+        expect(Array.isArray(body)).toBeTruthy();
+        expect(body.length).toBeGreaterThan(0);
+        done();
+      })
+      .catch((err) => {
+        done(err);
+      });
+  });
+
+  test("200 success get courses dengan 3 query filter parameter", (done) => {
+    request(app)
+      .get("/public/courses?difficulty=easy&price=desc&search=ma")
+      .then((response) => {
+        const { body, status } = response;
+        expect(status).toBe(200);
+        expect(Array.isArray(body)).toBeTruthy();
+        expect(body.length).toBeGreaterThan(0);
+        done();
+      })
+      .catch((err) => {
+        done(err);
+      });
+  });
+
+  test("200 success get courses dengan pagination", (done) => {
+    request(app)
+      .get("/public/courses?page=1")
+      .then((response) => {
+        const { body, status } = response;
+        expect(status).toBe(200);
+        expect(body).toEqual(expect.any(Object));
+        expect(body).toHaveProperty("totalCourse");
+        expect(body).toHaveProperty("course");
+        done();
+      })
+      .catch((err) => {
+        done(err);
+      });
+  });
 });
 
 describe("GET /courses/:courseId", () => {
@@ -51,7 +97,6 @@ describe("GET /courses/:courseId", () => {
       .get("/public/courses/2")
       .then((response) => {
         const { body, status } = response;
-        console.log(response.body);
         expect(body).toEqual(expect.any(Object));
         expect(body).toHaveProperty("name");
         expect(body).toHaveProperty("Category");
@@ -72,6 +117,23 @@ describe("GET /courses/:courseId", () => {
         expect(status).toBe(404);
         expect(body).toEqual(expect.any(Object));
         expect(body).toHaveProperty("message", "Course Not Found");
+        done();
+      })
+      .catch((err) => {
+        done(err);
+      });
+  });
+});
+
+describe("GET /categories", () => {
+  test("200 success get all categories", (done) => {
+    request(app)
+      .get("/public/categories")
+      .then((response) => {
+        const { body, status } = response;
+        expect(Array.isArray(body)).toBeTruthy();
+        expect(body.length).toBeGreaterThan(0);
+        expect(status).toBe(200);
         done();
       })
       .catch((err) => {
