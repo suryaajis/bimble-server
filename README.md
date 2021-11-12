@@ -61,8 +61,7 @@ ADMIN
 [ ] POST /admin/courses
 [ ] PUT /admin/courses/:courseId
 [x] PATCH /admin/courses/:courseId (soft delete)
-[ ] GET /admin/categories
+[x] GET /admin/categories
 [ ] POST /admin/categories
-[ ] PATCH /admin/categories/:categoryId
 [ ] DELETE /admin/categories/:categoryId
 

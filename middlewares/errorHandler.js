@@ -24,6 +24,9 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.name === "CourseAlreadyPurchased") {
     code = 404
     msg = "Course Already Purchased"
+  } else if (err.name === "CategoryNotFound") {
+    code = 404
+    msg = "Category Not Found"
   }
 
   res.status(code).json({message: msg})

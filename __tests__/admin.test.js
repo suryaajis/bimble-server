@@ -110,10 +110,35 @@ describe("GET /admin/courses", () => {
       });
   });
 
+  test("[200 - success] edit course", (done) => {
+    // const inputEdit = {
+    //   name: ,
+    //   description,
+    //   price,
+    //   thumbnailUrl,
+    //   difficulty,
+    //   status,
+    //   CategoryId,
+    // };
+    request(app)
+      .patch("/admin/courses/2")
+      .set("access_token", token)
+      .send(inputEdit)
+      .then((response) => {
+        const { body, status } = response;
+        expect(status).toBe(200);
+        expect(body).toEqual(expect.any(Object));
+        done();
+      })
+      .catch((err) => {
+        done(err);
+      });
+  });
+
   test("[200 - success] change status course", (done) => {
     const inputStatus = {
-      status: "inactive"
-    }
+      status: "inactive",
+    };
     request(app)
       .patch("/admin/courses/2")
       .set("access_token", token)
@@ -128,8 +153,6 @@ describe("GET /admin/courses", () => {
         done(err);
       });
   });
-
-
 
   test("[404 - course not found] get courses detail with wrong id", (done) => {
     request(app)
@@ -207,9 +230,8 @@ describe("GET /admin/categories", () => {
 
   test("[201 - success] add category", (done) => {
     const inputCategory = {
-      name: "Bahasa"
-    }
-
+      name: "Bahasa",
+    };
     request(app)
       .post("/admin/categories")
       .set("access_token", token)
@@ -219,6 +241,41 @@ describe("GET /admin/categories", () => {
         expect(status).toBe(201);
         expect(body).toEqual(expect.any(Object));
         expect(body).toHaveProperty("name");
+        done();
+      })
+      .catch((err) => {
+        done(err);
+      });
+  });
+
+  test("[201 - success] delete category", (done) => {
+    request(app)
+      .delete("/admin/categories/2")
+      .set("access_token", token)
+      .then((response) => {
+        const { body, status } = response;
+        expect(status).toBe(200);
+        expect(body).toEqual(expect.any(Object));
+        expect(body).toHaveProperty(
+          "message",
+          `Course and category with id 2 has been deleted`
+        );
+        done();
+      })
+      .catch((err) => {
+        done(err);
+      });
+  });
+
+  test("[400 - failed] delete category with wrong id", (done) => {
+    request(app)
+      .delete("/admin/categories/1000")
+      .set("access_token", token)
+      .then((response) => {
+        const { body, status } = response;
+        expect(status).toBe(404);
+        expect(body).toEqual(expect.any(Object));
+        expect(body).toHaveProperty("message", `Category Not Found`);
         done();
       })
       .catch((err) => {

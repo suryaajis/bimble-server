@@ -135,6 +135,13 @@ class CourseController {
   static async updateCourse(req, res, next) {
     try {
       const { courseId } = req.params;
+
+      const foundCourse = await Course.findByPk(courseId)
+
+      if(!foundCourse) {
+        throw {name : "CourseNotFound"}
+      }
+
       const {
         name,
         description,
@@ -144,6 +151,7 @@ class CourseController {
         status,
         CategoryId,
       } = req.body;
+
       const updatedCourse = await Course.update(
         {
           name,
@@ -159,8 +167,9 @@ class CourseController {
           returning: true,
         }
       );
+			
       if (updatedCourse[0] === 0) {
-        throw "Course not found";
+        throw {name: "CourseNotFound"};
       } else {
         res.status(200).json(updatedCourse[1][0]);
       }
