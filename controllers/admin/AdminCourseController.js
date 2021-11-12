@@ -135,13 +135,6 @@ class CourseController {
   static async updateCourse(req, res, next) {
     try {
       const { courseId } = req.params;
-
-      const foundCourse = await Course.findByPk(courseId)
-
-      if(!foundCourse) {
-        throw {name : "CourseNotFound"}
-      }
-
       const {
         name,
         description,
@@ -152,6 +145,12 @@ class CourseController {
         CategoryId,
       } = req.body;
 
+      const foundCourse = await Course.findByPk(courseId)
+
+      if(!foundCourse) {
+        throw {name : "CourseNotFound"}
+      }
+      
       const updatedCourse = await Course.update(
         {
           name,

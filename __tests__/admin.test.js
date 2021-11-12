@@ -111,17 +111,18 @@ describe("GET /admin/courses", () => {
   });
 
   test("[200 - success] edit course", (done) => {
-    // const inputEdit = {
-    //   name: ,
-    //   description,
-    //   price,
-    //   thumbnailUrl,
-    //   difficulty,
-    //   status,
-    //   CategoryId,
-    // };
+    const inputEdit = {
+      name: "Bahasa Jepang" ,
+      description: "belajar cepat bahasa jepang",
+      price: 112000,
+      thumbnailUrl: "https://i.ytimg.com/vi/hgvZeHkFg9E/hqdefault.jpg?s…QCAokN4AQ==&rs=AOn4CLBNFG6WY9Pv5MdeSeSr5XU_k-YE_Q",
+      difficulty: "hard",
+      status: "inactive",
+      CategoryId: 2,
+    };
+
     request(app)
-      .patch("/admin/courses/2")
+      .put("/admin/courses/2")
       .set("access_token", token)
       .send(inputEdit)
       .then((response) => {
@@ -183,6 +184,34 @@ describe("GET /admin/courses", () => {
         expect(status).toBe(404);
         expect(body).toEqual(expect.any(Object));
         expect(body).toHaveProperty("message", "Course Not Found");
+        done();
+      })
+      .catch((err) => {
+        done(err);
+      });
+  });
+
+  test("[400 - input edit empty] edit course with empty string input", (done) => {
+    const inputEdit = {
+      name: "" ,
+      description: "",
+      price: 112000,
+      thumbnailUrl: "https://i.ytimg.com/vi/hgvZeHkFg9E/hqdefault.jpg?s…QCAokN4AQ==&rs=AOn4CLBNFG6WY9Pv5MdeSeSr5XU_k-YE_Q",
+      difficulty: "hard",
+      status: "inactive",
+      CategoryId: 2,
+    };
+
+    request(app)
+      .put("/admin/courses/2")
+      .set("access_token", token)
+      .send(inputEdit)
+      .then((response) => {
+        const { body, status } = response;
+        console.log(body)
+        expect(status).toBe(400);
+        expect(body).toEqual(expect.any(Object));
+        expect(body).toHaveProperty("message", "Name can't be empty");
         done();
       })
       .catch((err) => {
@@ -283,37 +312,3 @@ describe("GET /admin/categories", () => {
       });
   });
 });
-
-// test("[201 - success] add course", (done) => {
-//   const input = {
-//     name: "Bahasa Jepang",
-//     description: "belajar cepat bahasa jepang",
-//     price: 50000,
-//     thumbnailUrl:
-//       "https://i.ytimg.com/vi/strzhKqA_sQ/hqdefault.jpg?s…RUAAIhCGAE=&rs=AOn4CLCVGKk89pHJwWo1ORt8hzlH1iM9rg",
-//     difficulty: "medium",
-//     status: "active",
-//     CategoryId: 7,
-//     Videos: [
-//       {
-//         name: "jepang is easy",
-//         videoUrl: "https://www.youtube.com/embed/WJr11FExG7s",
-//       },
-//     ],
-//   };
-
-//   request(app)
-//     .post("/admin/courses")
-//     .set("access_token", token)
-//     .send(input)
-//     .then((response) => {
-//       const { body, status } = response;
-//       console.log(body)
-//       expect(status).toBe(200);
-//       expect(body).toEqual(expect.any(Object));
-//       done();
-//     })
-//     .catch((err) => {
-//       done(err);
-//     });
-// });

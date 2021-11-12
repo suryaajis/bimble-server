@@ -59,9 +59,9 @@ ADMIN
 [x] GET /admin/courses
 [x] GET /admin/courses/:courseId
 [ ] POST /admin/courses
-[ ] PUT /admin/courses/:courseId
+[x] PUT /admin/courses/:courseId
 [x] PATCH /admin/courses/:courseId (soft delete)
 [x] GET /admin/categories
 [ ] POST /admin/categories
-[ ] DELETE /admin/categories/:categoryId
+[x] DELETE /admin/categories/:categoryId
 
