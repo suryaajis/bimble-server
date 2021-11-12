@@ -5,7 +5,7 @@ class CourseController {
 	static async readAllCourses(req, res, next) {
 		try {
 			const { page, search, categoryId, price, difficulty } = req.query;
-			const size = 10;
+			const size = 12;
 
 			let options = {
 				where: {
