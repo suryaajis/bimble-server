@@ -64,7 +64,7 @@ class PublicUserController {
 
 			const token = signToken(payload);
 
-			res.status(200).json({ access_token: token });
+			res.status(200).json({ access_token: token, role: foundUser.role });
 		} catch (err) {
 			next(err);
 		}
@@ -92,12 +92,14 @@ class PublicUserController {
 			});
 			const access_token = signToken({
 				id: user.id,
+				name: user.name,
 				email: user.email,
 				role: user.role,
 			});
 
 			res.status(201).json({
 				access_token,
+				role: user.role,
 			});
 		} catch (err) {
 			next(err);
