@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
 			Course.belongsToMany(models.User, { through: `UserCourses`, foreignKey: `CourseId` });
 			Course.belongsTo(models.Category, { foreignKey: "CategoryId" });
 			Course.hasMany(models.Video, { foreignKey: "CourseId" });
+			Course.hasMany(models.Rating, { foreignKey: "CourseId" });
 		}
 	}
 	Course.init(
@@ -69,10 +70,6 @@ module.exports = (sequelize, DataTypes) => {
 					notEmpty: { msg: `Status can't be empty` },
 					notNull: { msg: `Status can't be empty` },
 				},
-			},
-
-			rating: {
-				type: DataTypes.INTEGER,
 			},
 
 			CategoryId: {
