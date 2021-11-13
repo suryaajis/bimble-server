@@ -215,7 +215,7 @@ describe('GET /public/userCourse', () => {
             const { status, body } = response
             expect(status).toBe(401)
             expect(body).toEqual(expect.any(Object))
-            expect(body).toHaveProperty('message', "Unauthorized")
+            expect(body).toHaveProperty('message', "Invalid email/password")
             done()
         })
         .catch((err) => {

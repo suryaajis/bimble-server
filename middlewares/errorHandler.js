@@ -36,7 +36,10 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.name === "InvalidFileSize") {
     code = 400;
     msg = "File Size Should Not Exceeded 25MB";
-  } 
+  } else if (err.name === "authError") {
+    code = 500
+    msg = "You are not authorized"
+  }
 
   res.status(code).json({ message: msg });
 };
