@@ -1,124 +1,147 @@
-const request = require('supertest')
-const app = require('../app.js')
-const { UserCourse, User, Course, Category } = require('../models')
+const request = require("supertest");
+const app = require("../app.js");
+const fs = require("fs");
+const { UserCourse, User, Course, Category, Rating } = require("../models");
 
-let userToken
+let userToken;
+const dataCategories = JSON.parse(
+  fs.readFileSync("./data/categories.json", "utf-8")
+);
+const dataCourses = JSON.parse(fs.readFileSync("./data/courses.json", "utf-8"));
+const dataUsers = JSON.parse(fs.readFileSync("./data/users.json", "utf-8"));
+const dataUserCourse = JSON.parse(
+  fs.readFileSync("./data/userCourse.json", "utf-8")
+);
+const dataRatings = JSON.parse(fs.readFileSync("./data/ratings.json", "utf-8"));
 
-beforeAll( async () => {
-    jest.setTimeout(90 * 1000)
-    user = await User.create({
-        name: "Jhon", 
-        email: "jhon@gmail.com", 
-        password: "12345678", 
-        role: "User"
-    })
+beforeAll(async () => {
+  await User.bulkCreate(dataUsers);
+  await Category.bulkCreate(dataCategories);
+  await Course.bulkCreate(dataCourses);
+  await UserCourse.bulkCreate(dataUserCourse);
+  await Rating.bulkCreate(dataRatings);
+  jest.setTimeout(90 * 1000);
 
-    await Category.create({
-        name: "Matematika"
-    })
+  // login to take a access_token
+  userToken = await request(app)
+    .post("/public/login")
+    .send({ email: "udin@gmail.com", password: "12345678" });
+});
 
-    for( let i = 0; i < 2; i++) {
-        await Course.create({
-            name: `Test Course ${i}`,
-            description: `Matematika ilmu yang menyenangkan.....`,
-            price: 5000,
-            thumbnailUrl: "https://i.ytimg.com/vi/WJr11FExG7s/hqdefault.jpg?s…RUAAIhCGAE=&rs=AOn4CLAImD8rRbQR7cuFCw3Z_xsjLlr1Tg",
-            difficulty: "medium",
-            status: "active",
-            rating: 8,
-            CategoryId: 1
-        })
-    }
+afterAll(async () => {
+  await User.destroy({ truncate: true, cascade: true, restartIdentity: true });
+  await Category.destroy({
+    truncate: true,
+    cascade: true,
+    restartIdentity: true,
+  });
+  await Course.destroy({
+    truncate: true,
+    cascade: true,
+    restartIdentity: true,
+  });
+  await UserCourse.destroy({
+    truncate: true,
+    cascade: true,
+    restartIdentity: true,
+  });
+  await Rating.destroy({
+    truncate: true,
+    cascade: true,
+    restartIdentity: true,
+  });
+});
 
-    await UserCourse.create({
-        UserId: 1,
-        CourseId: 1,
-        isPaid: true
-    })
+describe("GET /public/ratings/:courseId", () => {
+  test("[200 - Success] get average ratings", (done) => {
+    request(app)
+      .get("/public/ratings/1")
+      .set("access_token", userToken.body.access_token)
+      .then((response) => {
+        const { status, body } = response;
 
-    await UserCourse.create({
-        UserId: 1,
-        CourseId: 2,
-        isPaid: false
-    })
+        expect(status).toBe(200);
+        expect(body).toEqual(expect.any(Object));
+        expect(body).toHaveProperty("rating", 7.7);
+        done();
+      })
+      .catch((err) => {
+        done(err);
+      });
+  });
 
-    // login to take a access_token
-    userToken = await request(app)
-        .post('/public/login')
-        .send({email: "jhon@gmail.com", password: "12345678"})
-})
+  test("[404 - Course Not Found] Add Rating with wrong course id", (done) => {
+    request(app)
+      .get("/public/ratings/999999")
+      .set("access_token", userToken.body.access_token)
+      .then((response) => {
+        const { status, body } = response;
+        expect(status).toBe(404);
+        expect(body).toEqual(expect.any(Object));
+        expect(body).toHaveProperty("message", "Course Not Found");
+        done();
+      })
+      .catch((err) => {
+        done(err);
+      });
+  });
+});
 
-afterAll( async ()=>{
-    await User.destroy({ truncate: true, cascade: true, restartIdentity: true });
-    await Category.destroy({ truncate: true, cascade: true, restartIdentity: true });
-    await Course.destroy({ truncate: true, cascade: true, restartIdentity: true });
-    await UserCourse.destroy({ truncate: true, cascade: true, restartIdentity: true });
-})
+describe("POST /public/ratings/:courseId", () => {
+  test("[201 - Success] add Rating", async () => {
+    await Rating.destroy({
+      truncate: true,
+      cascade: true,
+      restartIdentity: true,
+    });
 
-describe('POST /public/ratings/:courseId', () => {
-    test('[201 - Success] add Rating', (done) => {
-        request(app)
-        .post('/public/ratings/1')
-        .set(
-            "access_token",
-            userToken.body.access_token
-        )
-        .send({
-            rating: 8,
-        })
-        .then((response) => {
-            const { status, body } = response
-            expect(status).toBe(201)
-            expect(body).toEqual(expect.any(Object))
-            expect(body).toHaveProperty('rating')
-            done()
-        })
-        .catch((err) => {
-            done(err)
-        })
-    })
+    const { status, body } = await request(app)
+      .post("/public/ratings/1")
+      .set("access_token", userToken.body.access_token)
+      .send({
+        rating: 8,
+      });
 
-    test('[400 - CourseNotPaid] Add Rating before purchase course', (done) => {
-        request(app)
-        .post('/public/ratings/2')
-        .set(
-            "access_token",
-            userToken.body.access_token
-        )
-        .send({
-            rating: 8,
-        })
-        .then((response) => {
-            const { status, body } = response
-            expect(status).toBe(400)
-            expect(body).toEqual(expect.any(Object))
-            expect(body).toHaveProperty('message', 'You must buy first')
-            done()
-        })
-        .catch((err) => {
-            done(err)
-        })
-    })
+    expect(status).toBe(201);
+    expect(body).toEqual(expect.any(Object));
+    expect(body).toHaveProperty("rating");
+  });
 
-    test('[400 - Maximal rating is 10] add a rating with a value that exceeds the maximum', (done) => {
-        request(app)
-        .post('/public/ratings/1')
-        .set(
-            "access_token",
-            userToken.body.access_token
-        )
-        .send({
-            rating: 11,
-        })
-        .then((response) => {
-            const { status, body } = response
-            expect(status).toBe(400)
-            expect(body).toEqual(expect.any(Object))
-            expect(body).toHaveProperty('message', 'Maximal rating is 10')
-            done()
-        })
-        .catch((err) => {
-            done(err)
-        })
-    })
-})
+  test("[400 - CourseNotPaid] Add Rating before purchase course", (done) => {
+    request(app)
+      .post("/public/ratings/2")
+      .set("access_token", userToken.body.access_token)
+      .send({
+        rating: 8,
+      })
+      .then((response) => {
+        const { status, body } = response;
+        expect(status).toBe(400);
+        expect(body).toEqual(expect.any(Object));
+        expect(body).toHaveProperty("message", "You must buy first");
+        done();
+      })
+      .catch((err) => {
+        done(err);
+      });
+  });
+
+  test("[400 - Maximal rating is 10] add a rating with a value that exceeds the maximum", (done) => {
+    request(app)
+      .post("/public/ratings/1")
+      .set("access_token", userToken.body.access_token)
+      .send({
+        rating: 11,
+      })
+      .then((response) => {
+        const { status, body } = response;
+        expect(status).toBe(400);
+        expect(body).toEqual(expect.any(Object));
+        expect(body).toHaveProperty("message", "Maximal rating is 10");
+        done();
+      })
+      .catch((err) => {
+        done(err);
+      });
+  });
+});
