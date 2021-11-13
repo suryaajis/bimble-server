@@ -23,8 +23,8 @@ module.exports = (sequelize, DataTypes) => {
 					notEmpty: { msg: `Rating can't be empty` },
 					notNull: { msg: `Rating can't be empty` },
           max: {
-            args: 5,
-            msg: "Maximal rating is only 10"
+            args: 10,
+            msg: "Maximal rating is 10"
           }
 				},
     },

@@ -6,10 +6,10 @@ const ratingAuthorization = async (req, res, next) => {
         const { courseId } = req.params
 
         const userCourse = await UserCourse.findOne({
-            where: { UserId: id, CourseId: courseId }
+            where: { UserId: id, CourseId: courseId, isPaid: true }
         })
 
-        if (!userCourse) throw { name: "Forbidden" }
+        if (!userCourse) throw { name: "CourseNotPaid" }
 
         next()
 	} catch (err) {
