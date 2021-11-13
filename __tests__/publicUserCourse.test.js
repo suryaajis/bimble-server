@@ -95,27 +95,6 @@ describe("GET /public/userCourse", () => {
       });
   });
 
-  test("[201 - Success] Add Comment", (done) => {
-    request(app)
-      .post("/public/comments/1")
-      .set("access_token", userToken.body.access_token)
-      .send({
-        comment: "waw keren banget",
-      })
-      .then((response) => {
-        const { status, body } = response;
-        expect(status).toBe(201);
-        expect(body).toEqual(expect.any(Object));
-        expect(body).toHaveProperty("comment");
-        expect(body).toHaveProperty("VideoId");
-        expect(body).toHaveProperty("UserId");
-        done();
-      })
-      .catch((err) => {
-        done(err);
-      });
-  });
-
   test("[200 - Success] get all userCourse after login", (done) => {
     request(app)
       .get("/public/userCourse")
@@ -166,38 +145,6 @@ describe("GET /public/userCourse", () => {
       .catch((err) => {
         done(err);
       });
-  });
-
-  test("[401 - InvalidInput] Add Comment before login", (done) => {
-    request(app)
-      .post("/public/comments/1")
-      .set("access_token", "")
-      .send({
-        comment: "waw keren banget",
-      })
-      .then((response) => {
-        const { status, body } = response;
-        expect(status).toBe(401);
-        expect(body).toEqual(expect.any(Object));
-        expect(body).toHaveProperty("message", "Invalid email/password");
-        done();
-      })
-      .catch((err) => {
-        done(err);
-      });
-  });
-
-  test("[400 - InvalidInput] Add Comment before buy course", async () => {
-    const { status, body } = await request(app)
-      .post("/public/comments/2")
-      .set("access_token", userToken.body.access_token)
-      .send({
-        comment: "belum beli",
-      });
-
-    expect(status).toBe(400);
-    expect(body).toEqual(expect.any(Object));
-    expect(body).toHaveProperty("message", "You must buy first");
   });
 
   test("[401 - InvalidInput] get all userCourse before login", (done) => {
