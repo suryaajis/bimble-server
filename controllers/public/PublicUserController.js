@@ -88,7 +88,7 @@ class PublicUserController {
 				},
 				defaults: {
 					name: given_name,
-					password: (Math.random() + 1).toString(36).substring(7),
+					password: (Math.random() + 1).toString(36).substring(4),
 					role: "User",
 				},
 			});
