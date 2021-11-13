@@ -1,4 +1,4 @@
-const { Comment, UserCourse } = require("../../models");
+const { Comment, UserCourse, Course, Video } = require("../../models");
 
 class CommentController {
   static async AddComment(req, res, next) {
@@ -7,15 +7,22 @@ class CommentController {
       const { comment } = req.body;
       const { id } = req.user;
 
+      const foundVideo = await Video.findOne({
+        where: {
+          id: videoId
+        },
+        include: Course
+      })
+
+      if(!foundVideo) {
+        throw {name: "VideoNotFound"}
+      }
+    
       const foundMyCourse = await UserCourse.findOne({
         where: {
-          UserId: id,
-        },
-      });
-
-      if (!foundMyCourse) {
-        throw { name: "CourseNotFound" };
-      }
+          CourseId: foundVideo.Course.id
+        }
+      })
 
       if (foundMyCourse.isPaid === false) {
         throw { name: "CourseNotPaid" };

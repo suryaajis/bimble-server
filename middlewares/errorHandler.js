@@ -42,6 +42,9 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.name === "CourseNotPaid") {
     code = 400
     msg = "You must buy first"
+  } else if (err.name === "VideoNotFound") {
+    code = 404
+    msg = "Video Not Found"
   }
 
   res.status(code).json({ message: msg });

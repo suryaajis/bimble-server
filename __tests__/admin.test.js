@@ -15,40 +15,33 @@ const dataCategories = JSON.parse(
 );
 const dataCourses = JSON.parse(fs.readFileSync("./data/courses.json", "utf-8"));
 const dataUsers = JSON.parse(fs.readFileSync("./data/users.json", "utf-8"));
-const dataVideos = JSON.parse(fs.readFileSync("./data/videos.json", "utf-8"));
-const dataComments = JSON.parse(
-  fs.readFileSync("./data/comments.json", "utf-8")
-);
+
 
 beforeAll(async () => {
-  try {
-    await User.bulkCreate(dataUsers);
-    await Category.bulkCreate(dataCategories);
-    await Course.bulkCreate(dataCourses);
-    await Video.create({
-      name: "Nilai Mutlak - Bagian 1",
-      videoUrl: "hhhhhhh",
-      CourseId: 1,
-    });
-    await Comment.bulkCreate([
-      {
-        comment: "waw keren",
-        UserId: 3,
-        VideoId: 1,
-      },
-      {
-        comment: "wihhh",
-        UserId: 4,
-        VideoId: 1,
-      },
-    ]);
+  await User.bulkCreate(dataUsers);
+  await Category.bulkCreate(dataCategories);
+  await Course.bulkCreate(dataCourses);
+  await Video.create({
+    name: "Nilai Mutlak - Bagian 1",
+    videoUrl: "hhhhhhh",
+    CourseId: 1,
+  });
+  await Comment.bulkCreate([
+    {
+      comment: "waw keren",
+      UserId: 3,
+      VideoId: 1,
+    },
+    {
+      comment: "wihhh",
+      UserId: 4,
+      VideoId: 1,
+    },
+  ]);
 
-    const { body } = await request(app).post("/public/login").send(loginParams);
+  const { body } = await request(app).post("/public/login").send(loginParams);
 
-    token = body.access_token;
-  } catch (err) {
-    console.log(err);
-  }
+  token = body.access_token;
 });
 
 afterAll(async () => {
