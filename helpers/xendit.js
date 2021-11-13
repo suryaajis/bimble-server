@@ -46,15 +46,12 @@ const ovoCharge = async (req, res, next) => {
         
         res.status(200).json(response.data)
     } catch (error) {
-        next(error.response.data.errors)
+        next(error.response)
     }
 }
 
 const ovoStatus = async (req, res, next) => {
     try {
-
-        console.log(req.headers)
-        console.log(req.body)
         const callbackToken = req.headers['x-callback-token']
 
         if (callbackToken !== process.env.XENDIT_VERIFICATION_TOKEN) throw { name: 'authError' }

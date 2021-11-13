@@ -76,63 +76,72 @@ describe('POST /ovo/charge', () => {
         })
     })
 
-    // test('[201 - Success] Payment (Xendit)', (done) => {
-    //     request(app)
-    //     .post('/ovo/status')
-    //     .set(
-    //         {
-    //             host: '9781-139-195-146-28.ngrok.io',       
-    //             'user-agent': 'axios/0.21.1',
-    //             'content-length': '764',
-    //             accept: 'application/json, text/plain, */*',
-    //             'content-type': 'application/json',
-    //             'x-callback-token': 'Gu1gqIxKXy6i7AGDCQgiSLdw4PeNNI2yi7P0aamoFvmiLWlM',
-    //             'x-datadog-parent-id': '7549655668905774975',
-    //             'x-datadog-sampled': '1',
-    //             'x-datadog-sampling-priority': '1',
-    //             'x-datadog-trace-id': '1439975027950009750',
-    //             'x-forwarded-for': '52.89.130.89',
-    //             'x-forwarded-proto': 'http',
-    //             'accept-encoding': 'gzip'
-    //           }
-    //     )
-    //     .send({
-    //         data: {
-    //           id: 'ewc_4830d899-f1bd-4442-b632-68b8a4101470',
-    //           basket: null,
-    //           status: 'SUCCEEDED',
-    //           actions: null,
-    //           created: '2021-11-12T18:20:56.434Z',
-    //           updated: '2021-11-12T18:20:56.443Z',
-    //           currency: 'IDR',
-    //           metadata: null,
-    //           voided_at: null,
-    //           capture_now: true,
-    //           customer_id: null,
-    //           callback_url: 'http://9781-139-195-146-28.ngrok.io/ovo/status',
-    //           channel_code: 'ID_OVO',
-    //           failure_code: null,
-    //           reference_id: 'jhon@gmail.com-1-Sat Nov 13 2021 01:20:53 GMT+0700 (GMT+07:00)',
-    //           charge_amount: 5000,
-    //           capture_amount: 5000,
-    //           checkout_method: 'ONE_TIME_PAYMENT',
-    //           payment_method_id: null,
-    //           channel_properties: { mobile_number: '085707124620' },
-    //           is_redirect_required: false
-    //         },
-    //         event: 'ewallet.capture',
-    //         created: '2021-11-12T18:20:56.448Z',
-    //         business_id: '618e2ab43dc2412b8a2c640f'
-    //       })
-    //     .then((response) => {
-    //         const { status, body } = response
-    //         expect(status).toBe(200)
-    //         expect(body).toEqual(expect.any(Object))
-    //         expect(body).toHaveProperty('message')
-    //         done()
-    //     })
-    //     .catch((err) => {
-    //         done(err)
-    //     })
-    // })
+    test('[201 - Success] Payment (Xendit)', (done) => {
+        request(app)
+        .post('/ovo/status')
+        .set({'x-callback-token': process.env.XENDIT_VERIFICATION_TOKEN})
+        .send({
+            data: {
+              id: 'ewc_4830d899-f1bd-4442-b632-68b8a4101470',
+              status: 'SUCCEEDED',
+              reference_id: 'jhon@gmail.com-1-Sat Nov 13 2021 01:20:53 GMT+0700 (GMT+07:00)'
+            }
+          })
+        .then((response) => {
+            const { status, body } = response
+            expect(status).toBe(200)
+            expect(body).toEqual(expect.any(Object))
+            expect(body).toHaveProperty('message')
+            done()
+        })
+        .catch((err) => {
+            done(err)
+        })
+    })
+
+    test('[500 - Failed] Payment with invalid format phone number', (done) => {
+        request(app)
+        .post('/ovo/charge')
+        .set(
+            "access_token",
+            userToken.body.access_token
+        )
+        .send({
+            userCourseId: 1,
+            phoneNumber: "085707124620"
+        })
+        .then((response) => {
+            const { status, body } = response
+            expect(status).toBe(500)
+            expect(body).toEqual(expect.any(Object))
+            expect(body).toHaveProperty('message', 'Internal server error')
+            done()
+        })
+        .catch((err) => {
+            done(err)
+        })
+    })
+
+    test('[500 - authError] Payment (Xendit) with invalid callback token', (done) => {
+        request(app)
+        .post('/ovo/status')
+        .set({'x-callback-token': 'sdasasasasaasa'})
+        .send({
+            data: {
+              id: 'ewc_4830d899-f1bd-4442-b632-68b8a4101470',
+              status: 'SUCCEEDED',
+              reference_id: 'jhon@gmail.com-1-Sat Nov 13 2021 01:20:53 GMT+0700 (GMT+07:00)'
+            }
+          })
+        .then((response) => {
+            const { status, body } = response
+            expect(status).toBe(500)
+            expect(body).toEqual(expect.any(Object))
+            expect(body).toHaveProperty('message', 'You are not authorized')
+            done()
+        })
+        .catch((err) => {
+            done(err)
+        })
+    })
 })
