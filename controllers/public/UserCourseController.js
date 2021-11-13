@@ -6,7 +6,7 @@ class UsercourseController {
     try {
       const { id } = req.user;
       const usercourse = await UserCourse.findAll({
-        where: { UserId: id },
+        where: { UserId: id, isPaid: true },
         include: [
           {
             model: User,
