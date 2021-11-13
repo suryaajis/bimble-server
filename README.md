@@ -22,7 +22,7 @@ CUSTOMER
 [x] GET /public/comments/:videoId
 [x] POST /public/comments/:videoId
 [x] GET /public/ratings/:courseId
-[ ] POST /public/ratings/:courseId
+[x] POST /public/ratings/:courseId
 [x] POST /ovo/charge
 [x] POST /ovo/status
 
