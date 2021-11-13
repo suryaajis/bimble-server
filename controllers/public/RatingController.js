@@ -18,7 +18,7 @@ class RatingController {
 
             rating = Number((rating / ratings.length).toFixed(2))
 
-            res.status(200).json(rating)
+            res.status(200).json({ rating })
         } catch (error) {
             next(error)
         }
@@ -28,8 +28,19 @@ class RatingController {
         try {
             const { id } = req.user
             const { courseId } = req.params
+            const { rating } = req.body
             
-            console.log(id, courseId)
+            const addrating = await Rating.create({
+                rating,
+                UserId: id,
+                CourseId: courseId
+            })
+
+            res.status(201).json({
+                rating: addrating.rating,
+                UserId: addrating.UserId,
+                CourseId: addrating.CourseId
+            })
         } catch (error) {
             next(error)
         }
