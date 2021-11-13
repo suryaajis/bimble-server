@@ -5,6 +5,7 @@ const PublicUserController = require("../controllers/public/PublicUserController
 const CourseController = require("../controllers/public/CourseController");
 const authentication = require("../middlewares/authentication");
 const CommentController = require('../controllers/public/CommentController');
+const RatingController = require('../controllers/public/RatingController');
 
 publicRouter.post("/register", PublicUserController.register);
 publicRouter.post("/login", PublicUserController.login);
@@ -12,6 +13,7 @@ publicRouter.post("/googleLogin", PublicUserController.googleLogin);
 publicRouter.get("/courses", CourseController.readAllCourses);
 publicRouter.get("/courses/:courseId", CourseController.readCourseDetail);
 publicRouter.get('/categories', CourseController.readCategories)
+publicRouter.get('/ratings/:courseId', RatingController.getRating)
 
 publicRouter.use(authentication);
 publicRouter.get("/users", PublicUserController.readUser);

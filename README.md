@@ -18,11 +18,11 @@ CUSTOMER
 [x] GET /public/courses/:courseId
 [x] GET /public/userCourse
 [x] GET /public/userCourses/:courseId
-
 [x] POST /public/userCourses/:courseId
 [x] GET /public/comments/:videoId
-
 [x] POST /public/comments/:videoId
+[x] GET /public/ratings/:courseId
+[ ] POST /public/ratings/:courseId
 [x] POST /ovo/charge
 [x] POST /ovo/status
 
@@ -51,8 +51,10 @@ CUSTOMER
 [x] GET /public/userCourse
 [x] GET /public/userCourses/:courseId
 [x] POST /public/userCourses/:courseId
-[ ] POST /ovo/charge
-[ ] POST /ovo/status
+[ ] GET /public/ratings/:courseId
+[ ] POST /public/ratings/:courseId
+[x] POST /ovo/charge
+[x] POST /ovo/status
 
 ADMIN
 [x] GET /admin/users

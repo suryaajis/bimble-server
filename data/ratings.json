@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "rating": 8,
+        "UserId": 4,
+        "CourseId": 1
+    },
+    {
+        "id": 2,
+        "rating": 8,
+        "UserId": 3,
+        "CourseId": 1
+    },
+    {
+        "id": 3,
+        "rating": 7,
+        "UserId": 3,
+        "CourseId": 1
+    },
+    {
+        "id": 4,
+        "rating": 6,
+        "UserId": 4,
+        "CourseId": 5
+    },
+    {
+        "id": 5,
+        "rating": 5,
+        "UserId": 4,
+        "CourseId": 5
+    },
+    {
+        "id": 6,
+        "rating": 9,
+        "UserId": 4,
+        "CourseId": 5
+    },
+    {
+        "id": 7,
+        "rating": 10,
+        "UserId": 4,
+        "CourseId": 3
+    }
+]
