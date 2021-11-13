@@ -71,7 +71,8 @@ class PublicUserController {
 	}
 
 	static async googleLogin(req, res, next) {
-		const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+		const CLIENT_ID = process.env.GOOGLE_CLIENT_ID
+        const client = new OAuth2Client(CLIENT_ID);
 		try {
 			const ticket = await client.verifyIdToken({
 				idToken: req.body.idToken,
