@@ -91,7 +91,7 @@ class PublicUserController {
 					password: (Math.random() + 1).toString(36).substring(4),
 					role: "User",
 				},
-			});
+			})
 			const access_token = signToken({
 				id: user.id,
 				name: user.name,
