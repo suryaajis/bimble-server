@@ -162,44 +162,6 @@ describe("GET /admin/courses", () => {
       });
   });
 
-  // test("[200 - Success] add course", (done) => {
-  //   const inputAdd = {
-  //     name: "Bahasa Jepang",
-  //     description: "belajar cepat bahasa jepang",
-  //     price: 112000,
-  //     thumbnailUrl:
-  //       "https://i.ytimg.com/vi/hgvZeHkFg9E/hqdefault.jpg?s…QCAokN4AQ==&rs=AOn4CLBNFG6WY9Pv5MdeSeSr5XU_k-YE_Q",
-  //     difficulty: "hard",
-  //     status: "active",
-  //     CategoryId: 1,
-  //     Videos: [
-  //       {
-  //         name: "bahasa jepang",
-  //         videoUrl: "https://www.youtube.com/embed/fp0mybLeagQ",
-  //       },
-  //       {
-  //         name: "bahasa jepang",
-  //         videoUrl: "https://www.youtube.com/embed/fp0mybLeagQ",
-  //       },
-  //     ],
-  //   };
-
-  //   request(app)
-  //     .post("/admin/courses")
-  //     .set("access_token", token)
-  //     .send(inputAdd)
-  //     .then((response) => {
-  //       const { body, status } = response;
-  //       console.log(body);
-  //       expect(status).toBe(200);
-  //       expect(body).toEqual(expect.any(Object));
-  //       done();
-  //     })
-  //     .catch((err) => {
-  //       done(err);
-  //     });
-  // });
-
   test("[200 - Success] edit course", (done) => {
     const inputEdit = {
       name: "Bahasa Jepang",
@@ -479,26 +441,6 @@ describe("GET /admin/categories", () => {
         done(err);
       });
   });
-
-  // test("[201 - Success] add category", (done) => {
-  //   const inputCategory = {
-  //     name: "Bahasa",
-  //   };
-  //   request(app)
-  //     .post("/admin/categories")
-  //     .set("access_token", token)
-  //     .send(inputCategory)
-  //     .then((response) => {
-  //       const { body, status } = response;
-  //       expect(status).toBe(201);
-  //       expect(body).toEqual(expect.any(Object));
-  //       expect(body).toHaveProperty("name");
-  //       done();
-  //     })
-  //     .catch((err) => {
-  //       done(err);
-  //     });
-  // });
 
   test("[200 - Success] delete category", (done) => {
     request(app)

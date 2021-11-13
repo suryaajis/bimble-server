@@ -10,15 +10,7 @@ let loginParams = {
   email: "admin@gmail.com",
   password: "12345678",
 };
-const dataCategories = JSON.parse(
-  fs.readFileSync("./data/categories.json", "utf-8")
-);
-const dataCourses = JSON.parse(fs.readFileSync("./data/courses.json", "utf-8"));
 const dataUsers = JSON.parse(fs.readFileSync("./data/users.json", "utf-8"));
-const dataVideos = JSON.parse(fs.readFileSync("./data/videos.json", "utf-8"));
-const dataComments = JSON.parse(
-  fs.readFileSync("./data/comments.json", "utf-8")
-);
 
 beforeAll(async () => {
   try {
@@ -71,7 +63,6 @@ describe("POST /admin/categories", () => {
   });
 });
 
-
 describe("POST /admin/courses", () => {
   test("[201 - Success] add course", async () => {
     const inputAdd = {
@@ -105,12 +96,11 @@ describe("POST /admin/courses", () => {
       .set("access_token", token)
       .send(inputAdd);
 
-    console.log(response.body);
     expect(response.status).toBe(201);
     expect(response.body).toEqual(expect.any(Object));
   });
 
-  test("[400 - Invalid Format] add video with invalid format ", (done) => {
+  test("[400 - Invalid Format] add video with invalid format ", async () => {
     const inputSample = {
       name: "Bahasa Jepang",
       description: "belajar cepat bahasa jepang",
@@ -122,9 +112,10 @@ describe("POST /admin/courses", () => {
       CategoryId: 1,
     };
 
-    const filePath = "./assets/logo.png";
+    const filePath = "assets/logo.png";
+    const buffer = Buffer.from(filePath);
 
-    superagent(app)
+    const { status, body } = await request(app)
       .post("/admin/courses")
       .set("access_token", token)
       .field("name", inputSample.name)
@@ -134,17 +125,49 @@ describe("POST /admin/courses", () => {
       .field("difficulty", inputSample.difficulty)
       .field("status", inputSample.status)
       .field("CategoryId", inputSample.CategoryId)
-      .attach("Videos", filePath)
-      .then((response) => {
-        const { status, body } = response;
-        console.log(body, "<<<<< 129");
-        expect(status).toBe(400);
-        expect(body).toEqual(expect.any(Object));
-        expect(body).toHaveProperty("message", "File Format Should Be MP4");
-        done();
-      })
-      .catch((err) => {
-        done(err);
-      });
+      .attach("Videos", buffer, "logo.png");
+
+    console.log(body);
+    expect(status).toBe(400);
+    expect(body).toEqual(expect.any(Object));
+    expect(body).toHaveProperty("message", "File Format Should Be MP4");
   });
+
+  // test("[400 - Invalid Format] add video with invalid size ", async () => {
+  //   const inputSample = {
+  //     name: "Bahasa korea",
+  //     description: "belajar cepat bahasa korea",
+  //     price: 112000,
+  //     thumbnailUrl:
+  //       "https://i.ytimg.com/vi/hgvZeHkFg9E/hqdefault.jpg?s…QCAokN4AQ==&rs=AOn4CLBNFG6WY9Pv5MdeSeSr5XU_k-YE_Q",
+  //     difficulty: "hard",
+  //     status: "active",
+  //     CategoryId: 1,
+  //   };
+
+  //   const filePath = "assets/music.mp4";
+  //   const buffer = Buffer.from(filePath)
+
+  //   await request(app).delete("/admin/courses/1").set("access_token", token);
+
+  //   const { status, body } = await request(app)
+  //     .post("/admin/courses")
+  //     .set("access_token", token)
+  //     .field("name", inputSample.name)
+  //     .field("description", inputSample.description)
+  //     .field("price", inputSample.price)
+  //     .field("thumbnailUrl", inputSample.thumbnailUrl)
+  //     .field("difficulty", inputSample.difficulty)
+  //     .field("status", inputSample.status)
+  //     .field("CategoryId", inputSample.CategoryId)
+  //     .attach("Videos", buffer, "draw.mp4");
+
+  //   console.log(body);
+  //   expect(status).toBe(400);
+  //   expect(body).toEqual(expect.any(Object));
+  //   expect(body).toHaveProperty(
+  //     "message",
+  //     "File Size Should Not Exceeded 25MB"
+  //   );
+  // });
 });
