@@ -33,9 +33,7 @@ const uploadImages = async (req, res, next) => {
 					maxContentLength: Infinity,
 					maxBodyLength: Infinity,
 				});
-				if (!response) {
-					throw { name: "ImagekitError" };
-				}
+
 				const rawVideoName = response.data.name.split('_')
 				rawVideoName.pop()
 				const videoName = rawVideoName.join(' ')
@@ -50,7 +48,6 @@ const uploadImages = async (req, res, next) => {
 		}
 		next();
 	} catch (err) {
-		console.log(err)
 		next(err);
 	}
 };

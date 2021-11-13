@@ -36,11 +36,7 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.name === "InvalidFileSize") {
     code = 400;
     msg = "File Size Should Not Exceeded 25MB";
-  } else if (err.name === "ImagekitError") {
-    code = 500;
-    msg = "Imagekit Error";
-
-  }
+  } 
 
   res.status(code).json({ message: msg });
 };
