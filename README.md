@@ -23,8 +23,8 @@ CUSTOMER
 [x] GET /public/comments/:videoId
 
 [x] POST /public/comments/:videoId
-[ ] POST /ovo/charge
-[ ] POST /ovo/status
+[x] POST /ovo/charge
+[x] POST /ovo/status
 
 ADMIN
 

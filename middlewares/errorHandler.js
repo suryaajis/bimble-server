@@ -37,9 +37,11 @@ const errorHandler = (err, req, res, next) => {
     code = 400;
     msg = "File Size Should Not Exceeded 25MB";
   } else if (err.name === "ImagekitError") {
-    code = 500;
-    msg = "Imagekit Error";
-
+    code = 500
+    msg = "Imagekit Error"
+  } else if (err.name === "authError") {
+    code = 500
+    msg = "You are not authorized"
   }
 
   res.status(code).json({ message: msg });
