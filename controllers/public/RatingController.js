@@ -17,7 +17,6 @@ class RatingController {
             })
 
             rating = Number((rating / ratings.length).toFixed(2))
-
             res.status(200).json({ rating })
         } catch (error) {
             next(error)
