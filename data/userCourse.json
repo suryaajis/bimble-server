@@ -3,7 +3,7 @@
         "id": 1,
         "UserId": 3,
         "CourseId": 1,
-        "isPaid": false
+        "isPaid": true
     },
     {
         "id": 2,

@@ -39,6 +39,9 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.name === "authError") {
     code = 500
     msg = "You are not authorized"
+  } else if (err.name === "CourseNotPaid") {
+    code = 400
+    msg = "You must buy first"
   }
 
   res.status(code).json({ message: msg });
