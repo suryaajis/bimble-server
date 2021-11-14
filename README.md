@@ -5,3 +5,6 @@
 3. Lakukan `npm run test` untuk testing server
 4. Jika ingin init database development lakukan command `npm run init-db:dev`
 5. Jika ingin init database testing lakukan command `npm run init-db:test`
+
+> Link Client : https://bimble-id.web.app/
+> Link Server : https://bimble-online.herokuapp.com/
