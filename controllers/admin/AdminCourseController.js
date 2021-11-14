@@ -84,7 +84,6 @@ class CourseController {
   }
 
   static async createCourse(req, res, next) {
-    console.log(req.body)
     try {
       const t = await sequelize.transaction();
       const {
