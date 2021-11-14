@@ -51,8 +51,8 @@ CUSTOMER
 [x] GET /public/userCourse
 [x] GET /public/userCourses/:courseId
 [x] POST /public/userCourses/:courseId
-[ ] GET /public/ratings/:courseId
-[ ] POST /public/ratings/:courseId
+[x] GET /public/ratings/:courseId
+[x] POST /public/ratings/:courseId
 [x] POST /ovo/charge
 [x] POST /ovo/status
 

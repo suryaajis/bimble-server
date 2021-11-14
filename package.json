@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "dev": "NODE_ENV=development npx nodemon app.js",
     "start": "npx nodemon bin/www",
     "test": "npx jest --watchAll --detectOpenHandles --runInBand --verbose --forceExit --coverage",
     "init-db:dev": "npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all",
