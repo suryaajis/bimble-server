@@ -55,6 +55,10 @@ beforeAll(async () => {
     .send({ email: "jhon@gmail.com", password: "12345678" });
 });
 
+beforeEach(() => {
+  jest.restoreAllMocks();
+});
+
 afterAll(async () => {
   await User.destroy({ truncate: true, cascade: true, restartIdentity: true });
   await Category.destroy({
@@ -78,10 +82,11 @@ afterAll(async () => {
 describe("GET /public/userCourse", () => {
   test("[201 - Success] Add UserCourse", (done) => {
     request(app)
-      .post("/public/userCourses/4")
+      .post("/public/userCourses/3")
       .set("access_token", userToken.body.access_token)
       .then((response) => {
         const { status, body } = response;
+        console.log(body)
         expect(status).toBe(201);
         expect(body).toEqual(expect.any(Object));
         expect(body).toHaveProperty("UserId");
@@ -196,5 +201,65 @@ describe("GET /public/userCourse", () => {
       .catch((err) => {
         done(err);
       });
+  });
+
+  test("[404 - Course Not Found] Add UserCourse with invalid course id", (done) => {
+    request(app)
+      .post("/public/userCourses/999999")
+      .set("access_token", userToken.body.access_token)
+      .then((response) => {
+        const { status, body } = response;
+        expect(status).toBe(404);
+        expect(body).toEqual(expect.any(Object));
+        expect(body).toHaveProperty("message", "Course Not Found")
+        done();
+      })
+      .catch((err) => {
+        done(err);
+      });
+  });
+
+  test("[404 - Course Purchased] Add UserCourse with add same course", (done) => {
+    request(app)
+      .post("/public/userCourses/1")
+      .set("access_token", userToken.body.access_token)
+      .then((response) => {
+        const { status, body } = response;
+        expect(status).toBe(404);
+        expect(body).toEqual(expect.any(Object));
+        expect(body).toHaveProperty("message", "Course Already Purchased")
+        done();
+      })
+      .catch((err) => {
+        done(err);
+      });
+  });
+
+  test("[500 - Error] Catch error user courses find all", async () => {
+    jest.spyOn(UserCourse, "findAll").mockRejectedValue("Error");
+
+    return request(app)
+      .get("/public/userCourse")
+      .set("access_token", userToken.body.access_token)
+      .then((response) => {
+        const { body, status } = response;
+        expect(status).toBe(500);
+        expect(body).toEqual(expect.any(Object));
+        expect(body).toHaveProperty("message", "Internal server error");
+      })
+  });
+
+  test("[500 - Error] Catch error add user course", async () => {
+    jest.spyOn(UserCourse, "create").mockRejectedValue("Error");
+
+    return request(app)
+      .post("/public/userCourses/4")
+      .set("access_token", userToken.body.access_token)
+      .then((response) => {
+        const { body, status } = response;
+        expect(status).toBe(500);
+        expect(body).toEqual(expect.any(Object));
+        expect(body).toHaveProperty("message", "Internal server error");
+      })
   });
 });

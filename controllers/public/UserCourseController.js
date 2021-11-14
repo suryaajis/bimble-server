@@ -94,11 +94,9 @@ class UsercourseController {
 
       const user = await User.findByPk(id);
 
-      const course = await Course.findAll({
-        where: { id: courseId },
-      });
+      const course = await Course.findByPk(courseId);
 
-      if (!course.length) throw { name: `CourseNotFound` };
+      if (!course) throw { name: `CourseNotFound` };
 
       const userCourse = await UserCourse.findAll({
         where: { UserId: id, CourseId: courseId },
@@ -124,8 +122,8 @@ class UsercourseController {
                 Hello ${user.name}!
                 <br/><br/>
                 Thank you for purchasing ${
-                  course[0].name
-                } from Bimble at ${course[0].createdAt.toLocaleString(
+                  course.name
+                } from Bimble at ${course.createdAt.toLocaleString(
           "en-US",
           option
         )}

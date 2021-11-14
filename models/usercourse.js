@@ -35,6 +35,7 @@ module.exports = (sequelize, DataTypes) => {
 
 			isPaid: {
 				type: DataTypes.BOOLEAN,
+				defaultValue: false,
 				allowNull: false,
 				validate: {
 					notEmpty: { msg: `IsPaid can't be empty` },

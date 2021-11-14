@@ -22,6 +22,10 @@ beforeAll(async () => {
   token = body.access_token;
 });
 
+beforeEach(() => {
+  jest.restoreAllMocks();
+});
+
 afterAll(async () => {
   await User.destroy({
     truncate: true,
@@ -31,13 +35,26 @@ afterAll(async () => {
 });
 
 describe("GET /users", () => {
+  test("[500 - Error] Catch error user detail find one", async () => {
+    jest.spyOn(User, "findOne").mockRejectedValue("Error");
+
+    return request(app)
+      .get("/public/users")
+      .set("access_token", token)
+      .then((response) => {
+        const { body, status } = response;
+        expect(status).toBe(500);
+        expect(body).toEqual(expect.any(Object));
+        expect(body).toHaveProperty("message", "Internal server error");
+      });
+  });
+
   test("[200 - success] get login user", (done) => {
     request(app)
       .get("/public/users")
       .set("access_token", token)
       .then((response) => {
         const { body, status } = response;
-        console.log(response.body);
         expect(status).toBe(200);
         expect(body).toEqual(expect.any(Object));
         done();
@@ -49,11 +66,30 @@ describe("GET /users", () => {
 });
 
 describe("PUT /public/users", () => {
+  test("[500 - Error] Catch error user update", async () => {
+    jest.spyOn(User, "update").mockRejectedValue("Error");
+    const dataUpdate = {
+      name: "user.update",
+      email: "user.update@mail.com",
+    };
+
+    return request(app)
+      .put("/public/users")
+      .set("access_token", token)
+      .send(dataUpdate)
+      .then((response) => {
+        const { body, status } = response;
+        expect(status).toBe(500);
+        expect(body).toEqual(expect.any(Object));
+        expect(body).toHaveProperty("message", "Internal server error");
+      });
+  });
+
   test("[200 - success] update public login user", (done) => {
     const dataUpdate = {
       name: "user.update",
-      email: "user.update@mail.com"
-    }
+      email: "user.update@mail.com",
+    };
 
     request(app)
       .put("/public/users")
@@ -73,8 +109,8 @@ describe("PUT /public/users", () => {
   test("[401 - empty input] update public login user with empty name", (done) => {
     const dataUpdate = {
       name: "",
-      email: "user.update@mail.com"
-    }
+      email: "user.update@mail.com",
+    };
 
     request(app)
       .put("/public/users")
