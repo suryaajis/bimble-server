@@ -33,19 +33,21 @@ class UsercourseController {
     try {
       const { id } = req.user;
       const { courseId } = req.params;
-      
+
       const usercourse = await UserCourse.findOne({
         where: { UserId: id, CourseId: courseId },
         include: [
           {
             model: User,
             attributes: ["name"],
-          }
+          },
         ],
         attributes: {
-          exclude: ["updatedAt", "createdAt"]
-        }
-      })
+          exclude: ["updatedAt", "createdAt"],
+        },
+      });
+
+      if (!usercourse) throw { name: `CourseNotFound` };
 
       const course = await Course.findAll({
         where: { id: courseId },
@@ -65,8 +67,8 @@ class UsercourseController {
             },
           },
         ],
-        order: [[ Video, "id", "ASC" ]]
-      })
+        order: [[Video, "id", "ASC"]],
+      });
 
       let result = {
         id: usercourse.id,
@@ -76,11 +78,10 @@ class UsercourseController {
         chargeId: usercourse.chargeId,
         referenceId: usercourse.referenceId,
         User: usercourse.User,
-        Course: course
-      }
+        Course: course,
+      };
 
-      if (!result) throw { name: `CourseNotFound` }
-      res.status(200).json(result)
+      res.status(200).json(result);
     } catch (error) {
       next(error);
     }
