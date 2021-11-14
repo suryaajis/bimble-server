@@ -47,7 +47,7 @@ class UsercourseController {
         }
       })
 
-      const course = await Course.findAll({
+      const course = await Course.findOne({
         where: { id: courseId },
         include: [
           {
