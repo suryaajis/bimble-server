@@ -98,15 +98,13 @@ describe("GET /admin/users", () => {
 
     return request(app)
       .get("/admin/users")
+      .set("access_token", token)
       .then((response) => {
         const { body, status } = response;
         expect(status).toBe(500);
         expect(body).toEqual(expect.any(Object));
         expect(body).toHaveProperty("message", "Internal server error");
       })
-      .catch((err) => {
-        done(err);
-      });
   });
 });
 
@@ -441,15 +439,13 @@ describe("GET /admin/categories", () => {
 
     return request(app)
       .get("/admin/categories")
+      .set("access_token", token)
       .then((response) => {
         const { body, status } = response;
         expect(status).toBe(500);
         expect(body).toEqual(expect.any(Object));
         expect(body).toHaveProperty("message", "Internal server error");
       })
-      .catch((err) => {
-        done(err);
-      });
   });
 
   test("[400 - Invalid Input] add category wtih empty string input", (done) => {
