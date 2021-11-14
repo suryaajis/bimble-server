@@ -134,6 +134,7 @@ class UsercourseController {
 
       sendEmail(payload);
       res.status(201).json({
+        id: newUserCourse.id,
         UserId: newUserCourse.UserId,
         CourseId: newUserCourse.CourseId,
         isPaid: newUserCourse.isPaid,
