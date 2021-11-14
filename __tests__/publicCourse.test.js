@@ -15,6 +15,10 @@ beforeAll(async () => {
   await Course.bulkCreate(dataCourses);
 });
 
+beforeEach(() => {
+  jest.restoreAllMocks();
+});
+
 afterAll(async () => {
   await Course.destroy({
     truncate: true,
@@ -156,15 +160,32 @@ describe("GET /courses/:courseId", () => {
 });
 
 describe("GET /categories", () => {
-  test("200 success get all categories", (done) => {
+  test("[200 - Success] get all categories", (done) => {
     request(app)
       .get("/public/categories")
       .then((response) => {
         const { body, status } = response;
+        console.log(body);
         expect(Array.isArray(body)).toBeTruthy();
         expect(body.length).toBeGreaterThan(0);
         expect(status).toBe(200);
         done();
+      })
+      .catch((err) => {
+        done(err);
+      });
+  });
+
+  test("[500 - Failed] Catch error category find all", async () => {
+    jest.spyOn(Category, "findAll").mockRejectedValue("Error");
+
+    return request(app)
+      .get("/public/categories")
+      .then((response) => {
+        const { body, status } = response;
+        expect(status).toBe(500);
+        expect(body).toEqual(expect.any(Object));
+        expect(body).toHaveProperty("message", "Internal server error");
       })
       .catch((err) => {
         done(err);

@@ -55,6 +55,10 @@ beforeAll(async () => {
     .send({ email: "jhon@gmail.com", password: "12345678" });
 });
 
+beforeEach(() => {
+  jest.restoreAllMocks();
+});
+
 afterAll(async () => {
   await User.destroy({ truncate: true, cascade: true, restartIdentity: true });
   await Category.destroy({
@@ -196,5 +200,33 @@ describe("GET /public/userCourse", () => {
       .catch((err) => {
         done(err);
       });
+  });
+
+  test("[500 - Error] Catch error user courses find all", async () => {
+    jest.spyOn(UserCourse, "findAll").mockRejectedValue("Error");
+
+    return request(app)
+      .get("/public/userCourse")
+      .set("access_token", userToken.body.access_token)
+      .then((response) => {
+        const { body, status } = response;
+        expect(status).toBe(500);
+        expect(body).toEqual(expect.any(Object));
+        expect(body).toHaveProperty("message", "Internal server error");
+      })
+  });
+
+  test("[500 - Error] Catch error add user course", async () => {
+    jest.spyOn(UserCourse, "create").mockRejectedValue("Error");
+
+    return request(app)
+      .post("/public/userCourses/3")
+      .set("access_token", userToken.body.access_token)
+      .then((response) => {
+        const { body, status } = response;
+        expect(status).toBe(500);
+        expect(body).toEqual(expect.any(Object));
+        expect(body).toHaveProperty("message", "Internal server error");
+      })
   });
 });

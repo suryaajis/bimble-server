@@ -44,6 +44,10 @@ beforeAll(async () => {
   token = body.access_token;
 });
 
+beforeEach(() => {
+  jest.restoreAllMocks();
+});
+
 afterAll(async () => {
   await Course.destroy({
     truncate: true,
@@ -83,6 +87,22 @@ describe("GET /admin/users", () => {
         expect(Array.isArray(body)).toBeTruthy();
         expect(body.length).toBeGreaterThan(0);
         done();
+      })
+      .catch((err) => {
+        done(err);
+      });
+  });
+
+  test("[500 - Error] Catch error user find all", async () => {
+    jest.spyOn(User, "findAll").mockRejectedValue("Error");
+
+    return request(app)
+      .get("/admin/users")
+      .then((response) => {
+        const { body, status } = response;
+        expect(status).toBe(500);
+        expect(body).toEqual(expect.any(Object));
+        expect(body).toHaveProperty("message", "Internal server error");
       })
       .catch((err) => {
         done(err);
@@ -378,44 +398,6 @@ describe("GET /admin/courses", () => {
         done(err);
       });
   });
-
-  // test("[400 - Invalid Format] add video with invalid format ", (done) => {
-  //   const inputSample = {
-  //     name: "Bahasa Jepang",
-  //     description: "belajar cepat bahasa jepang",
-  //     price: 112000,
-  //     thumbnailUrl:
-  //       "https://i.ytimg.com/vi/hgvZeHkFg9E/hqdefault.jpg?s…QCAokN4AQ==&rs=AOn4CLBNFG6WY9Pv5MdeSeSr5XU_k-YE_Q",
-  //     difficulty: "hard",
-  //     status: "active",
-  //     CategoryId: 1,
-  //   };
-
-  //   const filePath = "./assets/logo.png";
-
-  //   superagent(app)
-  //     .post("/admin/courses")
-  //     .set("access_token", token)
-  //     .field("name", inputSample.name)
-  //     .field("description", inputSample.description)
-  //     .field("price", inputSample.price)
-  //     .field("thumbnailUrl", inputSample.thumbnailUrl)
-  //     .field("difficulty", inputSample.difficulty)
-  //     .field("status", inputSample.status)
-  //     .field("CategoryId", inputSample.CategoryId)
-  //     .attach("Videos", filePath)
-  //     .then((response) => {
-  //       const { status, body } = response;
-  //       console.log(body, "<<<<< 452");
-  //       expect(status).toBe(400);
-  //       expect(body).toEqual(expect.any(Object));
-  //       expect(body).toHaveProperty("message", "File Format Should Be MP4");
-  //       done();
-  //     })
-  //     .catch((err) => {
-  //       done(err);
-  //     });
-  // });
 });
 
 describe("GET /admin/categories", () => {
@@ -448,6 +430,22 @@ describe("GET /admin/categories", () => {
           `Course and category with id 2 has been deleted`
         );
         done();
+      })
+      .catch((err) => {
+        done(err);
+      });
+  });
+
+  test("[500 - Error] Catch error category find all", async () => {
+    jest.spyOn(Category, "findAll").mockRejectedValue("Error");
+
+    return request(app)
+      .get("/admin/categories")
+      .then((response) => {
+        const { body, status } = response;
+        expect(status).toBe(500);
+        expect(body).toEqual(expect.any(Object));
+        expect(body).toHaveProperty("message", "Internal server error");
       })
       .catch((err) => {
         done(err);
@@ -514,7 +512,7 @@ describe("DELETE /admin/comments/:commentId", () => {
 });
 
 describe("Authorization Test", () => {
-  test("[401 - failed] get all user with login by role user", async () => {
+  test("[401 - Unauthorized] get all user with login by role user", async () => {
     loginUser = {
       email: "udin@gmail.com",
       password: "12345678",
