@@ -33,51 +33,54 @@ class UsercourseController {
     try {
       const { id } = req.user;
       const { courseId } = req.params;
-
-      const course = await Course.findAll({
-        where: { id: courseId },
-      });
-
-      if (!course.length) throw { name: `CourseNotFound` };
-
+      
       const usercourse = await UserCourse.findOne({
         where: { UserId: id, CourseId: courseId },
         include: [
           {
             model: User,
             attributes: ["name"],
-          },
-          {
-            model: Course,
-            attributes: {
-              exclude: ["updatedAt", "createdAt", "id"],
-            },
-            include: [
-              {
-                model: Video,
-                attributes: {
-                  exclude: ["updatedAt", "createdAt"],
-                },
-                include: {
-                  model: Comment,
-                  attributes: ["id", "comment"],
-                  include: {
-                    model: User,
-                    attributes: ["name"],
-                  },
-                },
-              },
-            ],
-          },
+          }
         ],
         attributes: {
-          exclude: ["updatedAt", "createdAt"],
-        },
-      });
+          exclude: ["updatedAt", "createdAt"]
+        }
+      })
 
-      if (!usercourse) throw { name: `CourseNotFound` };
+      const course = await Course.findAll({
+        where: { id: courseId },
+        include: [
+          {
+            model: Video,
+            attributes: {
+              exclude: ["updatedAt", "createdAt"],
+            },
+            include: {
+              model: Comment,
+              attributes: ["id", "comment"],
+              include: {
+                model: User,
+                attributes: ["name"],
+              },
+            },
+          },
+        ],
+        order: [[ Video, "id", "ASC" ]]
+      })
 
-      res.status(200).json(usercourse);
+      let result = {
+        id: usercourse.id,
+        UserId: usercourse.UserId,
+        CourseId: usercourse.CourseId,
+        isPaid: usercourse.isPaid,
+        chargeId: usercourse.chargeId,
+        referenceId: usercourse.referenceId,
+        User: usercourse.User,
+        Course: course
+      }
+
+      if (!result) throw { name: `CourseNotFound` }
+      res.status(200).json(result)
     } catch (error) {
       next(error);
     }
