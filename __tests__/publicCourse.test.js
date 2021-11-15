@@ -165,7 +165,6 @@ describe("GET /categories", () => {
       .get("/public/categories")
       .then((response) => {
         const { body, status } = response;
-        console.log(body);
         expect(Array.isArray(body)).toBeTruthy();
         expect(body.length).toBeGreaterThan(0);
         expect(status).toBe(200);
