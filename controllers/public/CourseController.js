@@ -70,6 +70,13 @@ class CourseController {
 		try {
 			const { courseId } = req.params;
 
+			// let exclude 
+			// if (Video[0]) {
+			// 	exclude = { exclude: ["createdAt", "updatedAt"] }
+			// } else {
+			// 	exclude = { exclude: ["createdAt", "updatedAt", "videoUrl"] }
+			// }
+
 			const foundCourse = await Course.findByPk(courseId, {
 				include: [
 					{
@@ -81,22 +88,29 @@ class CourseController {
 					{
 						model: Video,
 						attributes: {
-							exclude: ["createdAt", "updatedAt"],
+							exclude: ["createdAt", "updatedAt"]
 						},
 						include: {
 							model: Comment,
 							attributes: ["id", "comment"],
 						},
-						limit: 1,
 					},
 				],
-				order: [["id", "DESC"]],
+				order: [
+					["id", "DESC"],
+					[Video, "id", "ASC"]
+				],
 			});
 
 			if (!foundCourse) {
 				throw { name: "CourseNotFound" };
 			}
-      res.status(200).json(foundCourse);
+
+			for (let i = 1; i < foundCourse.Videos.length; i++) {
+				foundCourse.Videos[i].videoUrl = "";
+			}
+
+      	res.status(200).json(foundCourse);
     } catch (err) {
       next(err);
     }
