@@ -6,7 +6,6 @@ class VideoController {
       const { videoId } = req.params
       const response = await Video.findOne({
         where: { id: videoId },
-        attributes: ['id', 'name', 'videoUrl']
       })
 
       if(!response) {
@@ -72,7 +71,7 @@ class VideoController {
       const { videoId } = req.params;
       const { name:inputName } = req.body;
 
-      const foundVideo = await Video.findByPk(videoId);
+      const foundVideo = await Video.findByPk(+videoId);
 
       if (!foundVideo) {
         throw { name: "VideoNotFound" };
@@ -81,7 +80,7 @@ class VideoController {
       const response = await Video.update(
         { name: inputName },
         {
-          where: { id: videoId },
+          where: { id: +videoId },
           returning: true,
         }
       )
@@ -91,6 +90,7 @@ class VideoController {
         name: response[1][0].name
       })
     } catch (err) {
+      console.log(err)
       next(err);
     }
   }
