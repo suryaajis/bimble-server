@@ -301,7 +301,6 @@ describe("GET /admin/courses", () => {
       .send(inputEdit)
       .then((response) => {
         const { body, status } = response;
-        console.log(body);
         expect(status).toBe(400);
         expect(body).toEqual(expect.any(Object));
         expect(body).toHaveProperty("message", "Name can't be empty");
@@ -330,7 +329,6 @@ describe("GET /admin/courses", () => {
       .send(inputEdit)
       .then((response) => {
         const { body, status } = response;
-        console.log(body);
         expect(status).toBe(404);
         expect(body).toEqual(expect.any(Object));
         expect(body).toHaveProperty("message", "Course Not Found");

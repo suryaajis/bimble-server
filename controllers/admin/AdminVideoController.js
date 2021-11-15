@@ -12,11 +12,16 @@ class VideoController {
         throw { name: "CourseNotFound" };
       }
 
-      const response = await Video.create({
+      const addVideo = await Video.create({
         name: Videos[0].name,
         videoUrl: Videos[0].videoUrl,
         CourseId: foundCourse.id,
       });
+
+      const response = {
+        name: addVideo.name,
+        CourseId: addVideo.CourseId
+      } 
 
       res.status(201).json(response);
     } catch (err) {

@@ -86,7 +86,6 @@ describe("GET /public/userCourse", () => {
       .set("access_token", userToken.body.access_token)
       .then((response) => {
         const { status, body } = response;
-        console.log(body)
         expect(status).toBe(201);
         expect(body).toEqual(expect.any(Object));
         expect(body).toHaveProperty("UserId");

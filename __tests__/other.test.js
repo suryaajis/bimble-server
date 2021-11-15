@@ -171,3 +171,16 @@ describe("POST /admin/courses", () => {
   //   );
   // });
 });
+
+describe("POST /admin/videos/:courseId", () => {
+  test("[201 - Success] add video", async () => {
+
+    const filePath = "assets/viral.mp4";
+    const buffer = Buffer.from(filePath);
+
+    await request(app)
+      .post("/admin/categories")
+      .set("access_token", token)
+      .attach('video', buffer, 'viral.mp4')
+  });
+});
