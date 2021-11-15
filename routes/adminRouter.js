@@ -22,5 +22,6 @@ adminRouter.post("/categories", authorization, CategoryController.createCategory
 adminRouter.delete("/categories/:categoryId", authorization, CategoryController.deleteCategory);
 adminRouter.delete("/comments/:commentId", authorization, CommentController.deleteComment);
 adminRouter.post('/videos/:courseId', authorization, upload.array("Videos", 1), uploadImages, VideoController.addVideo)
+adminRouter.delete('/videos/:videoId', authorization, VideoController.deleteVideo)
 
 module.exports = adminRouter;

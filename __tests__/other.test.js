@@ -24,6 +24,10 @@ beforeAll(async () => {
   }
 });
 
+beforeEach(() => {
+  jest.restoreAllMocks();
+});
+
 afterAll(async () => {
   await Course.destroy({
     truncate: true,
@@ -127,11 +131,37 @@ describe("POST /admin/courses", () => {
       .field("CategoryId", inputSample.CategoryId)
       .attach("Videos", buffer, "logo.png");
 
-    console.log(body);
     expect(status).toBe(400);
     expect(body).toEqual(expect.any(Object));
     expect(body).toHaveProperty("message", "File Format Should Be MP4");
   });
+
+  // test("[400 - Invalid Format] Catch invalid format size add course", async () => {
+
+  //   const asyncMock = await jest.fn().mockRejectedValue(new Error('InvalidFileSize'));
+
+  //   const inputSample = {
+  //         name: "Bahasa korea",
+  //         description: "belajar cepat bahasa korea",
+  //         price: 112000,
+  //         thumbnailUrl:
+  //           "https://i.ytimg.com/vi/hgvZeHkFg9E/hqdefault.jpg?s…QCAokN4AQ==&rs=AOn4CLBNFG6WY9Pv5MdeSeSr5XU_k-YE_Q",
+  //         difficulty: "hard",
+  //         status: "active",
+  //         CategoryId: 1,
+  //       };
+
+  //   console.log(asyncMock())
+  //   return request(app)
+  //     .post("/admin/courses")
+  //     .set("access_token", token)
+  //     .then((response) => {
+  //       const { body, status } = response;
+  //       expect(status).toBe(500);
+  //       expect(body).toEqual(expect.any(Object));
+  //       expect(body).toHaveProperty("message", "File Size Should Not Exceeded 25MB");
+  //     })
+  // });
 
   // test("[400 - Invalid Format] add video with invalid size ", async () => {
   //   const inputSample = {
@@ -174,13 +204,36 @@ describe("POST /admin/courses", () => {
 
 describe("POST /admin/videos/:courseId", () => {
   test("[201 - Success] add video", async () => {
-
     const filePath = "assets/viral.mp4";
     const buffer = Buffer.from(filePath);
 
-    await request(app)
-      .post("/admin/categories")
+    const { status, body} = await request(app)
+      .post("/admin/videos/1")
       .set("access_token", token)
-      .attach('video', buffer, 'viral.mp4')
+      .attach("Videos", buffer, "viral.mp4");
+
+    expect(status).toBe(201)
+    expect(body).toEqual(expect.any(Object))
+    expect(body).toHaveProperty("name")
+    expect(body).toHaveProperty("CourseId")
+  });
+
+  test("[201 - Success] delete video by video id", async () => {
+    const { status, body} = await request(app)
+      .delete("/admin/videos/1")
+      .set("access_token", token)
+
+    expect(status).toBe(200)
+    expect(body).toEqual(expect.any(Object))
+    expect(body).toHaveProperty("message", "Video has been deleted")
+  });
+
+  test("[404 - Course Not Found] add video with invalid course id", async () => {
+    const { body, status } = await request(app)
+      .post("/admin/videos/9999999")
+      .set("access_token", token);
+
+    expect(status).toBe(404);
+    expect(body).toEqual(expect.any(Object));
   });
 });
