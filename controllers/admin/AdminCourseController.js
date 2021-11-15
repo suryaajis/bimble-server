@@ -18,7 +18,7 @@ class CourseController {
         attributes: {
           exclude: ["createdAt", "updatedAt"],
         },
-        order: [["id", "asc"]],
+        order: [["createdAt", "DESC"]],
       };
 
       if (search) {
@@ -51,6 +51,7 @@ class CourseController {
       next(err);
     }
   }
+
   static async findCourseById(req, res, next) {
     try {
       const { courseId } = req.params;
@@ -70,7 +71,6 @@ class CourseController {
             },
           },
         ],
-        order: [["id", "DESC"]],
       });
 
       if (!foundCourse) {
@@ -85,18 +85,8 @@ class CourseController {
 
   static async createCourse(req, res, next) {
     try {
-      console.log(req.body, "INI REQ BODY")
       const t = await sequelize.transaction();
-      const {
-        name,
-        description,
-        price,
-        thumbnailUrl,
-        difficulty,
-        // status,
-        CategoryId,
-        Videos,
-      } = req.body;
+      const { name, description, price, thumbnailUrl, difficulty, CategoryId, Videos } = req.body;
 
       const newCourse = await Course.create(
         {
@@ -131,18 +121,11 @@ class CourseController {
       next(err);
     }
   }
+
   static async updateCourse(req, res, next) {
     try {
       const { courseId } = req.params;
-      const {
-        name,
-        description,
-        price,
-        thumbnailUrl,
-        difficulty,
-        status,
-        CategoryId,
-      } = req.body;
+      const { name, description, price, thumbnailUrl, difficulty, status, CategoryId } = req.body;
 
       const foundCourse = await Course.findByPk(courseId);
 
@@ -171,6 +154,7 @@ class CourseController {
       next(err);
     }
   }
+  
   static async patchCourse(req, res, next) {
     try {
       const { courseId } = req.params;

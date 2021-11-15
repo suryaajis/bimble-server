@@ -3,7 +3,6 @@ const axios = require("axios");
 
 const uploadImages = async (req, res, next) => {
 	try {
-		console.log(req.files, "INI REQ FILES")
 		if (req.files) {
 			const files = req.files;
 			const parsedFilesForm = files.map((el) => {

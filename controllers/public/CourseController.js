@@ -20,7 +20,7 @@ class CourseController {
 				attributes: {
 					exclude: ["createdAt", "updatedAt"],
 				},
-				order: [["id", "asc"]],
+				order: [["createdAt", "DESC"]],
 			};
 
 			if (search) {
@@ -94,7 +94,6 @@ class CourseController {
 					},
 				],
 				order: [
-					["id", "DESC"],
 					[Video, "id", "ASC"]
 				],
 			});
@@ -126,7 +125,6 @@ class CourseController {
       next(err)
     }
   }
-
 }
 
 module.exports = CourseController;
