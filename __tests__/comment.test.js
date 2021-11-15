@@ -15,9 +15,11 @@ let loginParams = {
   email: "udin@gmail.com",
   password: "12345678",
 };
+
 const dataCategories = JSON.parse(
   fs.readFileSync("./data/categories.json", "utf-8")
 );
+
 const dataCourses = JSON.parse(fs.readFileSync("./data/courses.json", "utf-8"));
 const dataUsers = JSON.parse(fs.readFileSync("./data/users.json", "utf-8"));
 const dataMyCourse = JSON.parse(
@@ -81,7 +83,7 @@ afterAll(async () => {
   });
 });
 
-describe("GET /public/userCourse", () => {
+describe("POST /public/comments/:videoId", () => {
   test("[201 - Success] Add Comment", (done) => {
     request(app)
       .post("/public/comments/1")

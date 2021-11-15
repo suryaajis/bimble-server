@@ -90,7 +90,6 @@ class VideoController {
         name: response[1][0].name
       })
     } catch (err) {
-      console.log(err)
       next(err);
     }
   }

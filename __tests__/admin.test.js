@@ -1,6 +1,4 @@
 const request = require("supertest");
-const superagent = require("superagent");
-const FormData = require("form-data");
 const app = require("../app");
 const fs = require("fs");
 const { Category, Course, Comment, User, Video } = require("../models");

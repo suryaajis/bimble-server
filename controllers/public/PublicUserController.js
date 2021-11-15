@@ -71,8 +71,12 @@ class PublicUserController {
 	}
 
 	static async googleLogin(req, res, next) {
+		// log buat ambil id token
+		console.log(req.body)
+
 		const CLIENT_ID = process.env.GOOGLE_CLIENT_ID
-        const client = new OAuth2Client(CLIENT_ID);
+        const client = new OAuth2Client(CLIENT_ID)
+
 		try {
 			const ticket = await client.verifyIdToken({
 				idToken: req.body.idToken,
@@ -98,6 +102,16 @@ class PublicUserController {
 				email: user.email,
 				role: user.role,
 			});
+
+			const dataMailer = {
+				email: user.email,
+				text: `
+        Hello ${user.name} ${user.email}!
+        <br/>
+        Thank you for joining Bimble,
+        Enjoy your stay here!`,
+			};
+			sendEmail(dataMailer);
 
 			res.status(201).json({
 				access_token,
@@ -130,18 +144,16 @@ class PublicUserController {
 
 	static async updateUser(req, res, next) {
 		try {
-			const { name, email, password } = req.body;
+			const { name, email } = req.body;
 
-			const response = await User.update(
+			await User.update(
 				{
 					name,
 					email,
 				},
 				{
-					where: {
-						email: req.user.email,
-					},
-					returning: true,
+					where: { email: req.user.email },
+					returning: true
 				}
 			);
 

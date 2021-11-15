@@ -44,7 +44,6 @@ describe("[failed] POST /public/register", () => {
 
     const response = await request(app).post("/public/register").send(registerParams);
 
-    // Hasil Output
     expect(response.status).toBe(400);
     expect(response.body).toHaveProperty("message", "Password can't be empty");
 
@@ -56,7 +55,6 @@ describe("[failed] POST /public/register", () => {
 
     const response = await request(app).post("/public/register").send(registerParams);
 
-    // Hasil Output
     expect(response.status).toBe(400);
     expect(response.body).toHaveProperty("message", "Email can't be empty");
 
@@ -68,7 +66,6 @@ describe("[failed] POST /public/register", () => {
 
     const response = await request(app).post("/public/register").send(registerParams);
 
-    // Hasil Output
     expect(response.status).toBe(400);
     expect(response.body).toHaveProperty("message", "Password can't be empty");
 
@@ -85,6 +82,4 @@ describe("[failed] POST /public/register", () => {
 
     registerParams.password = "123456789"
   }) 
-});
-
-
+})

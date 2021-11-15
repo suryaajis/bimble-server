@@ -19,34 +19,25 @@ class CategoryController {
       next(err);
     }
   }
+
   static async deleteCategory(req, res, next) {
     const t = await sequelize.transaction();
     try {
       const { categoryId } = req.params;
       const foundCategory = await Category.findByPk(categoryId);
+      
       if (foundCategory) {
         await Category.destroy(
-          {
-            where: {
-              id: categoryId,
-            },
-          },
+          { where: { id: categoryId } },
           { transaction: t }
         );
 
         await Course.destroy(
-          {
-            where: {
-              CategoryId: categoryId,
-            },
-          },
+          { where: { CategoryId: categoryId } },
           { transaction: t }
         );
-        res
-          .status(200)
-          .json({
-            message: `Course and category with id ${foundCategory.id} has been deleted`,
-          });
+
+        res.status(200).json({ message: `Course and category with id ${foundCategory.id} has been deleted` });
       } else {
         throw { name: "CategoryNotFound" };
       }
