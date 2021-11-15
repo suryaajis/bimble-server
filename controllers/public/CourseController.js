@@ -69,14 +69,7 @@ class CourseController {
 	static async readCourseDetail(req, res, next) {
 		try {
 			const { courseId } = req.params;
-
-			// let exclude 
-			// if (Video[0]) {
-			// 	exclude = { exclude: ["createdAt", "updatedAt"] }
-			// } else {
-			// 	exclude = { exclude: ["createdAt", "updatedAt", "videoUrl"] }
-			// }
-
+			
 			const foundCourse = await Course.findByPk(courseId, {
 				include: [
 					{

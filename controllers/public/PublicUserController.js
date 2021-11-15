@@ -117,6 +117,9 @@ class PublicUserController {
 				attributes: {
 					exclude: ["id", "password", "updatedAt", "createdAt"],
 				},
+				order: [
+					["id", "DESC"]
+				]
 			});
 
 			res.status(200).json(response);
