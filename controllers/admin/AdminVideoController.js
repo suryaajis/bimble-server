@@ -8,6 +8,11 @@ class VideoController {
         where: { id: videoId },
         attributes: ['id', 'name', 'videoUrl']
       })
+
+      if(!response) {
+        throw {name: "VideoNotFound"}
+      }
+
       res.status(200).json(response)
     } catch (err) {
       next(err)
