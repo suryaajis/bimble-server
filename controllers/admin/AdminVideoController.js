@@ -18,16 +18,30 @@ class VideoController {
         CourseId: foundCourse.id,
       });
 
-      const response = {
+      res.status(201).json({
         name: addVideo.name,
-        CourseId: addVideo.CourseId
-      } 
-
-      res.status(201).json(response);
+        CourseId: addVideo.CourseId,
+      });
     } catch (err) {
       next(err);
     }
   }
+
+  static async deleteVideo(req, res, next) {
+    try {
+      const { videoId } = req.params
+
+      await Video.destroy({
+        where: {
+          id: videoId
+        }
+      })
+
+      res.status(200).json({message: "Video has been deleted"})
+    } catch (err) {
+      next(err)
+    }
+  }
 }
 
-module.exports = VideoController
+module.exports = VideoController;
