@@ -176,7 +176,18 @@ describe("POST /admin/courses", () => {
   });
 });
 
-describe("POST /admin/videos/:courseId", () => {
+describe("GET /admin/videos/:courseId", () => {
+  test("[200 - Success] get detail video by id", async () => {
+    const { status, body } = await request(app)
+      .get("/admin/videos/1")
+      .set("access_token", token)
+
+    expect(status).toBe(200);
+    expect(body).toEqual(expect.any(Object));
+    expect(body).toHaveProperty("name");
+    expect(body).toHaveProperty("videoUrl");
+  });
+
   test("[201 - Success] add video", async () => {
     const filePath = "assets/viral.mp4";
     const buffer = Buffer.from(filePath);
@@ -220,6 +231,16 @@ describe("POST /admin/videos/:courseId", () => {
     expect(body).toHaveProperty("message", "Video has been deleted");
   })
 
+  test("[404 - Video Not Found] get detail video with invalid video id", async () => {
+    const { body, status } = await request(app)
+      .get("/admin/videos/9999999")
+      .set("access_token", token);
+
+    expect(status).toBe(404);
+    expect(body).toEqual(expect.any(Object));
+    expect(body).toHaveProperty("message", "Video Not Found");
+  });
+  
   test("[404 - Course Not Found] add video with invalid course id", async () => {
     const { body, status } = await request(app)
       .post("/admin/videos/9999999")
