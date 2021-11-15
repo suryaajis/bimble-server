@@ -26,7 +26,11 @@ beforeAll(async () => {
   userToken = await request(app)
     .post("/public/login")
     .send({ email: "udin@gmail.com", password: "12345678" });
-});
+})
+
+beforeEach(() => {
+  jest.restoreAllMocks();
+})
 
 afterAll(async () => {
   await User.destroy({ truncate: true, cascade: true, restartIdentity: true });
@@ -67,10 +71,27 @@ describe("GET /public/ratings/:courseId", () => {
       })
       .catch((err) => {
         done(err);
-      });
-  });
+      })
+  })
 
-  test("[404 - Course Not Found] Add Rating with wrong course id", (done) => {
+  test("[200 - Success] get rating by userid & courseid", (done) => {
+    request(app)
+      .get("/public/ratingUser/1")
+      .set("access_token", userToken.body.access_token)
+      .then((response) => {
+        const { status, body } = response;
+
+        expect(status).toBe(200);
+        expect(body).toEqual(expect.any(Object));
+        expect(body).toHaveProperty("rating", 8);
+        done();
+      })
+      .catch((err) => {
+        done(err);
+      })
+  })
+
+  test("[404 - Course Not Found] Get Rating with wrong course id", (done) => {
     request(app)
       .get("/public/ratings/999999")
       .set("access_token", userToken.body.access_token)
@@ -85,6 +106,20 @@ describe("GET /public/ratings/:courseId", () => {
         done(err);
       });
   });
+
+  test("[500 - Error] Catch error rating find One by userId & courseId", async () => {
+    jest.spyOn(Rating, "findOne").mockRejectedValue("Error");
+
+    return request(app)
+      .get("/public/ratingUser/1")
+      .set("access_token", userToken.body.access_token)
+      .then((response) => {
+        const { body, status } = response
+        expect(status).toBe(500)
+        expect(body).toEqual(expect.any(Object));
+        expect(body).toHaveProperty("message", "Internal server error");
+      })
+  })
 });
 
 describe("POST /public/ratings/:courseId", () => {
@@ -93,7 +128,7 @@ describe("POST /public/ratings/:courseId", () => {
       truncate: true,
       cascade: true,
       restartIdentity: true,
-    });
+    })
 
     const { status, body } = await request(app)
       .post("/public/ratings/1")
@@ -105,7 +140,20 @@ describe("POST /public/ratings/:courseId", () => {
     expect(status).toBe(201);
     expect(body).toEqual(expect.any(Object));
     expect(body).toHaveProperty("rating");
-  });
+  })
+
+  test("[400 - AlreadyRated] User already rated course", async () => {
+    const { status, body } = await request(app)
+      .post("/public/ratings/1")
+      .set("access_token", userToken.body.access_token)
+      .send({
+        rating: 8,
+      })
+
+    expect(status).toBe(400)
+    expect(body).toEqual(expect.any(Object))
+    expect(body).toHaveProperty("message", "You have already rated this course")
+  })
 
   test("[400 - CourseNotPaid] Add Rating before purchase course", (done) => {
     request(app)
@@ -123,25 +171,25 @@ describe("POST /public/ratings/:courseId", () => {
       })
       .catch((err) => {
         done(err);
-      });
-  });
+      })
+  })
 
-  test("[400 - Maximal rating is 10] add a rating with a value that exceeds the maximum", (done) => {
-    request(app)
+  test("[400 - Maximal rating is 10] add a rating with a value that exceeds the maximum", async () => {
+    await Rating.destroy({
+      truncate: true,
+      cascade: true,
+      restartIdentity: true,
+    })
+
+    const { status, body } = await request(app)
       .post("/public/ratings/1")
       .set("access_token", userToken.body.access_token)
       .send({
         rating: 11,
       })
-      .then((response) => {
-        const { status, body } = response;
-        expect(status).toBe(400);
-        expect(body).toEqual(expect.any(Object));
-        expect(body).toHaveProperty("message", "Maximal rating is 10");
-        done();
-      })
-      .catch((err) => {
-        done(err);
-      });
-  });
-});
+
+      expect(status).toBe(400)
+      expect(body).toEqual(expect.any(Object))
+      expect(body).toHaveProperty("message", "Maximal rating is 10")
+  })
+})
