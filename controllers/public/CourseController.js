@@ -1,4 +1,4 @@
-const { Course, Category, Video, Comment } = require("../../models");
+const { Course, Category, Video, Comment, User } = require("../../models");
 const { Op } = require("sequelize");
 
 class CourseController {
@@ -69,7 +69,7 @@ class CourseController {
 	static async readCourseDetail(req, res, next) {
 		try {
 			const { courseId } = req.params;
-			
+
 			const foundCourse = await Course.findByPk(courseId, {
 				include: [
 					{
@@ -86,6 +86,10 @@ class CourseController {
 						include: {
 							model: Comment,
 							attributes: ["id", "comment"],
+							include: {
+								model: User,
+								attributes: ["name"],
+							},
 						},
 					},
 				],
