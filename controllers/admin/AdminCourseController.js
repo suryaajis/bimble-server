@@ -85,6 +85,7 @@ class CourseController {
 
   static async createCourse(req, res, next) {
     try {
+      console.log(req.body, "INI REQ BODY")
       const t = await sequelize.transaction();
       const {
         name,
@@ -92,7 +93,7 @@ class CourseController {
         price,
         thumbnailUrl,
         difficulty,
-        status,
+        // status,
         CategoryId,
         Videos,
       } = req.body;
@@ -104,7 +105,7 @@ class CourseController {
           price,
           thumbnailUrl,
           difficulty,
-          status,
+          status: "active",
           CategoryId,
         },
         { transaction: t }
