@@ -25,6 +25,7 @@ publicRouter.get('/userCourses/:courseId', UsercourseController.getById)
 publicRouter.post('/userCourses/:courseId', UsercourseController.addUserCourse)
 
 publicRouter.post('/comments/:videoId', CommentController.AddComment)
+publicRouter.get("/ratingUser/:courseId", RatingController.getRatingByUserId)
 publicRouter.post('/ratings/:courseId', ratingAuthorization, RatingController.addRating)
 
 module.exports = publicRouter

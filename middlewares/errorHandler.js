@@ -45,6 +45,9 @@ const errorHandler = (err, req, res, next) => {
   } else if (err.name === "VideoNotFound") {
     code = 404
     msg = "Video Not Found"
+  } else if (err.name === "AlreadyRated") {
+    code = 400
+    msg = "You have already rated this course"
   }
 
   res.status(code).json({ message: msg });

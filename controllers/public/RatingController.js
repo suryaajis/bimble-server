@@ -30,11 +30,33 @@ class RatingController {
     }
   }
 
+  static async getRatingByUserId (req, res, next) {
+    try {
+      const { id } = req.user;
+      const { courseId } = req.params;
+      
+      const userRating = await Rating.findOne({
+        where: { UserId: id, CourseId: courseId },
+        attributes: ['rating']
+      })
+
+      res.status(200).json(userRating)
+    } catch (error) {
+      next(error)
+    }
+  }
+
   static async addRating(req, res, next) {
     try {
       const { id } = req.user;
       const { courseId } = req.params;
       const { rating } = req.body;
+
+      const userRating = await Rating.findOne({
+        where: { UserId: id, CourseId: courseId }
+      })
+
+      if (userRating) throw { name: "AlreadyRated" }
 
       const addrating = await Rating.create({
         rating,
