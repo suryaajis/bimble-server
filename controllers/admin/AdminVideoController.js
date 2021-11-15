@@ -62,7 +62,6 @@ class VideoController {
     }
   }
 
-  // masih error
   static async updateVideo(req, res, next) {
     try {
       const { videoId } = req.params;
@@ -80,10 +79,12 @@ class VideoController {
           where: { id: videoId },
           returning: true,
         }
-      );
-      console.log(response)
+      )
 
-      res.status(200).json(response);
+      res.status(200).json({
+        id: response[1][0].id,
+        name: response[1][0].name
+      })
     } catch (err) {
       next(err);
     }

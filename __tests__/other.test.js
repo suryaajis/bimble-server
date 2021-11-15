@@ -190,7 +190,25 @@ describe("POST /admin/videos/:courseId", () => {
     expect(body).toEqual(expect.any(Object));
     expect(body).toHaveProperty("name");
     expect(body).toHaveProperty("CourseId");
-  });
+  })
+
+  test("[200 - Success] update name video by video id", (done) => {
+    request(app)
+      .patch("/admin/videos/1")
+      .set("access_token", token)
+      .send({ name: "test aja :((" })
+      .then((response) => {
+        const { status, body } = response
+        expect(status).toBe(200)
+        expect(body).toEqual(expect.any(Object))
+        expect(body).toHaveProperty('id')
+        expect(body).toHaveProperty('name')
+        done()
+      })
+      .catch((err) => {
+        done(err)
+      })
+  })
 
   test("[201 - Success] delete video by video id", async () => {
     const { status, body } = await request(app)
@@ -200,7 +218,7 @@ describe("POST /admin/videos/:courseId", () => {
     expect(status).toBe(200);
     expect(body).toEqual(expect.any(Object));
     expect(body).toHaveProperty("message", "Video has been deleted");
-  });
+  })
 
   test("[404 - Course Not Found] add video with invalid course id", async () => {
     const { body, status } = await request(app)
@@ -220,4 +238,14 @@ describe("POST /admin/videos/:courseId", () => {
     expect(body).toEqual(expect.any(Object));
     expect(body).toHaveProperty("message", "Video Not Found");
   });
+
+  test("[404 - Video Not Found] update name video with invalid video id", async () => {
+    const { body, status } = await request(app)
+      .patch("/admin/videos/9999999")
+      .set("access_token", token);
+
+    expect(status).toBe(404);
+    expect(body).toEqual(expect.any(Object));
+    expect(body).toHaveProperty("message", "Video Not Found");
+  })
 });
