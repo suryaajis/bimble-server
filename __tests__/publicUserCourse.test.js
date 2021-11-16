@@ -218,13 +218,13 @@ describe("GET /public/userCourse", () => {
       });
   });
 
-  test("[404 - Course Purchased] Add UserCourse with add same course", (done) => {
+  test("[400 - Course Purchased] Add UserCourse with add same course", (done) => {
     request(app)
       .post("/public/userCourses/1")
       .set("access_token", userToken.body.access_token)
       .then((response) => {
         const { status, body } = response;
-        expect(status).toBe(404);
+        expect(status).toBe(400);
         expect(body).toEqual(expect.any(Object));
         expect(body).toHaveProperty("message", "Course Already Purchased")
         done();
