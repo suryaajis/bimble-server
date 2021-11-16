@@ -36,15 +36,18 @@ const ovoCharge = async (req, res, next) => {
 			auth: { username: process.env.XENDIT_API_KEY },
 		})
 
-        await UserCourse.update(
+        const statusBayar = await UserCourse.update(
             { 
                 chargeId: response.data.id,
                 referenceId: response.data.reference_id
             },
-            { where: { id: userCourseId } }
+            { where: { id: userCourseId },
+            returning: true
+         }
         )
         
-        res.status(200).json(response.data)
+        // res.status(200).json(response.data)
+        res.status(200).json(statusBayar)
     } catch (error) {
         next(error.response)
     }
