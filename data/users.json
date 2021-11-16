@@ -1,30 +1,44 @@
 [
     {
         "id" : 1,
-        "name" : "admin",
-        "email" : "admin@gmail.com",
-        "password" : "$2b$08$4mdzYhzpfCTwo9XLkm4O3OpmZya5GTzWIQuRbwOnnEhy2tf8A30Za",
+        "name" : "Samuel Matthew",
+        "email" : "samuelmatthew211@gmail.com",
+        "password" : "$2a$10$IklCrKEFBQjBkimCNTyOjOZrbdtX915tU3wdJ898Dh2HAof6Eteoa",
         "role" : "Admin"
     },
     {
         "id" : 2,
-        "name" : "kosasih",
-        "email" : "kosasih@gmail.com",
-        "password" : "$2b$08$4mdzYhzpfCTwo9XLkm4O3OpmZya5GTzWIQuRbwOnnEhy2tf8A30Za",
+        "name" : "Bernhard Winner",
+        "email" : "bernhardwinner@gmail.com",
+        "password" : "$2a$10$IklCrKEFBQjBkimCNTyOjOZrbdtX915tU3wdJ898Dh2HAof6Eteoa",
         "role" : "Admin"
     },
     {
         "id" : 3,
-        "name" : "udin",
-        "email" : "udin@gmail.com",
-        "password" : "$2b$08$4mdzYhzpfCTwo9XLkm4O3OpmZya5GTzWIQuRbwOnnEhy2tf8A30Za",
-        "role" : "User"
+        "name" : "Surya Aji",
+        "email" : "shifuka11@gmail.com",
+        "password" : "$2a$10$IklCrKEFBQjBkimCNTyOjOZrbdtX915tU3wdJ898Dh2HAof6Eteoa",
+        "role" : "Admin"
     },
     {
         "id" : 4,
-        "name" : "jhon",
-        "email" : "jhon@gmail.com",
-        "password" : "$2b$08$4mdzYhzpfCTwo9XLkm4O3OpmZya5GTzWIQuRbwOnnEhy2tf8A30Za",
+        "name" : "Colin Maximillion Halim",
+        "email" : "Ryuken_allstar@yahoo.com",
+        "password" : "$2a$10$IklCrKEFBQjBkimCNTyOjOZrbdtX915tU3wdJ898Dh2HAof6Eteoa",
+        "role" : "Admin"
+    },
+    {
+        "id" : 5,
+        "name" : "Vina Eka Laylani",
+        "email" : "vinaekalaylani@gmail.com",
+        "password" : "$2a$10$IklCrKEFBQjBkimCNTyOjOZrbdtX915tU3wdJ898Dh2HAof6Eteoa",
+        "role" : "Admin"
+    },
+    {
+        "id" : 6,
+        "name" : "User",
+        "email" : "user@mail.com",
+        "password" : "$2a$10$IklCrKEFBQjBkimCNTyOjOZrbdtX915tU3wdJ898Dh2HAof6Eteoa",
         "role" : "User"
     }
 ]

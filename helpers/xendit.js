@@ -60,12 +60,12 @@ const ovoStatus = async (req, res, next) => {
         const referenceId = req.body.data.reference_id.split('-')
         const status = req.body.data.status
 
-        // if (status === 'SUCCEEDED') {
+        if (status === 'SUCCEEDED') {
             await UserCourse.update(
                 { isPaid: true },
                 { where: { id: Number(referenceId[1]) } }
             )
-        // }
+        }
 
         res.status(200).json({
             message: `UserCourse with id ${referenceId[1]} is paid! ChargeId = ${chargeId}`

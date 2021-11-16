@@ -12,8 +12,8 @@ publicRouter.post("/register", PublicUserController.register);
 publicRouter.post("/login", PublicUserController.login);
 publicRouter.post("/googleLogin", PublicUserController.googleLogin);
 publicRouter.get("/courses", CourseController.readAllCourses);
-publicRouter.get("/courses/:courseId", CourseController.readCourseDetail);
 publicRouter.get('/categories', CourseController.readCategories)
+publicRouter.get("/courses/:courseId", CourseController.readCourseDetail);
 publicRouter.get('/ratings/:courseId', RatingController.getRating)
 
 publicRouter.use(authentication);
