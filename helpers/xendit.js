@@ -60,6 +60,8 @@ const ovoStatus = async (req, res, next) => {
         const referenceId = req.body.data.reference_id.split('-')
         const status = req.body.data.status
 
+        console.log(req.body)
+
         if (status === 'SUCCEEDED') {
             await UserCourse.update(
                 { isPaid: true },
