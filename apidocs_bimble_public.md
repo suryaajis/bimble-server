@@ -2,21 +2,23 @@
 
 # RESTfull endpoints
 
-<!-- #### POST /public/register -->
-<!-- #### POST /public/login -->
-<!-- #### POST /public/googleLogin -->
-<!-- #### GET /public/courses -->
-<!-- #### GET /public/categories -->
-<!-- #### GET /public/courses/:courseId -->
-<!-- #### GET /public/ratings/:courseId -->
-<!-- #### GET /public/users -->
-<!-- #### PUT /public/users -->
-<!-- #### GET /public/userCourse -->
-<!-- #### GET /public/userCourses/:courseId -->
-<!-- #### POST /public/userCourses/:courseId -->
+#### POST /public/register
+#### POST /public/login
+#### POST /public/googleLogin
+#### GET /public/courses
+#### GET /public/categories
+#### GET /public/courses/:courseId
+#### GET /public/ratings/:courseId
+#### GET /public/users
+#### PUT /public/users
+#### GET /public/userCourse
+#### GET /public/userCourses/:courseId
+#### POST /public/userCourses/:courseId
 #### POST /public/comments/:videoId
-#### GET /public/ratingUser/:courseId
 #### POST /public/ratings/:courseId
+#### GET /public/ratingUser/:courseId
+#### POST /ovo/charge
+#### POST /ovo/status
 
 ## POST /public/register
 
@@ -76,7 +78,7 @@ OR
 _Response (500 - Internal Error)_
 ```
 {
-    "message": [ "500 Internal Error" ]
+    "message": "Internal Server Error"
 }
 ```
 
@@ -118,7 +120,7 @@ _Response (401 - Unauthorized)_
 _Response (500 - Internal Error)_
 ```
 {
-    "message": [ "500 Internal Error" ]
+    "message": "Internal Server Error"
 }
 ```
 
@@ -152,7 +154,7 @@ _Response (200 - Success)_
 _Response (500 - Internal Error)_
 ```
 {
-    "message": [ "500 Internal Error" ]
+    "message": "Internal Server Error"
 }
 ```
 
@@ -161,6 +163,37 @@ _Response (500 - Internal Error)_
 _Request Params_
 ```
 not needed
+```
+
+_Request Query_
+```
+{
+  "page": <page>
+}
+
+OR
+
+{
+  "search": <search>
+}
+
+OR
+
+{ 
+  "categoryId": <category id>
+}
+
+OR
+
+{ 
+  "price": <price>
+}
+
+OR
+
+{ 
+  "difficulty": <difficulty>
+}
 ```
 
 _Request Header_
@@ -208,7 +241,7 @@ _Response (200 - Success)_
 _Response (500 - Internal Error)_
 ```
 {
-    "message": [ "500 Internal Error" ]
+    "message": "Internal Server Error"
 }
 ```
 
@@ -250,7 +283,7 @@ _Response (200 - Success)_
 _Response (500 - Internal Error)_
 ```
 {
-    "message": [ "500 Internal Error" ]
+    "message": "Internal Server Error"
 }
 ```
 
@@ -318,7 +351,7 @@ _Response (404 - Not Found)_
 _Response (500 - Internal Error)_
 ```
 {
-    "message": [ "500 Internal Error" ]
+    "message": "Internal Server Error"
 }
 ```
 
@@ -358,7 +391,7 @@ _Response (404 - Not Found)_
 _Response (500 - Internal Error)_
 ```
 {
-    "message": [ "500 Internal Error" ]
+    "message": "Internal Server Error"
 }
 ```
 
@@ -398,10 +431,17 @@ _Response (401 - Unauthorized)_
 }
 ```
 
+_Response (401 - JsonWebTokenError)_
+```
+{
+  "message": "Unauthorized"
+}
+```
+
 _Response (500 - Internal Error)_
 ```
 {
-    "message": [ "500 Internal Error" ]
+    "message": "Internal Server Error"
 }
 ```
 
@@ -441,10 +481,17 @@ _Response (401 - Unauthorized)_
 }
 ```
 
+_Response (401 - JsonWebTokenError)_
+```
+{
+  "message": "Unauthorized"
+}
+```
+
 _Response (500 - Internal Error)_
 ```
 {
-    "message": [ "500 Internal Error" ]
+    "message": "Internal Server Error"
 }
 ```
 
@@ -521,10 +568,17 @@ _Response (401 - Unauthorized)_
 }
 ```
 
+_Response (401 - JsonWebTokenError)_
+```
+{
+  "message": "Unauthorized"
+}
+```
+
 _Response (500 - Internal Error)_
 ```
 {
-    "message": [ "500 Internal Error" ]
+    "message": "Internal Server Error"
 }
 ```
 
@@ -600,6 +654,13 @@ _Response (401 - Unauthorized)_
 }
 ```
 
+_Response (401 - JsonWebTokenError)_
+```
+{
+  "message": "Unauthorized"
+}
+```
+
 _Response (404 - Not Found)_
 ```
 {
@@ -610,7 +671,7 @@ _Response (404 - Not Found)_
 _Response (500 - Internal Error)_
 ```
 {
-    "message": [ "500 Internal Error" ]
+    "message": "Internal Server Error"
 }
 ```
 
@@ -646,10 +707,24 @@ _Response (200 - Success)_
 }
 ```
 
+_Response (400 - Bad Request)_
+```
+{
+  "message": "Course Already Purchased"
+}
+```
+
 _Response (401 - Unauthorized)_
 ```
 {
   "message": "Invalid email/password"
+}
+```
+
+_Response (401 - JsonWebTokenError)_
+```
+{
+  "message": "Unauthorized"
 }
 ```
 
@@ -663,7 +738,210 @@ _Response (404 - Not Found)_
 _Response (500 - Internal Error)_
 ```
 {
-    "message": [ "500 Internal Error" ]
+    "message": "Internal Server Error"
+}
+```
+
+## POST /public/comments/:videoId
+
+_Request Params_
+```
+{
+    "videoId": <video id>
+}
+```
+
+_Request Header_
+```
+{
+    "access_token": <access_token user login>
+}
+```
+
+_Request Body_
+```
+{
+  "comment": TEXT
+}
+```
+
+_Response (200 - Success)_
+```
+{
+  "comment": <comment>,
+  "VideoId": <video id>,
+  "UserId": <user id>
+}
+```
+
+_Response (400 - CourseNotPaid)_
+```
+{
+  "message": "You must buy first"
+}
+```
+
+_Response (401 - Unauthorized)_
+```
+{
+  "message": "Invalid email/password"
+}
+```
+
+_Response (401 - JsonWebTokenError)_
+```
+{
+  "message": "Unauthorized"
+}
+```
+
+_Response (404 - Not Found)_
+```
+{
+  "message": "Video Not Found"
+}
+```
+
+_Response (500 - Internal Error)_
+```
+{
+    "message": "Internal Server Error"
+}
+```
+
+## POST /public/ratings/:coursId
+
+_Request Params_
+```
+{
+  "courseId": <course id>
+}
+```
+
+_Request Header_
+```
+{
+  "access_token": <access_token user login>
+}
+```
+
+_Request Body_
+```
+{
+  "rating": INTEGER
+}
+```
+
+_Response (200 - Success)_
+```
+{
+  "rating": <rating>,
+  "UserId": <user id>,
+  "CourseId": <course id>,
+}
+```
+
+_Response (400 - Bad Request)_
+```
+{
+  "message": "You have already rated this course"
+}
+
+OR
+
+{
+  "message": "You must buy first"
+}
+
+OR
+
+{
+  "message": "Rating can't be empty"
+}
+```
+
+_Response (401 - Unauthorized)_
+```
+{
+  "message": "Invalid email/password"
+}
+```
+
+_Response (401 - JsonWebTokenError)_
+```
+{
+  "message": "Unauthorized"
+}
+```
+
+_Response (404 - Not Found)_
+```
+{
+  "message": "Course Not Found"
+}
+```
+
+_Response (500 - Internal Error)_
+```
+{
+    "message": "Internal Server Error"
+}
+```
+
+
+## GET /public/ratingUser/:coursId
+
+_Request Params_
+```
+{
+  "courseId": <course id>
+}
+```
+
+_Request Header_
+```
+{
+  "access_token": <access_token user login>
+}
+```
+
+_Request Body_
+```
+not needed
+```
+
+_Response (200 - Success)_
+```
+{
+  "rating": <rating>
+}
+```
+
+_Response (401 - Unauthorized)_
+```
+{
+  "message": "Invalid email/password"
+}
+```
+
+_Response (401 - JsonWebTokenError)_
+```
+{
+  "message": "Unauthorized"
+}
+```
+
+_Response (404 - Not Found)_
+```
+{
+  "message": "Course Not Found"
+}
+```
+
+_Response (500 - Internal Error)_
+```
+{
+    "message": "Internal Server Error"
 }
 ```
 
@@ -728,11 +1006,64 @@ _Response (401 - Unauthorized)_
 }
 ```
 
-_Response (500 - Internal Error)_
+_Response (401 - JsonWebTokenError)_
 ```
 {
-    "message": [ "500 Internal Error" ]
+  "message": "Unauthorized"
 }
 ```
 
-## POST /ovo/status <FROM XENDIT>
+_Response (500 - Internal Error)_
+```
+{
+    "message": "Internal Server Error"
+}
+```
+
+## POST /ovo/status
+
+> Accept callback from xendit about the payment status
+> &nbsp;
+_Request Header_
+
+```
+{
+  "x-callback-token" : <callback token>
+}
+```
+
+_Request Body_
+
+```
+{
+  "data": {
+    "id": <charge id>,
+    "reference_id": <reference id>,
+    "status": "SUCCEEDED"
+  }
+}
+```
+
+_Response (200 - Success)_
+
+```
+{
+	"message": "Course with id <course id> is paid! ChargeId = <charge id>"
+}
+```
+
+_Response (401 - Unauthorized)_
+
+```
+{
+  "message" : "You must login first"
+}
+```
+
+_Response (500 - Internal Server Error)_
+
+```
+{
+  "message" : "Internal Server Error"
+}
+```

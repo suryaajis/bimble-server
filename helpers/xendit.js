@@ -70,7 +70,7 @@ const ovoStatus = async (req, res, next) => {
         }
 
         res.status(200).json({
-            message: `UserCourse with id ${referenceId[1]} is paid! ChargeId = ${chargeId}`
+            message: `Course with id ${referenceId[1]} is paid! ChargeId = ${chargeId}`
         })
     } catch (error) {
         next(error)
