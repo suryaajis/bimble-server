@@ -36,7 +36,7 @@ const ovoCharge = async (req, res, next) => {
 			auth: { username: process.env.XENDIT_API_KEY },
 		})
 
-        const statusBayar = await UserCourse.update(
+        await UserCourse.update(
             { 
                 chargeId: response.data.id,
                 referenceId: response.data.reference_id
@@ -46,8 +46,7 @@ const ovoCharge = async (req, res, next) => {
          }
         )
         
-        // res.status(200).json(response.data)
-        res.status(200).json(statusBayar)
+        res.status(200).json(response.data)
     } catch (error) {
         next(error.response)
     }
@@ -63,16 +62,16 @@ const ovoStatus = async (req, res, next) => {
         const referenceId = req.body.data.reference_id.split('-')
         const status = req.body.data.status
 
-        let response
         if (status === 'SUCCEEDED') {
-            console.log('kebayar')
-            response = await UserCourse.update(
+            await UserCourse.update(
                 { isPaid: true },
                 { where: { id: Number(referenceId[1]) } }
             )
         }
 
-        res.status(200).json(response)
+        res.status(200).json({
+            message: `UserCourse with id ${referenceId[1]} is paid! ChargeId = ${chargeId}`
+        })
     } catch (error) {
         next(error)
     }
