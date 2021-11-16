@@ -7,9 +7,9 @@ let userToken
 beforeAll( async () => {
     jest.setTimeout(90 * 1000)
     user = await User.create({
-        name: "Jhon", 
-        email: "jhon@gmail.com", 
-        password: "12345678", 
+        name: "User", 
+        email: "user@mail.com", 
+        password: "bimblebukanbejol", 
         role: "User"
     })
 
@@ -39,7 +39,7 @@ beforeAll( async () => {
     // login to take a access_token
     userToken = await request(app)
         .post('/public/login')
-        .send({email: "jhon@gmail.com", password: "12345678"})
+        .send({email: "user@mail.com", password: "bimblebukanbejol"})
 })
 
 afterAll( async ()=>{

@@ -41,7 +41,9 @@ const ovoCharge = async (req, res, next) => {
                 chargeId: response.data.id,
                 referenceId: response.data.reference_id
             },
-            { where: { id: userCourseId } }
+            { where: { id: userCourseId },
+            returning: true
+         }
         )
         
         res.status(200).json(response.data)
@@ -68,7 +70,7 @@ const ovoStatus = async (req, res, next) => {
         }
 
         res.status(200).json({
-            message: `UserCourse with id ${referenceId[1]} is paid! ChargeId = ${chargeId}`
+            message: `Course with id ${referenceId[1]} is paid! ChargeId = ${chargeId}`
         })
     } catch (error) {
         next(error)

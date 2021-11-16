@@ -5,8 +5,8 @@ const { Category, Course, Comment, User, Video } = require("../models");
 
 let token;
 let loginParams = {
-  email: "admin@gmail.com",
-  password: "12345678",
+  email: "vinaekalaylani@gmail.com",
+  password: "bimblebukanbejol",
 };
 const dataUsers = JSON.parse(fs.readFileSync("./data/users.json", "utf-8"));
 

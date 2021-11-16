@@ -5,8 +5,8 @@ const { Category, Course, Comment, User, Video } = require("../models");
 
 let token;
 let loginParams = {
-  email: "admin@gmail.com",
-  password: "12345678",
+  email: "vinaekalaylani@gmail.com",
+  password: "bimblebukanbejol",
 };
 const dataCategories = JSON.parse(
   fs.readFileSync("./data/categories.json", "utf-8")
@@ -506,8 +506,8 @@ describe("DELETE /admin/comments/:commentId", () => {
 describe("Authorization Test", () => {
   test("[401 - Unauthorized] get all user with login by role user", async () => {
     loginUser = {
-      email: "udin@gmail.com",
-      password: "12345678",
+      email: "user@mail.com",
+      password: "bimblebukanbejol",
     };
 
     const { body } = await request(app).post("/public/login").send(loginUser);
