@@ -11,8 +11,8 @@
 <!-- #### GET /public/ratings/:courseId -->
 <!-- #### GET /public/users -->
 <!-- #### PUT /public/users -->
-#### GET /public/userCourse
-#### GET /public/userCourses/:courseId
+<!-- #### GET /public/userCourse -->
+<!-- #### GET /public/userCourses/:courseId -->
 <!-- #### POST /public/userCourses/:courseId -->
 #### POST /public/comments/:videoId
 #### GET /public/ratingUser/:courseId
@@ -179,10 +179,10 @@ _Response (200 - Success)_
   {
     "id": <course id>,
     "name": <course name>,
-    "description": <description course>,
-    "price": <price course>,
-    "thumbnailUrl": <thumbnailUrl course>,
-    "difficulty": <difficulty course>,
+    "description": <description>,
+    "price": <price>,
+    "thumbnailUrl": <thumbnailUrl>,
+    "difficulty": <difficulty>,
     "status": "active",
     "CategoryId": <category id course>,
     "Category": {
@@ -192,10 +192,10 @@ _Response (200 - Success)_
   {
     "id": <course id>,
     "name": <course name>,
-    "description": <description course>,
-    "price": <price course>,
-    "thumbnailUrl": <thumbnailUrl course>,
-    "difficulty": <difficulty course>,
+    "description": <description>,
+    "price": <price>,
+    "thumbnailUrl": <thumbnailUrl>,
+    "difficulty": <difficulty>,
     "status": "active",
     "CategoryId": <category id course>,
     "Category": {
@@ -278,10 +278,10 @@ _Response (200 - Success)_
 {
     "id": <course id>,
     "name": <course name>,
-    "description": <description course>,
-    "price": <price course>,
-    "thumbnailUrl": <thumbnailUrl course>,
-    "difficulty": <difficulty course>,
+    "description": <description>,
+    "price": <price>,
+    "thumbnailUrl": <thumbnailUrl>,
+    "difficulty": <difficulty>,
     "status": "active",
     "CategoryId": <category id course>,
     "Category": {
@@ -470,9 +470,48 @@ not needed
 
 _Response (200 - Success)_
 ```
-{
-  "message": "User has been updated"
-}
+[
+  {
+    "id": <userCourse id>,
+    "UserId": <user id>,
+    "CourseId": <course id>,
+    "isPaid": true,
+    "chargeId": <charge id>,
+    "referenceId": <reference id>,
+    "User": {
+      "name": <name user>
+    },
+    "Course": {
+      "name": <course name>,
+      "description": <description>,
+      "price": <price>,
+      "thumbnailUrl": <thumbnailUrl>",
+      "difficulty": <difficulty>,
+      "status": "active",
+      "CategoryId": <category id course>
+    }
+  },
+  {
+    "id": <userCourse id>,
+    "UserId": <user id>,
+    "CourseId": <course id>,
+    "isPaid": true,
+    "chargeId": <charge id>,
+    "referenceId": <reference id>,
+    "User": {
+      "name": <name user>
+    },
+    "Course": {
+      "name": <course name>,
+      "description": <description>,
+      "price": <price>,
+      "thumbnailUrl": <thumbnailUrl>",
+      "difficulty": <difficulty>,
+      "status": "active",
+      "CategoryId": <category id course>
+    }
+  }
+]
 ```
 
 _Response (401 - Unauthorized)_
@@ -489,7 +528,7 @@ _Response (500 - Internal Error)_
 }
 ```
 
-<!-- ## GET /public/userCourses/:courseId
+## GET /public/userCourses/:courseId
 
 _Request Params_
 ```
@@ -512,6 +551,45 @@ not needed
 
 _Response (200 - Success)_
 ```
+{
+  "id": <userCourse id>,
+  "UserId": <user id>,
+  "CourseId": <course id>,
+  "isPaid": true,
+  "chargeId": <charge id>,
+  "referenceId": <reference id>,
+  "User": {
+    "name": <name user>
+  },
+  "Course": {
+    "name": <course name>,
+    "description": <description>,
+    "price": <price>,
+    "thumbnailUrl": <thumbnailUrl>",
+    "difficulty": <difficulty>,
+    "status": "active",
+    "CategoryId": <category id course>,
+    "createdAt": <createdAt>,
+    "updatedAt": <updatedAt>,
+    "Videos": [
+      {
+        "id": <video id course>,
+        "name": <video name course>,
+        "videoUrl": <video url course>,
+        "CourseId": <course id video>,
+        "Comments": [
+            {
+              "id": <comment id video>,
+              "comment": <comment video>,
+              "User": {
+                  "name": <name user>
+              }
+            }
+          ]
+      }
+    ]
+  }
+}
 
 ```
 
@@ -587,7 +665,7 @@ _Response (500 - Internal Error)_
 {
     "message": [ "500 Internal Error" ]
 }
-``` -->
+```
 
 ## POST /ovo/charge
 

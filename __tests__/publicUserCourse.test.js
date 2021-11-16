@@ -6,9 +6,9 @@ let userToken;
 
 beforeAll(async () => {
   user = await User.create({
-    name: "Jhon",
-    email: "jhon@gmail.com",
-    password: "12345678",
+    name: "user",
+    email: "user@mail.com",
+    password: "bimblebukanbejol",
     role: "User",
   });
 
@@ -52,7 +52,7 @@ beforeAll(async () => {
   // login to take a access_token
   userToken = await request(app)
     .post("/public/login")
-    .send({ email: "jhon@gmail.com", password: "12345678" });
+    .send({ email: "user@mail.com", password: "bimblebukanbejol" });
 });
 
 beforeEach(() => {
@@ -178,7 +178,7 @@ describe("GET /public/userCourse", () => {
         const { status, body } = response;
         expect(status).toBe(401);
         expect(body).toEqual(expect.any(Object));
-        expect(body).toHaveProperty("message", "Unauthorized");
+        expect(body).toHaveProperty("message", "Invalid email/password");
         done();
       })
       .catch((err) => {

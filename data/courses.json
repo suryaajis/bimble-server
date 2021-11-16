@@ -2,7 +2,7 @@
     {
         "id": 1,
         "name": "Program Linear",
-        "description": "Program Linear adalah bagian matematika yang membahas cara menentukan nilai optimum suatu fungsi – dinamakan fungsi obyektif atau fungsi tujuan – pada suatu sistem yang dibatasi beberapa kendala./nAda dua macam nilai optimum yang akan ditentukan, yaitu nilai maksimum dan nilai minimum.",
+        "description": "Program Linear adalah bagian matematika yang membahas cara menentukan nilai optimum suatu fungsi – dinamakan fungsi obyektif atau fungsi tujuan – pada suatu sistem yang dibatasi beberapa kendala. Ada dua macam nilai optimum yang akan ditentukan, yaitu nilai maksimum dan nilai minimum.",
         "price": 145000,
         "thumbnailUrl": "https://i.ytimg.com/vi/WJr11FExG7s/hqdefault.jpg?s…RUAAIhCGAE=&rs=AOn4CLAImD8rRbQR7cuFCw3Z_xsjLlr1Tg",
         "difficulty": "medium",
@@ -12,7 +12,7 @@
     {
         "id": 2,
         "name": "Dimensi Tiga",
-        "description": "Yang dimaksud dengan unsur-unsur ruang adalah titik, garis, dan bidang./nDalam Geometri, titik, garis, dan bidang, termasuk dalam aksioma atau postulat./nAksioma adalah pernyataan yang diterima sebagai kebenaran secara umum tanpa perlu adanya pembuktian.",
+        "description": "Yang dimaksud dengan unsur-unsur ruang adalah titik, garis, dan bidang. Dalam Geometri, titik, garis, dan bidang, termasuk dalam aksioma atau postulat. Aksioma adalah pernyataan yang diterima sebagai kebenaran secara umum tanpa perlu adanya pembuktian.",
         "price": 130000,
         "thumbnailUrl": "https://i.ytimg.com/vi/strzhKqA_sQ/hqdefault.jpg?s…RUAAIhCGAE=&rs=AOn4CLCVGKk89pHJwWo1ORt8hzlH1iM9rg",
         "difficulty": "easy",
@@ -134,7 +134,7 @@
         "name": "Perhitungan Pendapatan Nasional",
         "description": "Pendapatan nasional merupakan jumlah rata-rata pendapatan yang diterima oleh seluruh rumah tangga keluarga (RTK) pada suatu negara dari penyerahan berbagai faktor produksi dalam satu periode atau selama satu tahun.",
         "price": 225000,
-        "thumbnailUrl": "https://i.ytimg.com/vi/N8zd4OSAhVw/hqdefault.jpg?s…QCAokN4AQ==&rs=AOn4CLAD45O9F_MnP8ODjp5WPpEjingjdA",
+        "thumbnailUrl": "https://i.ytimg.com/vi 8zd4OSAhVw/hqdefault.jpg?s…QCAokN4AQ==&rs=AOn4CLAD45O9F_MnP8ODjp5WPpEjingjdA",
         "difficulty": "medium",
         "status": "active",
         "CategoryId": 5
@@ -204,7 +204,7 @@
         "name": "Masuknya Agama Islam ke Indonesia",
         "description": "Teori Gujarat, teori Makkah, dan teori Persia (Ahmad Mansur, 1996). Ketiga teori tersebut, saling mengemukakan perspektif kapan masuknya Islam, asal negara, penyebar atau pembawa Islam ke Nusantara.",
         "price": 255000,
-        "thumbnailUrl": "https://i.ytimg.com/vi/Ns7G7YO2XZs/hqdefault.jpg?s…RUAAIhCGAE=&rs=AOn4CLAx8PSkusGV2DYypdzwe7oRet7DSA",
+        "thumbnailUrl": "https://i.ytimg.com/vi s7G7YO2XZs/hqdefault.jpg?s…RUAAIhCGAE=&rs=AOn4CLAx8PSkusGV2DYypdzwe7oRet7DSA",
         "difficulty": "hard",
         "status": "active",
         "CategoryId": 7

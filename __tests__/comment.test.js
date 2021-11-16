@@ -12,8 +12,8 @@ const {
 
 let token;
 let loginParams = {
-  email: "udin@gmail.com",
-  password: "12345678",
+  email: "vinaekalaylani@gmail.com",
+  password: "bimblebukanbejol",
 };
 
 const dataCategories = JSON.parse(
