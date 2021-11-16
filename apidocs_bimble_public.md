@@ -489,7 +489,7 @@ _Response (500 - Internal Error)_
 }
 ```
 
-## GET /public/userCourses/:courseId
+<!-- ## GET /public/userCourses/:courseId
 
 _Request Params_
 ```
@@ -587,7 +587,7 @@ _Response (500 - Internal Error)_
 {
     "message": [ "500 Internal Error" ]
 }
-```
+``` -->
 
 ## POST /ovo/charge
 
