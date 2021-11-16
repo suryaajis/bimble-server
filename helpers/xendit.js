@@ -61,6 +61,7 @@ const ovoStatus = async (req, res, next) => {
         const status = req.body.data.status
 
         if (status === 'SUCCEEDED') {
+            console.log('kebayar')
             await UserCourse.update(
                 { isPaid: true },
                 { where: { id: Number(referenceId[1]) } }
