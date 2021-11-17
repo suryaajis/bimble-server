@@ -178,7 +178,7 @@ describe("GET /public/userCourse", () => {
         const { status, body } = response;
         expect(status).toBe(401);
         expect(body).toEqual(expect.any(Object));
-        expect(body).toHaveProperty("message", "Invalid email/password");
+        expect(body).toHaveProperty("message", "Unauthorized");
         done();
       })
       .catch((err) => {
