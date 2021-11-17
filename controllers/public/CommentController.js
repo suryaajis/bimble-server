@@ -20,7 +20,8 @@ class CommentController {
     
       const foundMyCourse = await UserCourse.findOne({
         where: {
-          CourseId: foundVideo.Course.id
+          CourseId: foundVideo.Course.id,
+          UserId: id
         }
       })
 
