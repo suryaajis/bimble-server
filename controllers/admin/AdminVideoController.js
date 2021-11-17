@@ -37,6 +37,7 @@ class VideoController {
 
       res.status(201).json({
         name: addVideo.name,
+        videoUrl: addVideo.videoUrl,
         CourseId: addVideo.CourseId,
       });
     } catch (err) {

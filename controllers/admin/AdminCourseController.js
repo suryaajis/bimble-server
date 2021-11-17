@@ -18,7 +18,7 @@ class CourseController {
         attributes: {
           exclude: ["createdAt", "updatedAt"],
         },
-        order: [["createdAt", "DESC"], ["id", "ASC"]],
+        order: [["createdAt", "DESC"], ["id", "DESC"]],
       };
 
       if (search) {
