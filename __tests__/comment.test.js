@@ -12,7 +12,7 @@ const {
 
 let token;
 let loginParams = {
-  email: "vinaekalaylani@gmail.com",
+  email: "shifuka11@gmail.com",
   password: "bimblebukanbejol",
 };
 
