@@ -117,18 +117,16 @@ class UsercourseController {
         day: "numeric",
       };
       const payload = {
+        subject: 'Thanks for your purchase',
         email: user.email,
         text: `
-                Hello ${user.name}!
-                <br/><br/>
-                Thank you for purchasing ${
-                  course.name
-                } from Bimble at ${course.createdAt.toLocaleString(
-          "en-US",
-          option
-        )}
-                <br/>
-                Don't forget to complete the payment process using OVO!`,
+          Hello ${user.name}!
+          <br/><br/>
+          Thank you for purchasing ${
+            course.name
+          } from Bimble at ${course.createdAt.toLocaleString("en-US", option)}
+        <br/>
+        Don't forget to complete the payment process using OVO!`,
       };
 
       sendEmail(payload);

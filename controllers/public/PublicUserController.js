@@ -23,12 +23,13 @@ class PublicUserController {
 			};
 
 			const payload = {
+				subject: 'Welcome to BIMBLE',
 				email: response.email,
 				text: `
-        Hello ${response.name} ${response.email}!
-        <br/>
-        Thank you for joining Bimble,
-        Enjoy your stay here!`,
+				Hello ${response.name} ${response.email}!
+				<br/>
+				Thank you for joining Bimble,
+				Enjoy your stay here!`
 			};
 			sendEmail(payload);
 			res.status(201).json(response);
@@ -86,7 +87,7 @@ class PublicUserController {
 
 			const { email, given_name } = payload;
 
-			const [user] = await User.findOrCreate({
+			const [user, created] = await User.findOrCreate({
 				where: {
 					email,
 				},
@@ -96,22 +97,26 @@ class PublicUserController {
 					role: "User",
 				},
 			})
+
+			if (created === true) {
+				const dataMailer = {
+					subject: 'Welcome to BIMBLE',
+					email: user.email,
+					text: `
+					Hello ${user.name} ${user.email}!
+					<br/>
+					Thank you for joining Bimble,
+					Enjoy your stay here!`
+				};
+				sendEmail(dataMailer)
+			}
+
 			const access_token = signToken({
 				id: user.id,
 				name: user.name,
 				email: user.email,
 				role: user.role,
 			});
-
-			const dataMailer = {
-				email: user.email,
-				text: `
-        Hello ${user.name} ${user.email}!
-        <br/>
-        Thank you for joining Bimble,
-        Enjoy your stay here!`,
-			};
-			sendEmail(dataMailer);
 
 			res.status(201).json({
 				access_token,

@@ -12,7 +12,7 @@ function sendEmail (payload) {
     const mailOptions = {
         from: process.env.GMAIL_NODEMAILER,
         to: payload.email,
-        subject: `Trial Send Email`,
+        subject: payload.subject,
         html: `<p>
               ${payload.text} <br/><br/>
               <img src="cid:logo" width="300" height="100"></p>`,
