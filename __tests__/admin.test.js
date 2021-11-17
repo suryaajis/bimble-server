@@ -140,7 +140,7 @@ describe("GET /admin/courses", () => {
 
   test("[200 - Success] get courses with search by name", (done) => {
     request(app)
-      .get("/public/courses?search=akun")
+      .get("/admin/courses?search=akun")
       .set("access_token", token)
       .then((response) => {
         const { body, status } = response;
