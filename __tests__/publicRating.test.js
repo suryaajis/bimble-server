@@ -25,7 +25,7 @@ beforeAll(async () => {
   // login to take a access_token
   userToken = await request(app)
     .post("/public/login")
-    .send({ email: "shifuka11@gmail.com", password: "bimblebukanbejol" });
+    .send({ email: "kosasih@mail.com", password: "bimblebukanbejol" })
 })
 
 beforeEach(() => {

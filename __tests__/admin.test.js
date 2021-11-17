@@ -506,7 +506,7 @@ describe("DELETE /admin/comments/:commentId", () => {
 describe("Authorization Test", () => {
   test("[401 - Unauthorized] get all user with login by role user", async () => {
     loginUser = {
-      email: "user@mail.com",
+      email: "kosasih@mail.com",
       password: "bimblebukanbejol",
     };
 

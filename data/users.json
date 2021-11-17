@@ -36,8 +36,15 @@
     },
     {
         "id" : 6,
-        "name" : "User",
-        "email" : "user@mail.com",
+        "name" : "Kosasih",
+        "email" : "kosasih@mail.com",
+        "password" : "$2a$10$IklCrKEFBQjBkimCNTyOjOZrbdtX915tU3wdJ898Dh2HAof6Eteoa",
+        "role" : "User"
+    },
+    {
+        "id" : 7,
+        "name" : "Udin",
+        "email" : "udin@mail.com",
         "password" : "$2a$10$IklCrKEFBQjBkimCNTyOjOZrbdtX915tU3wdJ898Dh2HAof6Eteoa",
         "role" : "User"
     }
