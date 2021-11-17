@@ -7,6 +7,10 @@ class CommentController {
       const { comment } = req.body;
       const { id } = req.user;
 
+      console.log(videoId, 'video id')
+      console.log(comment)
+      console.log(id)
+
       const foundVideo = await Video.findOne({
         where: {
           id: videoId
@@ -14,15 +18,20 @@ class CommentController {
         include: Course
       })
 
+      console.log(foundVideo)
+
       if(!foundVideo) {
         throw {name: "VideoNotFound"}
       }
     
       const foundMyCourse = await UserCourse.findOne({
         where: {
-          CourseId: foundVideo.Course.id
+          CourseId: foundVideo.Course.id,
+          UserId: id
         }
       })
+
+      console.log(foundMyCourse)
 
       if (foundMyCourse.isPaid === false) {
         throw { name: "CourseNotPaid" };
@@ -40,6 +49,7 @@ class CommentController {
         UserId: newComment.UserId,
       });
     } catch (error) {
+      console.log(error)
       next(error);
     }
   }
