@@ -2,25 +2,25 @@
     {
         "id": 1,
         "rating": 8,
-        "UserId": 4,
+        "UserId": 7,
         "CourseId": 1
     },
     {
         "id": 2,
         "rating": 8,
-        "UserId": 3,
+        "UserId": 6,
         "CourseId": 1
     },
     {
         "id": 3,
         "rating": 6,
-        "UserId": 4,
+        "UserId": 7,
         "CourseId": 5
     },
     {
         "id": 4,
         "rating": 10,
-        "UserId": 4,
+        "UserId": 7,
         "CourseId": 3
     }
 ]
