@@ -7,18 +7,12 @@ class CommentController {
       const { comment } = req.body;
       const { id } = req.user;
 
-      console.log(videoId, 'video id')
-      console.log(comment)
-      console.log(id)
-
       const foundVideo = await Video.findOne({
         where: {
           id: videoId
         },
         include: Course
       })
-
-      console.log(foundVideo)
 
       if(!foundVideo) {
         throw {name: "VideoNotFound"}
@@ -30,8 +24,6 @@ class CommentController {
           UserId: id
         }
       })
-
-      console.log(foundMyCourse)
 
       if (foundMyCourse.isPaid === false) {
         throw { name: "CourseNotPaid" };
@@ -49,7 +41,6 @@ class CommentController {
         UserId: newComment.UserId,
       });
     } catch (error) {
-      console.log(error)
       next(error);
     }
   }
