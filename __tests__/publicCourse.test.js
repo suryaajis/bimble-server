@@ -1,6 +1,6 @@
 const request = require("supertest");
 const app = require("../app");
-const { Category, Course } = require("../models");
+const { Category, Course, Video } = require("../models");
 const fs = require("fs");
 
 beforeAll(async () => {
@@ -13,6 +13,20 @@ beforeAll(async () => {
 
   await Category.bulkCreate(dataCategory);
   await Course.bulkCreate(dataCourses);
+  await Video.bulkCreate([
+    {
+      id: 1,
+      name: "Program Linear Part 1",
+      videoUrl: "https://www.youtube.com/embed/WJr11FExG7s",
+      CourseId: 1,
+    },
+    {
+      id: 2,
+      name: "Program Linear Part 2",
+      videoUrl: "https://www.youtube.com/embed/fp0mybLeagQ",
+      CourseId: 1,
+    },
+  ]);
 });
 
 beforeEach(() => {
@@ -26,6 +40,11 @@ afterAll(async () => {
     restartIdentity: true,
   });
   await Category.destroy({
+    truncate: true,
+    cascade: true,
+    restartIdentity: true,
+  });
+  await Video.destroy({
     truncate: true,
     cascade: true,
     restartIdentity: true,
@@ -113,7 +132,7 @@ describe("GET /courses", () => {
 describe("GET /courses/:courseId", () => {
   test("200 success get courses by courseId", (done) => {
     request(app)
-      .get("/public/courses/2")
+      .get("/public/courses/1")
       .then((response) => {
         const { body, status } = response;
         expect(body).toEqual(expect.any(Object));

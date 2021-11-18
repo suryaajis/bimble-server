@@ -1,5 +1,6 @@
 const request = require("supertest");
 const app = require("../app");
+const PublicUserController = require("../controllers/public/PublicUserController");
 const { User } = require("../models");
 
 let token;
@@ -35,18 +36,26 @@ afterAll(async () => {
 });
 
 describe("GET /users", () => {
-  test("[500 - Error] Catch error user detail find one", async () => {
-    jest.spyOn(User, "findOne").mockRejectedValue("Error");
+  test("[500 - Error] Catch error user find one", async () => {
+    try {
+      jest
+        .spyOn(User, "findAll")
+        .mockRejectedValueOnce({ status: 500, message: "Model Error" });
+      const req = {};
+      const res = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn().mockReturnThis(),
+      };
 
-    return request(app)
-      .get("/public/users")
-      .set("access_token", token)
-      .then((response) => {
-        const { body, status } = response;
-        expect(status).toBe(500);
-        expect(body).toEqual(expect.any(Object));
-        expect(body).toHaveProperty("message", "Internal server error");
+      await PublicUserController.readUser(req, res);
+      expect(res.status).toBeCalledWith(500);
+      expect(res.json).toBeCalledWith({
+        status: 500,
+        message: "Internal server error",
       });
+    } catch (error) {
+      expect(error)
+    }
   });
 
   test("[200 - success] get login user", (done) => {

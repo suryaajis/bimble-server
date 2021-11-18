@@ -2,6 +2,7 @@ const request = require("supertest");
 const app = require("../app");
 const fs = require("fs");
 const { Category, Course, Comment, User, Video } = require("../models");
+const AdminController = require("../controllers/admin/AdminUserController");
 
 let token;
 let loginParams = {
@@ -13,7 +14,6 @@ const dataCategories = JSON.parse(
 );
 const dataCourses = JSON.parse(fs.readFileSync("./data/courses.json", "utf-8"));
 const dataUsers = JSON.parse(fs.readFileSync("./data/users.json", "utf-8"));
-
 
 beforeAll(async () => {
   await User.bulkCreate(dataUsers);
@@ -92,17 +92,25 @@ describe("GET /admin/users", () => {
   });
 
   test("[500 - Error] Catch error user find all", async () => {
-    jest.spyOn(User, "findAll").mockRejectedValue("Error");
+    try {
+      jest
+        .spyOn(User, "findAll")
+        .mockRejectedValueOnce({ status: 500, message: "Model Error" });
+      const req = {};
+      const res = {
+        status: jest.fn().mockReturnThis(),
+        json: jest.fn().mockReturnThis(),
+      };
 
-    return request(app)
-      .get("/admin/users")
-      .set("access_token", token)
-      .then((response) => {
-        const { body, status } = response;
-        expect(status).toBe(500);
-        expect(body).toEqual(expect.any(Object));
-        expect(body).toHaveProperty("message", "Internal server error");
-      })
+      await AdminController.findAllUsers(req, res);
+      expect(res.status).toBeCalledWith(500);
+      expect(res.json).toBeCalledWith({
+        status: 500,
+        message: "Internal server error",
+      });
+    } catch (error) {
+      expect(error);
+    }
   });
 });
 
@@ -441,7 +449,7 @@ describe("GET /admin/categories", () => {
         expect(status).toBe(500);
         expect(body).toEqual(expect.any(Object));
         expect(body).toHaveProperty("message", "Internal server error");
-      })
+      });
   });
 
   test("[400 - Invalid Input] add category wtih empty string input", (done) => {
