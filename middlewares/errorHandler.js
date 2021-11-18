@@ -31,10 +31,7 @@ const errorHandler = (err, req, res, next) => {
     msg = "Comment Not Found";
   } else if (err.name === "InvalidFileFormat") {
     code = 400;
-    msg = "File Format Should Be MP4";
-  } else if (err.name === "InvalidFileSize") {
-    code = 400;
-    msg = "File Size Should Not Exceeded 25MB";
+    msg = "File Format Should Be MP4 And Not Exceeded 25MB";
   } else if (err.name === "authError") {
     code = 500
     msg = "You are not authorized"

@@ -6,14 +6,9 @@ const uploadImages = async (req, res, next) => {
 		if (req.files) {
 			const files = req.files;
 			const parsedFilesForm = files.map((el) => {
-				if (el.mimetype !== "video/mp4") {
+				if (el.mimetype !== "video/mp4" || el.size > 25000000) {
 					throw {
 						name: `InvalidFileFormat`,
-					};
-				}
-				if (el.size > 25000000) {
-					throw {
-						name: `InvalidFileSize`,
 					};
 				}
 				let parsedFile = el.buffer.toString("base64");

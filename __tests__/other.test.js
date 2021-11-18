@@ -131,10 +131,10 @@ describe("POST /admin/courses", () => {
 
     expect(status).toBe(400);
     expect(body).toEqual(expect.any(Object));
-    expect(body).toHaveProperty("message", "File Format Should Be MP4");
+    expect(body).toHaveProperty("message", "File Format Should Be MP4 And Not Exceeded 25MB");
   });
 
-  test("[400 - Invalid Format] Catch invalid format size add course", async () => {
+  test("[500 - Error] Catch error upload image", async () => {
     
     jest.spyOn(Course, "create").mockRejectedValue("InvalidFileSize");
     const inputSample = {
